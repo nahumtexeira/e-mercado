@@ -1,4 +1,5 @@
-function ingresar() {
+function ingresar () {
+    event.preventDefault();
     var correo = document.getElementById("correo").value;
     var pass = document.getElementById("pass").value;
 
@@ -13,6 +14,5 @@ function ingresar() {
         alert("Error: Alguno de los campos están vacios");
         return false;
     } 
-
-    location.replace("index.html")
+    window.location.replace("/index.html");
 }

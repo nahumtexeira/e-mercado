@@ -210,3 +210,19 @@ a.custom-card:hover {
 #signup {
   display: grid;
 }
+.productCard {
+  display: flex;
+  margin: 20px;
+  padding: 10px;
+  background-color: #eee;
+}
+.productCard img {
+  max-width: 200px;
+  margin-right: 20px;
+}
+.productCard h3 {
+  font-size: 16px;
+}
+.productCard p {
+  font-size: 13px;
+}

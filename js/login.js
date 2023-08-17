@@ -16,3 +16,4 @@ function ingresar () {
     } 
     window.location.replace("/index.html");
 }
+

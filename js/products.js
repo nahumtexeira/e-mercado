@@ -7,9 +7,13 @@ function showData(dataArray) {
       products.innerHTML += `
           <div class="productCard"> 
               <img src="${item.image}" alt="Product Image"> 
-              <h3>${item.name} - ${item.currency} ${item.cost}</h3>
-              <p class="soldCount">Vendidos: ${item.soldCount}</p> 
+              <div class="productDescription">
+                <div>
+                  <h3>${item.name} - ${item.currency} ${item.cost}</h3>
+                  <p class="soldCount">Vendidos: ${item.soldCount}</p>
+                </div>
               <p class="descripcionProduct">${item.description}</p>
+              </div>
           </div>
       `;
   }

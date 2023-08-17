@@ -207,18 +207,46 @@ a.custom-card:hover {
   margin: 5px;
   padding: 10px;
 }
+.forgotPass, a {
+  text-decoration: none;
+  color: #999999;
+  text-align: right;
+  padding: 5px;
+}
 #signup {
   display: grid;
 }
-.productCard {
-  display: flex;
-  margin: 20px;
+#products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   padding: 10px;
-  background-color: #eee;
+}
+@media (max-width: 992px) {
+#products {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 768px) {
+  #products {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+}
+.productCard {
+  height: 350px;
+  margin: 5px;
+  border: 1px solid #eee;
+}
+@media (max-width:768px){
+  .productCard {
+    height: 500px;
+  }
 }
 .productCard img {
-  max-width: 200px;
+  width: 100%;
   margin-right: 20px;
+}
+.productDescription {
+  padding: 10px;
 }
 .productCard h3 {
   font-size: 16px;

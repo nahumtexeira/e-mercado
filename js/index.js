@@ -1,3 +1,15 @@
+localStorage.setItem("autenticado", "true");
+
+function usuarioAutenticado() {
+    return localStorage.getItem("autenticado") === "true";
+}
+
+if (!usuarioAutenticado()) {
+    window.location.href =("/login.html");
+}
+
+localStorage.removeItem("autenticado");
+
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
@@ -12,3 +24,5 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+

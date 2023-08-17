@@ -12,7 +12,7 @@ localStorage.removeItem("autenticado");
 
 document.getElementById("cerrarSesion").addEventListener("click", function() {
     localStorage.removeItem("autenticado");
-    window.location.href = "e-mercado/login.html";
+    window.location.href = "login.html";
 });
 
 

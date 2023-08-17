@@ -4,11 +4,12 @@ function usuarioAutenticado() {
     return localStorage.getItem("autenticado") === "true";
 }
 
-if (!usuarioAutenticado()) {
-    window.location.href =("/login.html");
+if (!usuarioAutenticado && !window.location.href.endsWith("login.html")) {
+    window.location.href = "login.html";
 }
 
 localStorage.removeItem("autenticado");
+
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {

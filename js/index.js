@@ -10,6 +10,11 @@ if (!usuarioAutenticado && !window.location.href.endsWith("login.html")) {
 
 localStorage.removeItem("autenticado");
 
+document.getElementById("cerrarSesion").addEventListener("click", function() {
+    localStorage.removeItem("autenticado");
+    window.location.href = "/login.html";
+});
+
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {

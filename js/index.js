@@ -3,6 +3,7 @@ function usuarioAutenticado() {
 }
 
 if (!usuarioAutenticado()) {
+    alert("Debes iniciar sesión para continuar")
     window.location.href = "login.html";
 }
 

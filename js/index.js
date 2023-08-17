@@ -1,20 +1,15 @@
-localStorage.setItem("autenticado", "true");
-
 function usuarioAutenticado() {
     return localStorage.getItem("autenticado") === "true";
 }
-
-if (!usuarioAutenticado && !window.location.href.endsWith("e-mercado/login.html")) {
-    window.location.href = "e-mercado/login.html";
+console.log(usuarioAutenticado())
+if (!usuarioAutenticado()) {
+    window.location.href = "login.html";
 }
-
-localStorage.removeItem("autenticado");
 
 document.getElementById("cerrarSesion").addEventListener("click", function() {
     localStorage.removeItem("autenticado");
-    window.location.href = "e-mercado/login.html";
+    window.location.href = "login.html";
 });
-
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
@@ -30,5 +25,3 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
-
-

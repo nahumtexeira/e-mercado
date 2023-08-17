@@ -14,6 +14,7 @@ function ingresar () {
         alert("Error: Alguno de los campos están vacios");
         return false;
     } 
+    localStorage.setItem("autenticado", "true");
     window.location.replace("/index.html");
 }
 

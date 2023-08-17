@@ -4,8 +4,8 @@ function usuarioAutenticado() {
     return localStorage.getItem("autenticado") === "true";
 }
 
-if (!usuarioAutenticado && !window.location.href.endsWith("login.html")) {
-    window.location.href = "login.html";
+if (!usuarioAutenticado && !window.location.href.endsWith("e-mercado/login.html")) {
+    window.location.href = "e-mercado/login.html";
 }
 
 localStorage.removeItem("autenticado");

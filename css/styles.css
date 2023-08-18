@@ -216,6 +216,11 @@ a.custom-card:hover {
 #signup {
   display: grid;
 }
+#WelText, #user{
+color: #ccc;
+}
+
+/* PÁGINA DE PRODUCTOS */
 #products {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -232,9 +237,15 @@ a.custom-card:hover {
 }
 }
 .productCard {
-  height: 350px;
+  position: relative;
+  height: 400px;
   margin: 5px;
   border: 1px solid #eee;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.productCard:hover {
+  box-shadow: 0px 0px 10px #99999950;
 }
 @media (max-width:768px){
   .productCard {
@@ -244,13 +255,23 @@ a.custom-card:hover {
 .productCard img {
   width: 100%;
   margin-right: 20px;
+  border-radius: 5px 5px 0 0;
 }
 .productDescription {
-  padding: 10px;
+  padding: 20px;
 }
-.productCard h3 {
+.priceProductPage {
+  font-size: 20px;
+}
+.nameProductPage {
   font-size: 16px;
 }
-.productCard p {
-  font-size: 13px;
+.descripcionProduct {
+  font-size: 12px;
+  color: #333;
+}
+.soldCount {
+  position: absolute;
+  bottom: 10px;
+  font-size: 12px;
 }

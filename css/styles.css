@@ -216,6 +216,9 @@ a.custom-card:hover {
 #signup {
   display: grid;
 }
+#WelText, #user{
+color: #ccc;
+}
 #products {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

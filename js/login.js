@@ -17,4 +17,3 @@ function ingresar () {
     localStorage.setItem("autenticado", "true");
     window.location.replace("/index.html");
 }
-

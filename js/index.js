@@ -1,31 +1,34 @@
-localStorage.setItem("autenticado", "true");
-
 function usuarioAutenticado() {
     return localStorage.getItem("autenticado") === "true";
 }
 
-if (!usuarioAutenticado && !window.location.href.endsWith("e-mercado/login.html")) {
-    window.location.href = "e-mercado/login.html";
+if (!usuarioAutenticado()) {
+    alert("Debes iniciar sesión para continuar")
+    window.location.href = "login.html";
 }
 
-localStorage.removeItem("autenticado");
-
-document.getElementById("cerrarSesion").addEventListener("click", function() {
+document.getElementById("cerrarSesion").addEventListener("click", function () {
     localStorage.removeItem("autenticado");
     window.location.href = "login.html";
 });
 
+const usuario = document.getElementById("user");
+function usuariocharge(){
+    usuario.innerHTML=localStorage.getItem("email");
+}
+usuariocharge();
 
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("autos").addEventListener("click", function() {
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("autos").addEventListener("click", function () {
         localStorage.setItem("catID", 101);
         window.location = "products.html"
     });
-    document.getElementById("juguetes").addEventListener("click", function() {
+    document.getElementById("juguetes").addEventListener("click", function () {
         localStorage.setItem("catID", 102);
         window.location = "products.html"
     });
-    document.getElementById("muebles").addEventListener("click", function() {
+    document.getElementById("muebles").addEventListener("click", function () {
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });

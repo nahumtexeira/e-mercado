@@ -15,5 +15,6 @@ function ingresar () {
         return false;
     } 
     localStorage.setItem("autenticado", "true");
+    localStorage.setItem("email", correo);
     window.location.replace("/index.html");
 }

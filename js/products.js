@@ -1,4 +1,5 @@
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+const categoryID = localStorage.getItem("catID");
+const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/"+categoryID+".json";
 
 const products = document.getElementById("products");
 const categoria= document.getElementById("categoryProd");

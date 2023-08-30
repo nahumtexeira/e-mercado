@@ -1,5 +1,5 @@
 const categoryID = localStorage.getItem("catID");
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/"+categoryID+".json";
+const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/" + categoryID + ".json";
 
 const categoria = document.getElementById("categoryProd");
 const products = document.getElementById("products");
@@ -32,23 +32,22 @@ function showData() {
   }
 }
 
-// Función para ordenar los datos alfabéticamente
-function sortDataAlphabetically(order) {
-  dataArray.sort((a, b) => a.name.localeCompare(b.name) * order);
+// Función para ordenar los datos por precio de forma ascendente
+function sortDataByPriceAsc() {
+  dataArray.sort((a, b) => a.cost - b.cost);
   showData();
 }
 
-// Función para ordenar los datos por precio
-function sortDataByPrice(order) {
-  dataArray.sort((a, b) => (a.cost - b.cost) * order);
+// Función para ordenar los datos por precio de forma descendente
+function sortDataByPriceDesc() {
+  dataArray.sort((a, b) => b.cost - a.cost);
   showData();
 }
 
-// Función para cambiar el orden ascendente/descendente
-function toggleSortOrder() {
-  sortByPriceAsc = !sortByPriceAsc;
-  const sortOrder = sortByPriceAsc ? 1 : -1;
-  sortDataByPrice(sortOrder);
+// Función para ordenar los datos por cantidad de vendidos
+function sortDataBySoldCount() {
+  dataArray.sort((a, b) => b.soldCount - a.soldCount);
+  showData();
 }
 
 // Cargar y mostrar datos iniciales
@@ -60,21 +59,15 @@ fetch(DATA_URL)
     showData();
   });
 
-// Cambia el evento 'change' a 'click' para todos los radio buttons
+// Agregar manejadores de evento para los botones de orden
 sortAscRadio.addEventListener("click", () => {
-  if (sortAscRadio.checked) {
-    sortDataAlphabetically(1); // Ordenar alfabéticamente ascendente
-  }
+  sortDataByPriceAsc(); // Ordenar por precio ascendente
 });
 
 sortDescRadio.addEventListener("click", () => {
-  if (sortDescRadio.checked) {
-    sortDataAlphabetically(-1); // Ordenar alfabéticamente descendente
-  }
+  sortDataByPriceDesc(); // Ordenar por precio descendente
 });
 
 sortByCountRadio.addEventListener("click", () => {
-  if (sortByCountRadio.checked) {
-    toggleSortOrder();
-  }
+  sortDataBySoldCount(); // Ordenar por cantidad de vendidos
 });

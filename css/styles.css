@@ -291,3 +291,24 @@ color: #ccc;
   text-align: right;
   margin: 0px;
 }
+.search {
+  border-radius: 3px;
+  padding: 10px 15px 10px 15px;
+  font-size: 0.8em;
+  border: none;
+}
+.search:focus {
+  outline: 0;
+}
+.bg-dark {
+  background-color: orange !important;
+}
+.nav-link {
+  color: white !important;
+}
+.fa-magnifying-glass {
+  color: white;
+}
+.nav-item img {
+  max-width: 200px;
+}

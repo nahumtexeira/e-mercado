@@ -258,7 +258,7 @@ color: #ccc;
   border-radius: 5px 5px 0 0;
 }
 .productDescription {
-  padding: 20px;
+  padding: 20px; 
 }
 .priceProductPage {
   font-size: 20px;
@@ -274,4 +274,19 @@ color: #ccc;
   position: absolute;
   bottom: 10px;
   font-size: 12px;
+}
+.offset-lg-6, .form-control, .btn-light {
+  font-size: 0.8em;
+}
+#clearRangeFilter {
+  color: black;
+}
+.btn-group {
+  float: right;
+}
+.row .container .p-0 .m-0 {
+  float: right;
+}
+.col-3 {
+  width: 100%;
 }

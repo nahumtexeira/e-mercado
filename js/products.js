@@ -126,5 +126,5 @@ sortByCountRadio.addEventListener("click", () => {
 });
 
 searchInput.addEventListener("input", () => {
-  searchProducts();
+  searchProducts(); // Muestra los productos a medida que vas escribiendo en el buscador
 });

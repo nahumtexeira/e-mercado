@@ -4,14 +4,15 @@ const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/" + cat
 
 const categoria = document.getElementById("categoryProd");
 const products = document.getElementById("products");
+const searchInput = document.getElementById("Search");
 const sortAscRadio = document.getElementById("sortAsc");
 const sortDescRadio = document.getElementById("sortDesc");
 const sortByCountRadio = document.getElementById("sortByCount");
-
 const rangeFilterMinInput = document.getElementById("rangeFilterCountMin");
 const rangeFilterMaxInput = document.getElementById("rangeFilterCountMax");
 const rangeFilterButton = document.getElementById("rangeFilterCount");
 const clearFilterButton = document.getElementById("clearRangeFilter");
+
 
 // Variable para almacenar los datos
 let dataArray = [];
@@ -73,6 +74,20 @@ function filterByPriceRange(minPrice, maxPrice) {
   });
 }
 
+// Función para buscar productos
+function searchProducts() {
+  const searchText = searchInput.value.toLowerCase();
+
+  const filteredData = dataArray.filter(item => {
+    const lowerCaseName = item.name.toLowerCase();
+    const lowerCaseDescription = item.description.toLowerCase();
+
+    return lowerCaseName.includes(searchText) || lowerCaseDescription.includes(searchText);
+  });
+
+  showData(filteredData);
+}
+
 // Agregar manejadores de evento para los botones
 rangeFilterButton.addEventListener("click", () => {
   const minPrice = rangeFilterMinInput.value;
@@ -108,4 +123,8 @@ sortDescRadio.addEventListener("click", () => {
 
 sortByCountRadio.addEventListener("click", () => {
   sortDataBySoldCount(); // Ordenar por cantidad de vendidos
+});
+
+searchInput.addEventListener("input", () => {
+  searchProducts();
 });

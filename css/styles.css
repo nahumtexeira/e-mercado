@@ -312,3 +312,10 @@ color: #ccc;
 .nav-item img {
   max-width: 200px;
 }
+#user {
+  color: white;
+}
+.closeSesion {
+  padding: 10px;
+  width: 100px;
+}

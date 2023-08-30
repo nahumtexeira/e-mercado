@@ -287,4 +287,7 @@ color: #ccc;
 .row .container .p-0 .m-0 {
   float: right;
 }
-
+#WelText {
+  text-align: right;
+  margin: 0px;
+}

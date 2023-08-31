@@ -97,6 +97,10 @@ rangeFilterButton.addEventListener("click", () => {
   showData(filteredData);
 });
 
+searchInput.addEventListener("input", () => {
+  searchProducts(); // Muestra los productos a medida que vas escribiendo en el buscador
+});
+
 clearFilterButton.addEventListener("click", () => {
   rangeFilterMinInput.value = "";
   rangeFilterMaxInput.value = "";
@@ -123,8 +127,4 @@ sortDescRadio.addEventListener("click", () => {
 
 sortByCountRadio.addEventListener("click", () => {
   sortDataBySoldCount(); // Ordenar por cantidad de vendidos
-});
-
-searchInput.addEventListener("input", () => {
-  searchProducts(); // Muestra los productos a medida que vas escribiendo en el buscador
 });

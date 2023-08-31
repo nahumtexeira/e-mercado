@@ -200,7 +200,7 @@ a.custom-card:hover {
 .login h2 {
   text-align: center;
 }
-#correo , #pass , #nameUser , #apellidoUser{
+#email , #pass , #nameUser , #apellidoUser{
   border: 1px solid #ccc;
   border-radius: 5px;
   height: 35px;
@@ -258,7 +258,7 @@ color: #ccc;
   border-radius: 5px 5px 0 0;
 }
 .productDescription {
-  padding: 20px;
+  padding: 20px; 
 }
 .priceProductPage {
   font-size: 20px;
@@ -274,4 +274,48 @@ color: #ccc;
   position: absolute;
   bottom: 10px;
   font-size: 12px;
+}
+.offset-lg-6, .form-control, .btn-light {
+  font-size: 0.8em;
+}
+#clearRangeFilter {
+  color: black;
+}
+.btn-group {
+  float: right;
+}
+.row .container .p-0 .m-0 {
+  float: right;
+}
+#WelText {
+  text-align: right;
+  margin: 0px;
+}
+.search {
+  border-radius: 3px;
+  padding: 10px 15px 10px 15px;
+  font-size: 0.8em;
+  border: none;
+}
+.search:focus {
+  outline: 0;
+}
+.bg-dark {
+  background-color: orange !important;
+}
+.nav-link {
+  color: white !important;
+}
+.fa-magnifying-glass {
+  color: white;
+}
+.nav-item img {
+  max-width: 200px;
+}
+#user {
+  color: white;
+}
+.closeSesion {
+  padding: 10px;
+  width: 100px;
 }

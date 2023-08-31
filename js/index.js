@@ -1,8 +1,8 @@
-function usuarioAutenticado() {
+function isAuthenticated() {
     return localStorage.getItem("autenticado") === "true";
 }
 
-if (!usuarioAutenticado()) {
+if (!isAuthenticated()) {
     alert("Debes iniciar sesión para continuar")
     window.location.href = "login.html";
 }

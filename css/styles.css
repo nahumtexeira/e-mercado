@@ -200,7 +200,7 @@ a.custom-card:hover {
 .login h2 {
   text-align: center;
 }
-#correo , #pass , #nameUser , #apellidoUser{
+#email , #pass , #nameUser , #apellidoUser{
   border: 1px solid #ccc;
   border-radius: 5px;
   height: 35px;

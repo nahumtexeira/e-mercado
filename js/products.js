@@ -18,13 +18,19 @@ const clearFilterButton = document.getElementById("clearRangeFilter");
 let dataArray = [];
 let sortByPriceAsc = true; // Variable para rastrear el orden ascendente/descendente por precio
 
+//Función para guardar id de producto
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html"
+}
+
 // Función para mostrar los datos en el contenedor
 function showData(data) {
   products.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
 
   for (const item of data) {
     products.innerHTML += `
-      <div class="productCard"> 
+      <div class="productCard" onclick="setProdID(${item.id})"}> 
           <img src="${item.image}" alt="Product Image"> 
           <div class="productDescription">
             <div>

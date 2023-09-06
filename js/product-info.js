@@ -10,6 +10,7 @@ fetch(prodInfoURL)
     .then(response => response.json())
     .then(infoCard => {
         showProdInfoData(infoCard);
+        showProdImg(infoCard.images);
     });
 
 
@@ -18,20 +19,27 @@ function showProdInfoData(infoCard) {
     containerInfo.innerHTML += `
     <div class="productInfo"> 
     <h1>${infoCard.name}</h1>
-    <strong>Categoría:</strong>    
+    <p class="st-products">Categoría:</p>    
     <p>${infoCard.category}</p>
-    <strong>Descripción:</strong>
+    <p class="st-products">Descripción:</p>
     <p>${infoCard.description}</p>
-    <strong>Costo:</strong>
+    <p class="st-products">Costo:</p>
     <p>${infoCard.cost} ${infoCard.currency}</p>
-    <strong>Cantidad de vendidos:</strong>
+    <p class="st-products">Cantidad de vendidos:</p>
     <p>${infoCard.soldCount}</p>
-    
-    <h3>Imágenes:</h3>
-   
 </div>
 `;
 }
+
+function showProdImg(images) {
+    containerInfo.innerHTML += '<p class="st-products">Imágenes</p>';
+    for (const img of images) {
+        containerInfo.innerHTML += `
+            <img class="unitImages" src="${img}" alt="">
+        `;
+    }
+}
+
 // Cargar y mostrar datos iniciales
 fetch(prodCommURL)
     .then(response => response.json())
@@ -50,3 +58,4 @@ function showProdCommInfo(commCard){
             `;
         }
     }
+

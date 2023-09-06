@@ -319,3 +319,8 @@ color: #ccc;
   padding: 10px;
   width: 100px;
 }
+
+/* Estilos de PRODUCT-INFO */
+.st-products {
+  font-weight: 700;
+}

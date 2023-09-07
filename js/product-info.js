@@ -46,14 +46,20 @@ function showMainImage(infoCard) {
 `;
 }
 
+//Cambia la imagen principal por la unt.
+function changeMainImage(src) {
+    const mainImage = document.querySelector(".mainImage");
+    mainImage.src = src;
+}
+
 // Muestra las imágenes del producto sin contar la inicial.
 function showProdImg(images) {
     
-    for (let i = 1; i < images.length; i++) {
+    for (let i = 0; i < images.length; i++) {
       const img = images[i];
   
       containerSecondaryImages.innerHTML += `
-              <img class="unitImages" src="${img}" alt="">
+              <img onclick="changeMainImage('${img}')" class="unitImages" src="${img}" alt="">
               `;
     }
   }

@@ -3,42 +3,60 @@ const prodInfoURL = "https://japceibal.github.io/emercado-api/products/" + prodI
 const prodCommURL = "https://japceibal.github.io/emercado-api/products_comments/" + prodID + ".json";
 const containerInfo = document.querySelector(".containerInfo");
 const containerComm = document.querySelector(".containerComm");
+const containerMainImage = document.querySelector(".containerMainImage");
+const containerSecondaryImages = document.querySelector(".containerSecondaryImages");
+const containerProductCategory = document.querySelector(".productCategory");
 
 
 // Cargar y mostrar datos iniciales
 fetch(prodInfoURL)
     .then(response => response.json())
     .then(infoCard => {
+        showProdCategory(infoCard);
         showProdInfoData(infoCard);
+        showMainImage(infoCard);
         showProdImg(infoCard.images);
     });
 
+// Muestra la Categoría
+function showProdCategory(infoCard) {
+    containerProductCategory.innerHTML += `
+    <p class="st-products-category">Categoría: <span>${infoCard.category}</span></p>
+`;
+}
 
+// Muestra la descripción
 function showProdInfoData(infoCard) {
-    containerInfo.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
     containerInfo.innerHTML += `
     <div class="productInfo"> 
     <h1>${infoCard.name}</h1>
-    <p class="st-products">Categoría:</p>    
-    <p>${infoCard.category}</p>
+    <p class="totalSold">| ${infoCard.soldCount} vendidos</p>
+    <p class="st-products">Categoría: <span>${infoCard.category}</span></p>
     <p class="st-products">Descripción:</p>
     <p>${infoCard.description}</p>
     <p class="st-products">Costo:</p>
     <p>${infoCard.cost} ${infoCard.currency}</p>
-    <p class="st-products">Cantidad de vendidos:</p>
-    <p>${infoCard.soldCount}</p>
 </div>
 `;
 }
-
-function showProdImg(images) {
-    containerInfo.innerHTML += '<p class="st-products">Imágenes</p>';
-    for (const img of images) {
-        containerInfo.innerHTML += `
-            <img class="unitImages" src="${img}" alt="">
-        `;
-    }
+// Muestra la Imagen inicial
+function showMainImage(infoCard) {
+    containerMainImage.innerHTML += `
+    <img class="mainImage" src="${infoCard.images[0]}" alt="imagen principal">
+`;
 }
+
+// Muestra las imágenes del producto sin contar la inicial.
+function showProdImg(images) {
+    
+    for (let i = 1; i < images.length; i++) {
+      const img = images[i];
+  
+      containerSecondaryImages.innerHTML += `
+              <img class="unitImages" src="${img}" alt="">
+              `;
+    }
+  }
 
 // Cargar y mostrar datos iniciales
 fetch(prodCommURL)
@@ -49,13 +67,21 @@ fetch(prodCommURL)
 
 function showProdCommInfo(commCard){
         containerComm.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
-        containerComm.innerHTML += ` <h2>Comentarios</h2>`
+        containerComm.innerHTML += ` <h3 class="titleOpinions">Opiniones del producto</h3>`
         for (const item of commCard) {
             containerComm.innerHTML += `
-                <div class="commentCard"> 
-                <p><strong>${item.user}</strong> - ${item.dateTime} - score:${item.score}</p> 
-                <p>${item.description} </p>
+                <div class="commentCard">
+                <p class="stars">${scoreToStars(item.score)} </p>
+                <p class="commentDescription">${item.description} </p>
+                <p class="userNameComment">${item.user} </p>
+                <p class="dataComment">${item.dateTime}</p>
+                <hr>
             `;
         }
     }
 
+function scoreToStars(score) {
+    const filledStars = "★".repeat(score);
+    const emptyStars = "☆".repeat(5 - score);
+        return filledStars + emptyStars;
+  }

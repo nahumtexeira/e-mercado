@@ -216,8 +216,9 @@ a.custom-card:hover {
 #signup {
   display: grid;
 }
-#WelText, #user{
-color: #ccc;
+#user{
+color: #999999;;
+font-size: 0.8em;
 }
 
 /* PÁGINA DE PRODUCTOS */
@@ -312,9 +313,6 @@ color: #ccc;
 .nav-item img {
   max-width: 200px;
 }
-#user {
-  color: white;
-}
 .closeSesion {
   padding: 10px;
   width: 100px;
@@ -399,4 +397,30 @@ color: #ccc;
 .totalSold {
   font-size: 0.8em;
   color: #999999;
+}
+/* Menu desplegable de usuario */
+/* Ocultar el menú desplegable por defecto */
+#nav-dropdown {
+  cursor: pointer;
+  position: relative; /* Añadir posición relativa para ajustar el espacio sensible */
+  transition: all 0.3s ease; /* Suavizar la animación */
+}
+.dropdown-menu-user-sesion {
+  display: none;
+  position: absolute;
+  top: 100%;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+/* Mostrar el menú desplegable cuando se pasa el cursor sobre el elemento principal */
+#nav-dropdown:hover .dropdown-menu-user-sesion {
+  display: block;
+}
+.secondary-nav-item {
+  font-size: 1em;
+  font-weight: 300;
+  list-style: none;
+  color:#333;
 }

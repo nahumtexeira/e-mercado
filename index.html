@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,14 +33,21 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <p class="nav-link" id="WelText">¡Hola! <span id="user"> </span></p>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-light closeSesion" id="cerrarSesion">Salir</button>
+          <li class="nav-item" id="nav-dropdown">
+            <div class="nav-link secondary-nav-link" id="WelText">
+              Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
+            </div>
+            <ul class="dropdown-menu-user-sesion">
+              <li class="secondary-nav-item"><p class="welcome">Bienvenido <span id="user"></span></p></li>
+              <hr>
+              <li class="secondary-nav-item"><a href="my-profile.html"><i class="fas fa-solid fa-user"></i> Mi cuenta</a></li>
+              <li class="secondary-nav-item"><a href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a></li>
+              <li class="secondary-nav-item"><a href="#" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            </ul>
           </li>
         </ul>
       </div>
+      
     </div>
   </nav>
   <main>

@@ -2,7 +2,7 @@
 const categoryID = localStorage.getItem("catID");
 const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/" + categoryID + ".json";
 
-const categoria = document.getElementById("categoryProd");
+const categories = document.getElementById("categoryProd");
 const products = document.getElementById("products");
 const searchInput = document.getElementById("Search");
 const sortAscRadio = document.getElementById("sortAsc");
@@ -118,7 +118,7 @@ fetch(DATA_URL)
   .then(response => response.json())
   .then(data => {
     dataArray = data.products;
-    categoria.innerHTML = data.catName;
+    categories.innerHTML = data.catName;
     showData(dataArray);
   });
 

@@ -82,9 +82,30 @@ function showProdCommInfo(commCard){
                 <p class="userNameComment">${item.user} </p>
                 <p class="dataComment">${item.dateTime}</p>
                 <hr>
+                </div>
             `;
         }
     }
+
+document.getElementById('submitComment').addEventListener('click', (event)=>{
+    event.preventDefault();
+    showComment();
+})
+    
+function showComment(){
+    const form = document.getElementById("commentForm");
+    const formData = new FormData(form);
+    const opinion = formData.get("opinion");
+    const rate = formData.get("rate");
+    containerComm.innerHTML +=`
+    <div class="commentCard">
+                <p class="stars">${scoreToStars(rate)} </p>
+                <p class="commentDescription">${opinion}</p>
+                <p class="userNameComment">${localStorage.getItem("email")}</p>
+                <p class="dataComment">${Date.now()}</p>
+    </div>
+    `
+}
 
 function scoreToStars(score) {
     const filledStars = "★".repeat(score);

@@ -428,6 +428,9 @@ font-size: 0.8em;
   border: none;
   cursor: pointer;
 }
+.not-comment {
+  font-size: 0.8em;
+}
 /* Menu desplegable de usuario */
 /* Ocultar el menú desplegable por defecto */
 #nav-dropdown {

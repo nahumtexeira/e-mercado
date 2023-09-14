@@ -81,6 +81,9 @@ function getFormattedDate() {
 function showProdCommInfo(commCard) {
     containerComm.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
     containerComm.innerHTML += ` <h3 class="titleOpinions">Opiniones del producto</h3>`
+    if (commCard.length === 0) {
+        containerComm.innerHTML += '<p class="not-comment">Aún no hay comentarios ¡puedes ser el primero!</p>'
+    }
     for (const item of commCard) {
         containerComm.innerHTML += `
                 <div class="commentCard">
@@ -121,11 +124,6 @@ function showComment() {
     const opinionInput = document.querySelector('[name="opinion"]'); // Resetea el valor del campo una vez enviado el comentario. 
     if (opinionInput) {
         opinionInput.value = '';
-    }
-
-    if (opinion.length === 0) {
-        alert("Por favor, escribe algo.");
-        return; // No se acepta comentario vacío
     }
 }
 

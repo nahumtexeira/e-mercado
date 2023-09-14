@@ -319,6 +319,9 @@ font-size: 0.8em;
 }
 
 /* Estilos de PRODUCT-INFO */
+.product-description {
+  display: flex;
+}
 .productContent {
   display: grid;
   justify-content: center;

@@ -63,22 +63,17 @@
 
         <form id="commentForm">
           <br>
-          <h4>Comentar</h4>
-          <label for="opinion">Tu opinión:</label>
+          <h3 class="titleOpinions">Comentar</h3>
+          <textarea class="text-comment" name="opinion" rows="4" cols="50" placeholder="Escriba su comentario"></textarea>
           <br>
-          <textarea name="opinion" rows="4" cols="50"></textarea>
-          <br>
-          <label for="rate">Tu puntuación:</label>
-          <br>
-          <select name="rate" id="">
+          <label for="rate">Valoración:</label>
+          <select name="rate" id="select-score">
             <option value="5">5</option>
             <option value="4">4</option>
             <option value="3">3</option>
             <option value="2">2</option>
             <option value="1">1</option>
           </select>
-          <br>
-          <br>
           <input type="submit" id="submitComment"></input>
 
         </form>

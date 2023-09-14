@@ -465,6 +465,9 @@ font-size: 0.8em;
   border-radius: 5px;
   color: white;
 }
+#submitComment:hover {
+  background-color: rgba(255, 166, 0, 0.7);
+}
 #select-score {
   width: 50px;
   border-radius: 5px;

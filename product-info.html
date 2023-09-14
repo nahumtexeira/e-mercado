@@ -66,14 +66,24 @@
           <h3 class="titleOpinions">Comentar</h3>
           <textarea class="text-comment" name="opinion" rows="4" cols="50" placeholder="Escriba su comentario"></textarea>
           <br>
-          <label for="rate">Valoración:</label>
-          <select name="rate" id="select-score">
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
+          <textarea name="opinion" rows="4" cols="50"></textarea>
+          <br>
+          <label for="rate">Tu puntuación:</label>
+          <br>
+          <div class="rating">
+            <input type="radio" name="rate" id="star5" value="5">
+            <label for="star5"></label>
+            <input type="radio" name="rate" id="star4" value="4">
+            <label for="star4"></label>
+            <input type="radio" name="rate" id="star3" value="3">
+            <label for="star3"></label>
+            <input type="radio" name="rate" id="star2" value="2">
+            <label for="star2"></label>
+            <input type="radio" name="rate" id="star1" value="1">
+            <label for="star1"></label>
+          </div>    
+          <br>
+          <br>
           <input type="submit" id="submitComment"></input>
 
         </form>

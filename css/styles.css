@@ -457,6 +457,7 @@ font-size: 0.8em;
   list-style: none;
   color:#333;
 }
+
 /* Sección de comentarios */
 .text-comment {
   width: 100%;
@@ -487,4 +488,29 @@ font-size: 0.8em;
   border: 1px solid orange;
   outline: none;
   box-shadow: 0 0 3px 2px rgba(255, 166, 0, 0.3);
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: left;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 30px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.rating label:before {
+  content: "\2605";
+}
+
+.rating input:checked ~ label {
+  color: #ffcc00;
 }

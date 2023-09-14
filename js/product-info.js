@@ -54,15 +54,15 @@ function changeMainImage(src) {
 
 // Muestra las imágenes del producto sin contar la inicial.
 function showProdImg(images) {
-    
+
     for (let i = 0; i < images.length; i++) {
-      const img = images[i];
-  
-      containerSecondaryImages.innerHTML += `
+        const img = images[i];
+
+        containerSecondaryImages.innerHTML += `
               <img onclick="changeMainImage('${img}')" class="unitImages" src="${img}" alt="">
               `;
     }
-  }
+}
 
 // Cargar y mostrar datos iniciales
 fetch(prodCommURL)
@@ -71,11 +71,18 @@ fetch(prodCommURL)
         showProdCommInfo(commCard);
     });
 
-function showProdCommInfo(commCard){
-        containerComm.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
-        containerComm.innerHTML += ` <h3 class="titleOpinions">Opiniones del producto</h3>`
-        for (const item of commCard) {
-            containerComm.innerHTML += `
+// Muestra la fecha exacta en la cual se publica el comentario
+function getFormattedDate() {
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    return now.toLocaleDateString('es-ES', options);
+}
+
+function showProdCommInfo(commCard) {
+    containerComm.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
+    containerComm.innerHTML += ` <h3 class="titleOpinions">Opiniones del producto</h3>`
+    for (const item of commCard) {
+        containerComm.innerHTML += `
                 <div class="commentCard">
                 <p class="stars">${scoreToStars(item.score)} </p>
                 <p class="commentDescription">${item.description} </p>
@@ -84,25 +91,26 @@ function showProdCommInfo(commCard){
                 <hr>
                 </div>
             `;
-        }
     }
+}
 
-document.getElementById('submitComment').addEventListener('click', (event)=>{
+document.getElementById('submitComment').addEventListener('click', (event) => {
     event.preventDefault();
     showComment();
 })
-    
-function showComment(){
+
+function showComment() {
     const form = document.getElementById("commentForm");
     const formData = new FormData(form);
     const opinion = formData.get("opinion");
     const rate = formData.get("rate");
-    containerComm.innerHTML +=`
+    const formattedDate = getFormattedDate();
+    containerComm.innerHTML += `
     <div class="commentCard">
                 <p class="stars">${scoreToStars(rate)} </p>
                 <p class="commentDescription">${opinion}</p>
                 <p class="userNameComment">${localStorage.getItem("email").replace('@gmail.com',"")}</p>
-                <p class="dataComment">${Date.now()}</p>
+                <p class="dataComment">${formattedDate}</p>
     </div>
     `
 }
@@ -110,5 +118,5 @@ function showComment(){
 function scoreToStars(score) {
     const filledStars = "★".repeat(score);
     const emptyStars = "☆".repeat(5 - score);
-        return filledStars + emptyStars;
-  }
+    return filledStars + emptyStars;
+}

@@ -31,11 +31,11 @@ function showProdInfoData(infoCard) {
     <div class="productInfo"> 
     <h1>${infoCard.name}</h1>
     <p class="totalSold">| ${infoCard.soldCount} vendidos</p>
-    <p class="st-products">Categoría: <span>${infoCard.category}</span></p>
-    <p class="st-products">Descripción:</p>
+    <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
+    <button class="addToCart">Añadir al carrito</button>
+    <hr>
+    <h3 class="st-products">Detalles del producto:</h3>
     <p>${infoCard.description}</p>
-    <p class="st-products">Costo:</p>
-    <p>${infoCard.cost} ${infoCard.currency}</p>
 </div>
 `;
 }
@@ -105,14 +105,28 @@ function showComment() {
     const opinion = formData.get("opinion");
     const rate = formData.get("rate");
     const formattedDate = getFormattedDate();
+    if (opinion.length === 0) {
+        alert("Por favor, escribe algo.");
+        return; // No se acepta comentario vacío
+    }
     containerComm.innerHTML += `
     <div class="commentCard">
                 <p class="stars">${scoreToStars(rate)} </p>
                 <p class="commentDescription">${opinion}</p>
                 <p class="userNameComment">${localStorage.getItem("email").replace('@gmail.com',"")}</p>
                 <p class="dataComment">${formattedDate}</p>
+                <hr>
     </div>
     `
+    const opinionInput = document.querySelector('[name="opinion"]'); // Resetea el valor del campo una vez enviado el comentario. 
+    if (opinionInput) {
+        opinionInput.value = '';
+    }
+
+    if (opinion.length === 0) {
+        alert("Por favor, escribe algo.");
+        return; // No se acepta comentario vacío
+    }
 }
 
 function scoreToStars(score) {

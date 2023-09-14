@@ -325,9 +325,8 @@ font-size: 0.8em;
   align-items: center;
 }
 .productCategory {
-  background-color: rgb(245, 245, 245);
-  padding: 10px;
   margin-top: 50px;
+  font-size: 0.9em;
 }
 .st-products-category {
   font-weight: 700;
@@ -336,7 +335,7 @@ font-size: 0.8em;
   font-weight: 400;
 }
 .st-products {
-  font-weight: 700;
+  font-size: 1.2em;
 }
 .productImages {
   display: flex;
@@ -344,15 +343,23 @@ font-size: 0.8em;
   border-radius: 10px;
   padding: 10px;
   width: fit-content;
+  background-color: white;
+}
+.containerMainImage {
+  overflow: hidden;
 }
 .mainImage {
   max-width: 600px;
   margin: 10px 0px;
+  transition: transform .2s;
 }
 @media (max-width:992px){
   .mainImage {
     max-width: 500px;
   }
+}
+.mainImage:hover {
+    transform: scale(1.5);
 }
 .unitImages {
   display: flex;
@@ -379,6 +386,22 @@ font-size: 0.8em;
   border-radius: 10px;
   padding: 15px;
 }
+.cost {
+  font-size: 1.3em;
+}
+.currency {
+  font-size: 0.7em;
+}
+.addToCart {
+  color: white;
+  background-color: orange;
+  border-radius: 2px;
+  border: none;
+  padding: 5px 20px;
+}
+.addToCart:hover {
+  background-color: rgba(255, 166, 0, 0.7);
+}
 /*COMENTARIOS*/
 .titleOpinions {
   font-size: 1.2em;
@@ -401,7 +424,6 @@ font-size: 0.8em;
 
 #submitComment {
   background-color: orange;
-  color: #fff;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -431,6 +453,38 @@ font-size: 0.8em;
   font-weight: 300;
   list-style: none;
   color:#333;
+}
+
+/* Sección de comentarios */
+.text-comment {
+  width: 100%;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 15px;
+}
+.text-comment:focus {
+  border: 1px solid orange;
+  outline: none;
+  color: #535353;
+  box-shadow: 0 0 3px 2px rgba(255, 166, 0, 0.3);
+}
+#submitComment {
+  margin-left: 20px;
+  border-radius: 5px;
+  color: white;
+}
+#submitComment:hover {
+  background-color: rgba(255, 166, 0, 0.7);
+}
+#select-score {
+  width: 50px;
+  border-radius: 5px;
+  padding: 2px;
+}
+#select-score:focus {
+  border: 1px solid orange;
+  outline: none;
+  box-shadow: 0 0 3px 2px rgba(255, 166, 0, 0.3);
 }
 
 .rating {

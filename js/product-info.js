@@ -101,7 +101,7 @@ function showComment(){
     <div class="commentCard">
                 <p class="stars">${scoreToStars(rate)} </p>
                 <p class="commentDescription">${opinion}</p>
-                <p class="userNameComment">${localStorage.getItem("email")}</p>
+                <p class="userNameComment">${localStorage.getItem("email").replace('@gmail.com',"")}</p>
                 <p class="dataComment">${Date.now()}</p>
     </div>
     `

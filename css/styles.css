@@ -398,6 +398,14 @@ font-size: 0.8em;
   font-size: 0.8em;
   color: #999999;
 }
+
+#submitComment {
+  background-color: orange;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
 /* Menu desplegable de usuario */
 /* Ocultar el menú desplegable por defecto */
 #nav-dropdown {

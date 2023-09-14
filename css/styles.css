@@ -345,14 +345,21 @@ font-size: 0.8em;
   width: fit-content;
   background-color: white;
 }
+.containerMainImage {
+  overflow: hidden;
+}
 .mainImage {
   max-width: 600px;
   margin: 10px 0px;
+  transition: transform .2s;
 }
 @media (max-width:992px){
   .mainImage {
     max-width: 500px;
   }
+}
+.mainImage:hover {
+    transform: scale(1.5);
 }
 .unitImages {
   display: flex;

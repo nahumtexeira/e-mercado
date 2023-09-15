@@ -39,3 +39,25 @@ let getJSONData = function(url){
         return result;
     });
 }
+   fetch(CATEGORIES_URL)
+   .then(response => {
+     if (!response.ok) {
+       throw new Error("Error al obtener los datos de las categorías");
+     }
+     return response.json();
+   })
+   .then(data => {
+     const categoryNames = data.map(category => category.name);
+     const categoryList = document.getElementById('categoryList');
+
+     categoryNames.forEach(categoryName => {
+       const listItem = document.createElement('li');
+       const link = document.createElement('a');
+       link.textContent = categoryName;
+       listItem.appendChild(link);
+       categoryList.appendChild(listItem);
+     });
+   })
+   .catch(error => {
+     console.error("Error:", error);
+   });

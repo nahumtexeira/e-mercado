@@ -461,6 +461,48 @@ font-size: 0.8em;
   color:#333;
 }
 
+
+ #categoryDropdown {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Estilo para la lista de categorías */
+#categoryList {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 100;
+  padding: 10px 0;
+  min-width: 150px; 
+  list-style-type: none;
+}
+
+/* Estilo para mostrar la lista de categorías al pasar el mouse sobre el elemento */
+#categoryDropdown:hover #categoryList {
+  display: block;
+}
+
+/* Estilo para las opciones de la lista de categorías */
+#categoryList a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #3333338f;
+  font-weight: 300;
+}
+
+/* Estilo para las opciones de la lista de categorías al pasar el mouse */
+#categoryList a:hover {
+  color: #0425b8;
+  background-color: #ffffff;
+}
+
+
 /* Sección de comentarios */
 #commentForm {
   position: relative;

@@ -20,27 +20,20 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+  
+          <ul class="navbar-nav w-100 justify-content-left">
             <li class="nav-item">
               <a href="index.html"><img src="/img/logo-emercado.png" /></a>
             </li>
+          </ul>
+  
+          <ul class="navbar-nav w-100 justify-content-right">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="categories.html">Categorías</a>
+              <div id="categoryDropdown">
+                <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
+                <ul id="categoryList"></ul>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
@@ -55,23 +48,19 @@
                 </li>
                 <hr />
                 <li class="secondary-nav-item">
-                  <a href="my-profile.html"
-                    ><i class="fas fa-solid fa-user"></i> Mi cuenta</a
-                  >
+                  <a href="my-profile.html"><i class="fas fa-solid fa-user"></i> Mi cuenta</a>
                 </li>
                 <li class="secondary-nav-item">
-                  <a href="cart.html"
-                    ><i class="fas fa-shopping-cart"></i> Carrito</a
-                  >
+                  <a href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
                 </li>
                 <li class="secondary-nav-item">
-                  <a href="#" id="cerrarSesion"
-                    ><i class="fas fa-sign-out-alt"></i> Salir</a
-                  >
+                  <a href="#" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Salir</a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </li>
           </ul>
         </div>
       </div>

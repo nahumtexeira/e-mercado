@@ -293,10 +293,13 @@ font-size: 0.8em;
   margin: 0px;
 }
 .search {
-  border-radius: 3px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid #999;
+  border-radius: 5px;
   padding: 10px 15px 10px 15px;
   font-size: 0.8em;
-  border: none;
 }
 .search:focus {
   outline: 0;
@@ -308,7 +311,8 @@ font-size: 0.8em;
   color: white !important;
 }
 .fa-magnifying-glass {
-  color: white;
+  margin: 10px;
+  color: orange;
 }
 .nav-item img {
   max-width: 200px;
@@ -563,4 +567,15 @@ font-size: 0.8em;
 }
 .rating input:checked ~ label {
   color: #ffcc00;
+}
+/* MENU */
+.justify-content-left {
+  justify-content: left;
+}
+.justify-content-right {
+  justify-content: right;
+  padding: 10px;
+}
+.nav-item {
+  padding: 0 20px;
 }

@@ -473,13 +473,13 @@ font-size: 0.8em;
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
   background-color: white;
   border: 1px solid #ccc;
   z-index: 100;
-  padding: 10px 0;
+  margin-top: 2%;
   min-width: 150px; 
   list-style-type: none;
+  padding-left: 2px;
 }
 
 /* Estilo para mostrar la lista de categorías al pasar el mouse sobre el elemento */
@@ -489,8 +489,9 @@ font-size: 0.8em;
 
 /* Estilo para las opciones de la lista de categorías */
 #categoryList a {
+  text-align: left;
   display: block;
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
   text-decoration: none;
   color: #3333338f;
   font-weight: 300;

@@ -9,19 +9,13 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
-document.addEventListener("DOMContentLoaded", function () {
-  let showSpinner = function () {
-    document.getElementById("spinner-wrapper").style.display = "block";
-  };
-
-  let hideSpinner = function () {
-    document.getElementById("spinner-wrapper").style.display = "none";
-  };
-});
-
+function setCatID(id) {
+  localStorage.setItem("catID", id);
+  window.location = "products.html";
+}
 let getJSONData = function (url) {
   let result = {};
-  showSpinner();
+
   return fetch(url)
     .then((response) => {
       if (response.ok) {
@@ -33,16 +27,25 @@ let getJSONData = function (url) {
     .then(function (response) {
       result.status = "ok";
       result.data = response;
-      hideSpinner();
+
       return result;
     })
     .catch(function (error) {
       result.status = "error";
       result.data = error;
-      hideSpinner();
+
       return result;
     });
 };
+
+let showSpinner = function () {
+  document.getElementById("spinner-wrapper").style.display = "block";
+};
+
+let hideSpinner = function () {
+  document.getElementById("spinner-wrapper").style.display = "none";
+};
+
 fetch(CATEGORIES_URL)
   .then((response) => {
     if (!response.ok) {
@@ -50,6 +53,7 @@ fetch(CATEGORIES_URL)
     }
     return response.json();
   })
+
   .then((data) => {
     const categoryList = document.getElementById("categoryList");
 

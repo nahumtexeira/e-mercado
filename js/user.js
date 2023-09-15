@@ -12,8 +12,8 @@ document.getElementById("cerrarSesion").addEventListener("click", function () {
   window.location.href = "login.html";
 });
 
-const usuario = document.getElementById("user");
-function usuariocharge() {
-  usuario.innerHTML = localStorage.getItem("email");
+const user = document.getElementById("user");
+function usercharge() {
+  user.innerHTML = localStorage.getItem("email");
 }
-usuariocharge();
+usercharge();

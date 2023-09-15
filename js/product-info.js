@@ -36,6 +36,7 @@ function showProdInfoData(infoCard) {
     <div class="productInfo"> 
     <h1>${infoCard.name}</h1>
     <p class="totalSold">| ${infoCard.soldCount} vendidos</p>
+    <p class="average">4.5 (estrellas) (10)</p>
     <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
     <button class="addToCart">Añadir al carrito</button>
     <hr>
@@ -76,6 +77,19 @@ fetch(prodCommURL)
   });
 
 // Muestra la fecha exacta en la cual se publica el comentario
+function getFormattedDateBefore(date) {
+  const dateFormat = new Date(date);
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  return dateFormat.toLocaleDateString("es-ES", options);
+}
+
+// Muestra la fecha exacta en la cual se publica el comentario
 function getFormattedDate() {
   const now = new Date();
   const options = {
@@ -84,7 +98,6 @@ function getFormattedDate() {
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
   };
   return now.toLocaleDateString("es-ES", options);
 }
@@ -102,7 +115,7 @@ function showProdCommInfo(commCard) {
                 <p class="stars">${scoreToStars(item.score)} </p>
                 <p class="commentDescription">${item.description} </p>
                 <p class="userNameComment">${item.user} </p>
-                <p class="dataComment">${item.dateTime}</p>
+                <p class="dataComment">${getFormattedDateBefore(item.dateTime)} hs</p>
                 <hr>
                 </div>
             `;
@@ -131,7 +144,7 @@ function showComment() {
                 <p class="userNameComment">${
                   localStorage.getItem("email").split("@")[0]
                 }</p>
-                <p class="dataComment">${formattedDate}</p>
+                <p class="dataComment">${formattedDate} hs</p>
                 <hr>
     </div>
     `;

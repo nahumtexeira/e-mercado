@@ -1,7 +1,11 @@
 const prodID = localStorage.getItem("prodID");
 
-const prodInfoURL = "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
-const prodCommURL = "https://japceibal.github.io/emercado-api/products_comments/" + prodID + ".json";
+const prodInfoURL =
+  "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
+const prodCommURL =
+  "https://japceibal.github.io/emercado-api/products_comments/" +
+  prodID +
+  ".json";
 
 const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");
@@ -59,14 +63,26 @@ fetch(prodCommURL)
 
 function showProdCommInfo(commCard) {
   const formattedDate = (date) => {
-    const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" };
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
     return new Date(date).toLocaleDateString("es-ES", options);
   };
 
   containerComm.innerHTML = `
     <h3 class="titleOpinions">Opiniones del producto</h3>
-    ${commCard.length === 0 ? `<p class="not-comment">Aún no hay comentarios ¡puedes ser el primero!</p>` : ""}
-    ${commCard.map(item => `
+    ${
+      commCard.length === 0
+        ? `<p class="not-comment">Aún no hay comentarios ¡puedes ser el primero!</p>`
+        : ""
+    }
+    ${commCard
+      .map(
+        (item) => `
       <div class="commentCard">
         <p class="stars">${scoreToStars(item.score)}</p>
         <p class="commentDescription">${item.description}</p>
@@ -74,7 +90,9 @@ function showProdCommInfo(commCard) {
         <p class="dataComment">${formattedDate(item.dateTime)} hs</p>
         <hr>
       </div>
-    `).join("")} 
+    `
+      )
+      .join("")} 
   `; // JOIN combina todos los comentarios generados por MAP en una sola cadena de texto.
 }
 
@@ -88,7 +106,13 @@ function showComment() {
   const formData = new FormData(form);
   const opinion = formData.get("opinion");
   const rate = formData.get("rate");
-  const formattedDate = new Date().toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" });
+  const formattedDate = new Date().toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
 
   if (!opinion) {
     alert("Por favor, escribe algo.");

@@ -8,12 +8,14 @@ const containerProductCategory = document.querySelector(".productCategory");
 const containerInfo = document.querySelector(".containerInfo");
 const containerMainImage = document.querySelector(".containerMainImage");
 const containerSecondaryImages = document.querySelector(".containerSecondaryImages");
+const containerRelatedProducts = document.querySelector("#container-related-products");
 
 // Cargar y mostrar datos iniciales (PRODUCTO)
 fetch(prodInfoURL)
   .then((response) => response.json())
   .then((infoCard) => {
     showProduct(infoCard);
+    showRelatedProducts(infoCard);
 });
 
 // Mostrar todos los detalles del producto
@@ -110,4 +112,16 @@ function showComment() {
 
 function scoreToStars(score) {
   return "★".repeat(score) + "☆".repeat(5 - score);
+}
+
+function showRelatedProducts(infoCard) {
+  infoCard.relatedProducts.forEach((relatedProduct) => {
+    const productHTML = `
+    <div class="productRelatedInfo"> 
+      <h4 class="nameRelProd">${relatedProduct.name}</h4>
+      <img class="imgRelProd" src="${relatedProduct.image}" alt="imagen del producto relacionado">
+    </div>
+  `;
+  containerRelatedProducts.innerHTML += productHTML;
+  });
 }

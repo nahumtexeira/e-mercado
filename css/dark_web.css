@@ -1,0 +1,30 @@
+body.dark {   
+    background:  #333 !important;
+}
+body.dark h1 {
+    color: #C7C0B5;
+}
+body.dark h3 {
+    color: #C7C0B5;
+}
+body.dark h4 {
+    color: #C7C0B5;
+}
+body.dark p {
+    color: #C7C0B5;
+}
+body.dark hr {
+    color: #C7C0B5;
+}
+body.dark .text-comment {
+    color: #C7C0B5;
+}
+body.dark .bg-dark {
+    background-color: #212529 !important;
+}
+body.dark .addToCart {
+    background-color: #212529;
+}
+body.dark #submitComment {
+    background-color: #212529;
+}

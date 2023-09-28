@@ -585,15 +585,6 @@ font-size: 0.8em;
 .nav-item {
   padding: 0 20px;
 }
-#container-related-products {
-  margin-top: 20px;
-}
-.productRelatedInfo {
-  display: flex;
-}
-.imgRelProd {
-  max-width: 180px;
-}
 /* Botón modo noche */
  .darkModeSwitch{
   background: #113528;
@@ -633,4 +624,37 @@ font-size: 0.8em;
 .darkModeSwitch.active::after{
   left:unset;
   right:0;
+}
+
+/* Productos Relacionados */
+.related-products {
+  margin-top: 20px;
+}
+.titleRelatedProducts {
+  font-size: 1.2em;
+  text-align: center;
+}
+#container-related-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.productRelatedInfo {
+  max-width: 250px;
+  text-align: center;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+.productRelatedInfo:hover {
+  box-shadow: 0px 0px 10px #99999950;
+  cursor: pointer;
+}
+.nameRelProd {
+  font-size: 1.1em;
+}
+.imgRelProd {
+  max-width: 100%;
 }

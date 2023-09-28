@@ -143,13 +143,13 @@ function showRelatedProducts(infoCard) {
     const productHTML = `
     <div class="productRelatedInfo" onclick="setProdID(${relatedProduct.id})"> 
       <h4 class="nameRelProd">${relatedProduct.name}</h4>
+      <hr>
       <img class="imgRelProd" src="${relatedProduct.image}" alt="imagen del producto relacionado">
     </div>
   `;
   containerRelatedProducts.innerHTML += productHTML;
   });
 }
-
 function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html"

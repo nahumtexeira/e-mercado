@@ -165,14 +165,15 @@ function addToCartClicked() {
   const inputCantidad = document.getElementById("qty").value;
 
   if (inputCantidad >= 1) {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
     const carritoItem = {
       prodID: productoIdAlmacenado,
       cantidad: inputCantidad,
     };
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
     carrito.push(carritoItem);
+
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
     console.log(

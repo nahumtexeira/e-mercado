@@ -11,20 +11,16 @@ const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");
 const containerInfo = document.querySelector(".containerInfo");
 const containerMainImage = document.querySelector(".containerMainImage");
-const containerSecondaryImages = document.querySelector(
-  ".containerSecondaryImages"
-);
-const containerRelatedProducts = document.querySelector(
-  "#container-related-products"
-);
-const productInfo = document.querySelector(".productInfo");
+const containerSecondaryImages = document.querySelector(".containerSecondaryImages");
+const containerRelatedProducts = document.querySelector("#container-related-products");
+
 // Cargar y mostrar datos iniciales (PRODUCTO)
 fetch(prodInfoURL)
   .then((response) => response.json())
   .then((infoCard) => {
     showProduct(infoCard);
     showRelatedProducts(infoCard);
-  });
+});
 
 // Mostrar todos los detalles del producto
 function showProduct(infoCard) {
@@ -32,17 +28,20 @@ function showProduct(infoCard) {
     <p class="st-products-category">Categoría: <span>${infoCard.category}</span></p>
   `;
   containerInfo.innerHTML += `
-    
+    <div class="productInfo"> 
       <h1>${infoCard.name}</h1>
       <p class="totalSold">| ${infoCard.soldCount} vendidos</p>
       <p class="average">4.5 (estrellas) (10)</p>
       <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
+      <button class="addToCart">Añadir al carrito</button>
+      <input type="number" id="qty" value="1" min="1">
       <hr>
       <h3 class="st-products">Detalles del producto:</h3>
       <p>${infoCard.description}</p>
-      
+    </div>
   `;
 
+  
   containerMainImage.innerHTML += `
     <img class="mainImage" src="${infoCard.images[0]}" alt="imagen principal">
   `;
@@ -151,10 +150,10 @@ function showRelatedProducts(infoCard) {
       <img class="imgRelProd" src="${relatedProduct.image}" alt="imagen del producto relacionado">
     </div>
   `;
-    containerRelatedProducts.innerHTML += productHTML;
+  containerRelatedProducts.innerHTML += productHTML;
   });
 }
 function setProdID(id) {
   localStorage.setItem("prodID", id);
-  window.location = "product-info.html";
+  window.location = "product-info.html"
 }

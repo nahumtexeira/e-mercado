@@ -34,11 +34,14 @@ function showProduct(infoCard) {
       <p class="average">4.5 (estrellas) (10)</p>
       <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
       <button class="addToCart">Añadir al carrito</button>
+      <input type="number" id="qty" value="1" min="1">
       <hr>
       <h3 class="st-products">Detalles del producto:</h3>
       <p>${infoCard.description}</p>
     </div>
   `;
+
+  
   containerMainImage.innerHTML += `
     <img class="mainImage" src="${infoCard.images[0]}" alt="imagen principal">
   `;

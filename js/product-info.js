@@ -169,7 +169,7 @@ function addToCartClicked() {
 
     const carritoItem = {
       prodID: productoIdAlmacenado,
-      cantidad: inputCantidad,
+      count: inputCantidad,
     };
 
     carrito.push(carritoItem);

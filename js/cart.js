@@ -1,46 +1,70 @@
 const USER_ID = 25801;
-const DATA_URL =
-  "https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json";
 
-fetch(DATA_URL)
+fetch("https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json")
   .then((response) => response.json())
-  .then((data) => {
-    showCart(data);
-  })
-  .catch((error) => console.error(error));
+  .then((serverCart) => {
+    const serverProductData = serverCart.articles;
 
-function showCart(data) {
-  const articles = data.articles;
-  if (articles.length > 0) {
-    const product = articles[0];
-    const name = product.name;
-    const cost = product.unitCost;
-    let count = product.count;
-    const currency = product.currency;
-    let subtotal = cost * count;
-    const imageUrl = product.image;
+    if (serverProductData.length > 0) {
+      const cartContainer = document.getElementById("product-data");
 
-    const productHtml = `
-      <p>Nombre: ${name}</p>
-      <p>Costo: ${cost} ${currency}</p>
-      <p>Cantidad: <input type="number" value="${count}" id="quantityInput"></p>
-      <p>Subtotal:<span id="subtotal">${subtotal} ${currency}</span></p>
-      <img src="${imageUrl}" alt="${name}">
-    `;
+      serverProductData.forEach((product) => {
+        const name = product.name;
+        const cost = product.unitCost;
+        const count = product.count;
+        const currency = product.currency;
+        const imageUrl = product.image;
 
-    document.getElementById("product-data").innerHTML = productHtml;
+        const productHtml = `
+          <div class="product">
+            <p>Nombre: ${name}</p>
+            <p>Costo: ${cost} ${currency}</p>
+            <p>Cantidad: ${count}</p>
+            <img src="${imageUrl}" alt="${name}">
+          </div>
+        `;
 
-    document
-      .getElementById("quantityInput")
-      .addEventListener("input", function () {
-        const count = document.getElementById("quantityInput").value;
-        const subtotal = cost * count;
-        document.getElementById(
-          "subtotal"
-        ).textContent = `${subtotal} ${currency}`;
-        subTotal();
+        cartContainer.innerHTML += productHtml;
       });
-  }
-}
+    } else {
+      const cartContainer = document.getElementById("product-data");
+      cartContainer.innerHTML = "El carrito del servidor está vacío.";
+    }
 
-function subTotal() {}
+    //productos del carrito local
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    carrito.forEach((item) => {
+      const prodID = item.prodID;
+      const count = item.count;
+      const PRODUCT_INFO_URL =
+        "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
+
+      fetch(PRODUCT_INFO_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          const cartContainer = document.getElementById("product-data");
+          const name = data.name;
+          const cost = data.cost;
+          const imageUrl = data.images[0];
+
+          const productHtml = `
+            <div class="product">
+              <p>Nombre: ${name}</p>
+              <p>Costo: ${cost}</p>
+              <p>Cantidad: ${count}</p>
+              <img src="${imageUrl}" alt="${name}">
+              
+            </div>
+          `;
+
+          cartContainer.innerHTML += productHtml;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });

@@ -1,5 +1,7 @@
+// Obtener el ID del producto almacenado localmente
 const prodID = localStorage.getItem("prodID");
 
+// URLs de las API para obtener información del producto y comentarios
 const prodInfoURL =
   "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
 const prodCommURL =
@@ -7,6 +9,7 @@ const prodCommURL =
   prodID +
   ".json";
 
+// Referencias a elementos del DOM
 const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");
 const containerInfo = document.querySelector(".containerInfo");
@@ -18,7 +21,7 @@ const containerRelatedProducts = document.querySelector(
   "#container-related-products"
 );
 
-// Cargar y mostrar datos iniciales (PRODUCTO)
+// Cargar y mostrar datos iniciales del producto
 fetch(prodInfoURL)
   .then((response) => response.json())
   .then((infoCard) => {
@@ -26,11 +29,14 @@ fetch(prodInfoURL)
     showRelatedProducts(infoCard);
   });
 
-// Mostrar todos los detalles del producto
+// Función para mostrar los detalles del producto
 function showProduct(infoCard) {
+  // Categoría del producto
   containerProductCategory.innerHTML += `
     <p class="st-products-category">Categoría: <span>${infoCard.category}</span></p>
   `;
+
+  // Información del producto
   containerInfo.innerHTML += `
     <div class="productInfo"> 
       <h1>${infoCard.name}</h1>
@@ -46,10 +52,13 @@ function showProduct(infoCard) {
     </div>
   `;
 
+  // Imagen principal del producto
   containerMainImage.innerHTML += `
     <img class="mainImage" src="${infoCard.images[0]}" alt="imagen principal">
   `;
   changeMainImage(infoCard.images[0]);
+
+  // Imágenes secundarias del producto
   for (let i = 0; i < infoCard.images.length; i++) {
     const img = infoCard.images[i];
 

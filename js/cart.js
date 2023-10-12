@@ -54,7 +54,8 @@ fetch("https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json")
               <p>Costo: ${cost}</p>
               <p>Cantidad: ${count}</p>
               <img src="${imageUrl}" alt="${name}">
-              <button class="btn-close" aria-label="Close" onclic="removeFromCart1"></button>
+              <button class="btn-close" aria-label="Close" onclick="remove('${prodID}')"></button>
+
             </div>
           `;
 
@@ -69,8 +70,10 @@ fetch("https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json")
     console.error("Error:", error);
   });
 
-  function removeFromCart1(prodID) {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const newCart = carrito.filter(item => item.prodID !== prodID);
-    localStorage.setItem("carrito", JSON.stringify(newCart));
-   }
+function remove(prodID) {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const updatedCart = carrito.filter((item) => item.prodID !== prodID);
+  localStorage.setItem("carrito", JSON.stringify(updatedCart));
+
+  window.location.href = window.location.href;
+}

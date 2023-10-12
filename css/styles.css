@@ -661,3 +661,7 @@ font-size: 0.8em;
 .productRelatedInfo hr {
   margin: 0px;
 }
+
+.notification {
+  display: none;
+}

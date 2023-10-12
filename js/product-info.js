@@ -37,6 +37,7 @@ function showProduct(infoCard) {
       <p class="totalSold">| ${infoCard.soldCount} vendidos</p>
       <p class="average">4.5 (estrellas) (10)</p>
       <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
+      <div class="notification" id="notification">Producto agregado al carrito</div>
       <button class="addToCart" onclick="addToCartClicked()">Añadir al carrito</button>
       <input type="number" id="qty" value="1" min="1">
       <hr>
@@ -146,7 +147,7 @@ function scoreToStars(score) {
 
 function showRelatedProducts(infoCard) {
   infoCard.relatedProducts.forEach((relatedProduct) => {
-    const productHTML = `
+    const productHTML = ` 
     <div class="productRelatedInfo" onclick="setProdID(${relatedProduct.id})"> 
       <h4 class="nameRelProd">${relatedProduct.name}</h4>
       <hr>
@@ -175,13 +176,22 @@ function addToCartClicked() {
     carrito.push(carritoItem);
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
+
     document.getElementById("qty").value = "1";
+
     console.log(
       "Se ha añadido un producto al carrito con ID:",
       productoIdAlmacenado,
       "y cantidad:",
       inputCantidad
     );
+
+    document.getElementById("qty").value = "1";
+    const notification = document.getElementById("notification");
+    notification.style.display = "block";
+    setTimeout(function () {
+      notification.style.display = "none";
+    }, 3000);
   } else {
     alert("La cantidad debe ser un número válido y al menos 1");
   }

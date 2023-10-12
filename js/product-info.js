@@ -175,7 +175,7 @@ function addToCartClicked() {
     carrito.push(carritoItem);
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
-
+    document.getElementById("qty").value = "1";
     console.log(
       "Se ha añadido un producto al carrito con ID:",
       productoIdAlmacenado,

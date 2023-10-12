@@ -39,8 +39,8 @@ function showProduct(infoCard) {
       <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
       <div class="notification" id="notification">Producto agregado al carrito</div>
       <button class="addToCart" onclick="addToCartClicked()">Añadir al carrito</button>
-      <input type="number" id="qty" value="1" min="1">
-      <hr>
+      <input type="number" id="qty" class="form-control w-auto" value="1" min="1">
+
       <h3 class="st-products">Detalles del producto:</h3>
       <p>${infoCard.description}</p>
     </div>

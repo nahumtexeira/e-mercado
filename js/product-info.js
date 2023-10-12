@@ -9,6 +9,8 @@ const prodCommURL =
   prodID +
   ".json";
 
+let cartProductInfo;
+
 // Referencias a elementos del DOM
 const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");
@@ -25,6 +27,7 @@ const containerRelatedProducts = document.querySelector(
 fetch(prodInfoURL)
   .then((response) => response.json())
   .then((infoCard) => {
+    cartProductInfo = infoCard;
     showProduct(infoCard);
     showRelatedProducts(infoCard);
   });
@@ -171,24 +174,35 @@ function setProdID(id) {
   window.location = "product-info.html";
 }
 function addToCartClicked() {
+  // Obtener el ID
   const productoIdAlmacenado = localStorage.getItem("prodID");
-  const inputCantidad = document.getElementById("qty").value;
+  // Obtener la cantidad
+  const inputCantidad = parseInt(document.getElementById("qty").value);
 
   if (inputCantidad >= 1) {
+    // Obtener el carrito del localStorage
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-    const carritoItem = {
-      prodID: productoIdAlmacenado,
+    // Obtener la información del producto para el carrito
+    const cartInfo = {
+      id: productoIdAlmacenado,
+      name: cartProductInfo.name,
+      cost: cartProductInfo.cost,
       count: inputCantidad,
+      currency: cartProductInfo.currency,
+      image: cartProductInfo.images[0],
     };
 
-    carrito.push(carritoItem);
+    // Agregar el producto al carrito
+    carrito.push(cartInfo);
 
+    // Actualizar el carrito en el localStorage
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
+    // Restablecer la cantidad a 1 en el input
     document.getElementById("qty").value = "1";
 
-    document.getElementById("qty").value = "1";
+    // Mostrar una notificación
     const notification = document.getElementById("notification");
     notification.style.display = "block";
     setTimeout(function () {

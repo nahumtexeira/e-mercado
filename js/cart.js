@@ -73,11 +73,7 @@ fetch(CART_URL)
         });
     });
   })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
-});
-})
+
 
 // Función para eliminar un producto del carrito local
 function remove(prodID) {

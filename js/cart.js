@@ -1,5 +1,6 @@
 const USER_ID = 25801;
-const CART_URL = "https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json"; 
+const CART_URL =
+  "https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json";
 
 fetch(CART_URL)
   .then((response) => response.json())
@@ -33,7 +34,7 @@ fetch(CART_URL)
     } else {
       const cartContainer = document.getElementById("product-data");
       cartContainer.innerHTML = "El carrito del servidor está vacío.";
-  }
+    }
 
     // Productos del carrito local
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];

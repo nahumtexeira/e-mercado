@@ -179,13 +179,6 @@ function addToCartClicked() {
 
     document.getElementById("qty").value = "1";
 
-    console.log(
-      "Se ha añadido un producto al carrito con ID:",
-      productoIdAlmacenado,
-      "y cantidad:",
-      inputCantidad
-    );
-
     document.getElementById("qty").value = "1";
     const notification = document.getElementById("notification");
     notification.style.display = "block";

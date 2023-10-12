@@ -20,12 +20,14 @@ fetch(CART_URL)
 
         // Crea el HTML para mostrar el producto
         const productHtml = `
-          <div class="product">
-            <p>Nombre: ${name}</p>
-            <p>Costo: ${cost} ${currency}</p>
-            <p>Cantidad: ${count}</p>
-            <img src="${imageUrl}" alt="${name}">
-          </div>
+          <tr class="product">
+            <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
+            <td>${name}</td>
+            <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
+            <td>${count}</td>
+            <td>${currency}</td>
+            <td><button class="btn-close" aria-label="Close" onclick="remove('${USER_ID}')"></button></td>
+          </tr>
         `;
 
         // Agrega el producto al contenedor del carrito
@@ -53,17 +55,19 @@ fetch(CART_URL)
           const cartContainer = document.getElementById("product-data");
           const name = data.name;
           const cost = data.cost;
+          const currency = data.currency;
           const imageUrl = data.images[0];
 
           // Crea el HTML para mostrar el producto del carrito local con botón de eliminación
           const productHtml = `
-            <div class="product">
-              <p>Nombre: ${name}</p>
-              <p>Costo: ${cost}</p>
-              <p>Cantidad: ${count}</p>
-              <img src="${imageUrl}" alt="${name}">
-              <button class="btn-close" aria-label="Close" onclick="remove('${prodID}')"></button>
-            </div>
+            <tr class="product">
+              <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
+              <td>${name}</td>
+              <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
+              <td>${count}</td>
+              <td>${currency}</td>
+              <td><button class="btn-close" aria-label="Close" onclick="remove('${prodID}')"></button></td>
+            </tr>
           `;
 
           // Agrega el producto del carrito local al contenedor del carrito

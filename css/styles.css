@@ -665,3 +665,7 @@ font-size: 0.8em;
 .notification {
   display: none;
 }
+
+.imgCart {
+  max-width: 100px;
+}

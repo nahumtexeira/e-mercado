@@ -49,10 +49,11 @@ function showProduct(infoCard) {
       <p class="average">4.5 (estrellas) (10)</p>
       <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
       <div class="notification" id="notification">Producto agregado al carrito</div>
-      <button class="addToCart" onclick="addToCartClicked()">Añadir al carrito</button>
-      <input type="number" id="qty" class="form-control w-auto" value="1" min="1">
-
-      <h3 class="st-products">Detalles del producto:</h3>
+      <div class="containerAddToCart">
+        <input type="number" id="qty" class="form-control w-auto" value="1" min="1">
+        <button class="addToCart" onclick="addToCartClicked()">Añadir al carrito</button>
+      </div>
+      <h3 class="st-products mt-3">Detalles del producto:</h3>
       <p>${infoCard.description}</p>
     </div>
   `;

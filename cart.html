@@ -60,71 +60,91 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
+  <main class="container">
       <h2 class="p-4 text-center">Carrito de compras</h2>
-      <h3 class="text-center">Artículos a comprar</h3>
-      <div>
-        <table class="w-100 mt-5">
-          <thead>
-            <tr>
-              <th class="d-none d-sm-table-cell">Imagen</th>
-              <th>Producto</th>
-              <th class="d-none d-sm-table-cell">Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="product-data">
-
-          </tbody>
-        </table>
-      </div>
-
-
-
-
-
-      <h3 class="text-center">Selección de Tipo de Envío</h3>
-      <form>
-        <div>
-          <input type="radio" id="opcion1" name="opcion" value="opcion1">
-          <label for="opcion1">Premium 2 a 5 días (15%)</label>
+      <table class="w-100 mt-5">
+        <thead>
+          <tr>
+            <th class="d-none d-sm-table-cell">Imagen</th>
+            <th>Producto</th>
+            <th class="d-none d-sm-table-cell">Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="product-data">
+          <!-- Productos dentro del carrito -->
+        </tbody>
+      </table>
+      <section class="shipment">
+        <div class="address mt-5">
+          <h3 class="text-center">Envío</h3>
+          <form class="mt-3">
+            <div class="mb-3 form-floating">
+              <input class="form-control" list="datalistOptions" id="floatingSelect">
+              <label for="floatingSelect">Localidad:</label>
+              <datalist id="datalistOptions">
+                <option value="Montevideo"></option>
+                <option value="Artigas"></option>
+                <option value="Canelones"></option>
+                <option value="Cerro Largo"></option>
+                <option value="Colonia"></option>
+                <option value="Durazno"></option>
+                <option value="Flores"></option>
+                <option value="Florida"></option>
+                <option value="Lavalleja"></option>
+                <option value="Maldonado"></option>
+                <option value="Paysandú"></option>
+                <option value="Río Negro"></option>
+                <option value="Rivera"></option>
+                <option value="Rocha"></option>
+                <option value="Salto"></option>
+                <option value="San José"></option>
+                <option value="Soriano"></option>
+                <option value="Tacuarembó"></option>
+                <option value="Treinta y Tres"></option>
+              </datalist>
+            </div>
+            <div class="mb-3 form-floating">
+              <input class="form-control" type="text" id="floatingInput">
+              <label for="floatingInput">Dirección:</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <input class="form-control" type="tel" id="floatingInputValue">
+              <label for="floatingInputValue">Teléfono/Celular</label>
+            </div>
+          </form>
         </div>
-
-        <div>
-          <input type="radio" id="opcion2" name="opcion" value="opcion2">
-          <label for="opcion2">Express 5 a 8 días (7%)</label>
+        <div class="shippingCost">
+          <form class="form-check">
+            <input class="form-check-input" type="radio" id="opcion1" name="opcion" value="opcion1">
+            <label class="form-check-label" for="opcion1">Premium 2 a 5 días (15%)</label>
+            <br>
+            <input class="form-check-input" type="radio" id="opcion2" name="opcion" value="opcion2">
+            <label class="form-check-label" for="opcion2">Express 5 a 8 días (7%)</label>
+            <br>
+            <input class="form-check-input" type="radio" id="opcion3" name="opcion" value="opcion3" checked>
+            <label class="form-check-label" for="opcion3">Standard 12 a 15 (5%)</label>
+          </form>
         </div>
-
-        <div>
-          <input type="radio" id="opcion3" name="opcion" value="opcion3">
-          <label for="opcion3">Standard 12 a 15 (5%)</label>
+      </section>
+      <section class="total">
+        <div class="totalCart mt-3">
+          <h3 class="text-center mb-3">Total</h3>
+          <div class="d-flex justify-content-center align-items-center">
+            <label for="currency" class="me-3">Total en: </label>
+            <select name="currency" id="currency" class="selectCurrency me-3 form-select">
+              <option value="$U" id="peso">$</option>
+              <option value="USD" id="dolar">USD</option>
+            </select>
+            <span id="totalPrice">45419
+              <!-- Acá va el total de todo el carrito en $ o en USD -->
+            </span>
+          </div>
+          <button type="submit" class="form-control checkout mt-3">FINALIZAR COMPRA</button>
         </div>
-      </form>
-      <div class="address">
-        <h3 class="text-center">Dirección de Envío</h3>
-
-        <form id="direccion-form">
-          <div>
-            <label for="calle">Calle:</label>
-            <input type="text" id="calle" placeholder="Ingresa tu calle">
-          </div>
-          <div>
-            <label for="numero">Número:</label>
-            <input type="text" id="numero" placeholder="Ingresa tu número">
-          </div>
-          <div>
-            <label for="esquina">Esquina:</label>
-            <input type="text" id="esquina" placeholder="Ingresa la esquina">
-          </div>
-        </form>
-      </div>
-
-
-
-    </div>
+      </section>
   </main>
   <footer class="text-muted">
     <div class="container">

@@ -669,3 +669,28 @@ font-size: 0.8em;
 .imgCart {
   max-width: 100px;
 }
+
+/* Estilo para el formulario */
+#direccion-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para los contenedores de etiqueta y campo de entrada */
+#direccion-form div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Agrega espacio entre los campos de entrada */
+}
+
+/* Estilo para las etiquetas */
+#direccion-form label {
+  width: 100px; /* Establece un ancho fijo para las etiquetas */
+  text-align: right; /* Alinea el texto de las etiquetas a la derecha */
+  margin-right: 10px; /* Agrega espacio entre las etiquetas y los campos de entrada */
+}
+
+/* Estilo para los campos de entrada */
+#direccion-form input {
+  width: 100%; /* Hace que los campos de entrada ocupen todo el ancho disponible */
+}

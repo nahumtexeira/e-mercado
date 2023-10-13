@@ -325,11 +325,12 @@ font-size: 0.8em;
 /* Estilos de PRODUCT-INFO */
 .product-description {
   display: flex;
+  flex-wrap: wrap;
 }
 .productContent {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 .productCategory {
   margin-top: 50px;
@@ -351,10 +352,10 @@ font-size: 0.8em;
 }
 .productImages {
   display: flex;
+  flex-wrap: wrap;
   border: 1px solid rgb(201, 201, 201);
   border-radius: 10px;
   padding: 10px;
-  width: fit-content;
   background-color: white;
 }
 .containerMainImage {
@@ -692,29 +693,4 @@ font-size: 0.8em;
 #totalPrice {
   font-size: 2em;
   color: orange;
-}
-
-/* Estilo para el formulario */
-#direccion-form {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Estilo para los contenedores de etiqueta y campo de entrada */
-#direccion-form div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Agrega espacio entre los campos de entrada */
-}
-
-/* Estilo para las etiquetas */
-#direccion-form label {
-  width: 100px; /* Establece un ancho fijo para las etiquetas */
-  text-align: right; /* Alinea el texto de las etiquetas a la derecha */
-  margin-right: 10px; /* Agrega espacio entre las etiquetas y los campos de entrada */
-}
-
-/* Estilo para los campos de entrada */
-#direccion-form input {
-  width: 100%; /* Hace que los campos de entrada ocupen todo el ancho disponible */
 }

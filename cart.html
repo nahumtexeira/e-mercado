@@ -1,66 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <link href="css/styles.css" rel="stylesheet" />
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-left">
+            <li class="nav-item">
+              <a href="index.html"><img src="/img/logo-emercado.png" /></a>
+            </li>
+          </ul>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <ul class="navbar-nav w-100 justify-content-left">
-          <li class="nav-item">
-            <a href="index.html"><img src="/img/logo-emercado.png" /></a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav w-100 justify-content-right">
-          <li class="nav-item">
-            <div id="categoryDropdown">
-              <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
-              <ul id="categoryList"></ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item" id="nav-dropdown">
-            <div class="nav-link secondary-nav-link" id="WelText">
-              Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
-            </div>
-            <ul class="dropdown-menu-user-sesion">
-              <li class="secondary-nav-item">
-                <p class="welcome">Bienvenido <span id="user"></span></p>
-              </li>
-              <hr />
-              <li class="secondary-nav-item">
-                <a href="my-profile.html"><i class="fas fa-solid fa-user"></i> Mi cuenta</a>
-              </li>
-              <li class="secondary-nav-item">
-                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
-              </li>
-              <li class="secondary-nav-item">
-                <a href="#" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Salir</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-          </li>
-        </ul>
+          <ul class="navbar-nav w-100 justify-content-right">
+            <li class="nav-item">
+              <div id="categoryDropdown">
+                <a class="nav-link" href="categories.html"
+                  >Categorías <i class="fas fa-solid fa-angle-down"></i
+                ></a>
+                <ul id="categoryList"></ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item" id="nav-dropdown">
+              <div class="nav-link secondary-nav-link" id="WelText">
+                Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
+              </div>
+              <ul class="dropdown-menu-user-sesion">
+                <li class="secondary-nav-item">
+                  <p class="welcome">Bienvenido <span id="user"></span></p>
+                </li>
+                <hr />
+                <li class="secondary-nav-item">
+                  <a href="my-profile.html"
+                    ><i class="fas fa-solid fa-user"></i> Mi cuenta</a
+                  >
+                </li>
+                <li class="secondary-nav-item">
+                  <a href="cart.html"
+                    ><i class="fas fa-shopping-cart"></i> Carrito</a
+                  >
+                </li>
+                <li class="secondary-nav-item">
+                  <a href="#" id="cerrarSesion"
+                    ><i class="fas fa-sign-out-alt"></i> Salir</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.html"
+                ><i class="fas fa-shopping-cart"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <main class="container">
+    </nav>
+    <main class="container">
       <h2 class="p-4 text-center">Carrito de compras</h2>
       <table class="w-100 mt-5">
         <thead>
@@ -82,7 +96,11 @@
           <h3 class="text-center">Envío</h3>
           <form class="mt-3">
             <div class="mb-3 form-floating">
-              <input class="form-control" list="datalistOptions" id="floatingSelect">
+              <input
+                class="form-control"
+                list="datalistOptions"
+                id="floatingSelect"
+              />
               <label for="floatingSelect">Localidad:</label>
               <datalist id="datalistOptions">
                 <option value="Montevideo"></option>
@@ -107,25 +125,50 @@
               </datalist>
             </div>
             <div class="mb-3 form-floating">
-              <input class="form-control" type="text" id="floatingInput">
+              <input class="form-control" type="text" id="floatingInput" />
               <label for="floatingInput">Dirección:</label>
             </div>
             <div class="mb-3 form-floating">
-              <input class="form-control" type="tel" id="floatingInputValue">
+              <input class="form-control" type="tel" id="floatingInputValue" />
               <label for="floatingInputValue">Teléfono/Celular</label>
             </div>
           </form>
         </div>
         <div class="shippingCost">
           <form class="form-check">
-            <input class="form-check-input" type="radio" id="opcion1" name="opcion" value="opcion1">
-            <label class="form-check-label" for="opcion1">Premium 2 a 5 días (15%)</label>
-            <br>
-            <input class="form-check-input" type="radio" id="opcion2" name="opcion" value="opcion2">
-            <label class="form-check-label" for="opcion2">Express 5 a 8 días (7%)</label>
-            <br>
-            <input class="form-check-input" type="radio" id="opcion3" name="opcion" value="opcion3" checked>
-            <label class="form-check-label" for="opcion3">Standard 12 a 15 (5%)</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              id="opcion1"
+              name="opcion"
+              value="opcion1"
+            />
+            <label class="form-check-label" for="opcion1"
+              >Premium 2 a 5 días (15%)</label
+            >
+            <br />
+            <input
+              class="form-check-input"
+              type="radio"
+              id="opcion2"
+              name="opcion"
+              value="opcion2"
+            />
+            <label class="form-check-label" for="opcion2"
+              >Express 5 a 8 días (7%)</label
+            >
+            <br />
+            <input
+              class="form-check-input"
+              type="radio"
+              id="opcion3"
+              name="opcion"
+              value="opcion3"
+              checked
+            />
+            <label class="form-check-label" for="opcion3"
+              >Standard 12 a 15 (5%)</label
+            >
           </form>
         </div>
       </section>
@@ -134,41 +177,46 @@
           <h3 class="text-center mb-3">Total</h3>
           <div class="d-flex justify-content-center align-items-center">
             <label for="currency" class="me-3">Total en: </label>
-            <select name="currency" id="currency" class="selectCurrency me-3 form-select">
+            <select
+              name="currency"
+              id="currency"
+              class="selectCurrency me-3 form-select"
+            >
               <option value="pesos" id="pesos">$</option>
               <option value="USD" id="dolar">USD</option>
             </select>
-            <span id="totalPrice">45419
-              <!-- Acá va el total de todo el carrito en $ o en USD -->
-            </span>
+            <span id="totalPrice"> </span>
           </div>
-          <button type="submit" class="form-control checkout mt-3">FINALIZAR COMPRA</button>
+          <button type="submit" class="form-control checkout mt-3">
+            FINALIZAR COMPRA
+          </button>
         </div>
       </section>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>
-        Este sitio forma parte de
-        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/user.js"></script>
-  <script src="js/cart.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
 </html>

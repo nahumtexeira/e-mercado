@@ -4,6 +4,7 @@ const CART_URL =
 let carritoCompleto = JSON.parse(localStorage.getItem("carritoCompleto")) || [];
 const cartContainer = document.getElementById("product-data");
 const currencytype = document.getElementById("currency");
+const totalPrice = document.getElementById("totalPrice");
 
 fetch(CART_URL)
   .then((response) => response.json())
@@ -39,11 +40,16 @@ fetch(CART_URL)
             <td>${name}</td>
             <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
             <td>
-  <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${product.id}, event)">
+  <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${
+          product.id
+        }, event)">
 </td>
 
-            <td>${currency}</td>
-            <td><button class="btn-close" aria-label="Close" onclick="remove(${product.id})"></button></td>
+<td>${currency}<p id="subtotal-${product.id}">${count * cost}</p></td>
+
+            <td><button class="btn-close" aria-label="Close" onclick="remove(${
+              product.id
+            })"></button></td>
           </tr>
         `;
         cartContainer.innerHTML += productHtml;
@@ -52,6 +58,7 @@ fetch(CART_URL)
       cartContainer.innerHTML = "El carrito está vacío.";
     }
     console.log("Carrito completo:", carritoCompleto);
+    updateTotalPrice();
   })
   .catch((error) => {
     console.error("Error al obtener el carrito del servidor:", error);
@@ -69,7 +76,7 @@ function remove(productId) {
   }
 }
 function updateQuantity(productId, event) {
-  const newQuantity = event.target.value;
+  const newQuantity = event.target.value; // Nuevo valor de la cantidad
 
   // Buscar el producto en carritoCompleto por su ID
   const productIndex = carritoCompleto.findIndex(
@@ -80,10 +87,32 @@ function updateQuantity(productId, event) {
     // Si se encuentra el producto, actualizar la cantidad
     carritoCompleto[productIndex].count = parseInt(newQuantity);
 
+    // Realizar la multiplicación de count y cost para obtener el subtotal
+    const product = carritoCompleto[productIndex];
+    const subtotal = product.count * product.unitCost;
+
     // Actualizar el carrito en el localStorage
     localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
+
+    // Actualizar el elemento HTML que muestra el subtotal
+    const subtotalElement = document.querySelector(`#subtotal-${productId}`);
+    subtotalElement.textContent = subtotal;
+    updateTotalPrice();
   } else {
     // Manejo de error si el producto no se encuentra
     console.error("Producto no encontrado en el carritoCompleto.");
   }
+}
+
+function updateTotalPrice() {
+  totalPrice.textContent = "";
+  let total = 0;
+
+  // Iterar sobre los productos en carritoCompleto
+  for (const product of carritoCompleto) {
+    total += product.count * product.unitCost;
+  }
+
+  // Actualizar el elemento HTML totalPrice con el total calculado
+  totalPrice.textContent = total;
 }

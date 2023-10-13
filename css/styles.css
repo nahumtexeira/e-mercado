@@ -670,6 +670,30 @@ font-size: 0.8em;
   max-width: 100px;
 }
 
+.address, .shippingCost, .totalCart {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.checkout {
+  color: white;
+  background-color: orange;
+  border-radius:500px;
+  border: none;
+  padding: 10px 10px;
+  font-size: 1em;
+}
+.checkout:hover {
+  background-color: rgba(255, 166, 0, 0.7);
+}
+.selectCurrency {
+  width: auto;
+}
+#totalPrice {
+  font-size: 2em;
+  color: orange;
+}
+
 /* Estilo para el formulario */
 #direccion-form {
   display: flex;

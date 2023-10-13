@@ -9,6 +9,8 @@ const prodCommURL =
   prodID +
   ".json";
 
+// Carrito de compras
+let carritoCompleto = JSON.parse(localStorage.getItem("carritoCompleto")) || [];
 let cartProductInfo;
 
 // Referencias a elementos del DOM
@@ -70,6 +72,8 @@ function showProduct(infoCard) {
     `;
   }
 }
+
+// Función para cambiar la imagen principal del producto
 function changeMainImage(src) {
   const mainImage = document.querySelector(".mainImage");
   mainImage.src = src;
@@ -80,6 +84,7 @@ fetch(prodCommURL)
   .then((response) => response.json())
   .then(showProdCommInfo);
 
+// Función para mostrar los comentarios del producto
 function showProdCommInfo(commCard) {
   const formattedDate = (date) => {
     const options = {
@@ -102,24 +107,26 @@ function showProdCommInfo(commCard) {
     ${commCard
       .map(
         (item) => `
-      <div class="commentCard">
-        <p class="stars">${scoreToStars(item.score)}</p>
-        <p class="commentDescription">${item.description}</p>
-        <p class="userNameComment">${item.user}</p>
-        <p class="dataComment">${formattedDate(item.dateTime)} hs</p>
-        <hr>
-      </div>
-    `
+        <div class="commentCard">
+          <p class="stars">${scoreToStars(item.score)}</p>
+          <p class="commentDescription">${item.description}</p>
+          <p class="userNameComment">${item.user}</p>
+          <p class="dataComment">${formattedDate(item.dateTime)} hs</p>
+          <hr>
+        </div>
+      `
       )
-      .join("")} 
-  `; // JOIN combina todos los comentarios generados por MAP en una sola cadena de texto.
+      .join("")}
+  `;
 }
 
+// Event listener para el botón de agregar comentario
 document.getElementById("submitComment").addEventListener("click", (event) => {
   event.preventDefault();
   showComment();
 });
 
+// Función para mostrar un comentario
 function showComment() {
   const form = document.getElementById("commentForm");
   const formData = new FormData(form);
@@ -141,7 +148,7 @@ function showComment() {
   const userName = localStorage.getItem("email").split("@")[0];
   const commentCard = `
     <div class="commentCard">
-      <p class="stars">${scoreToStars(rate)}</p>
+      <p class "stars">${scoreToStars(rate)}</p>
       <p class="commentDescription">${opinion}</p>
       <p class="userNameComment">${userName}</p>
       <p class="dataComment">${formattedDate} hs</p>
@@ -153,48 +160,49 @@ function showComment() {
   form.reset();
 }
 
+// Función para convertir puntuación en estrellas
 function scoreToStars(score) {
   return "★".repeat(score) + "☆".repeat(5 - score);
 }
 
+// Función para mostrar productos relacionados
 function showRelatedProducts(infoCard) {
   infoCard.relatedProducts.forEach((relatedProduct) => {
     const productHTML = ` 
-    <div class="productRelatedInfo" onclick="setProdID(${relatedProduct.id})"> 
-      <h4 class="nameRelProd">${relatedProduct.name}</h4>
-      <hr>
-      <img class="imgRelProd" src="${relatedProduct.image}" alt="imagen del producto relacionado">
-    </div>
-  `;
+      <div class="productRelatedInfo" onclick="setProdID(${relatedProduct.id})"> 
+        <h4 class="nameRelProd">${relatedProduct.name}</h4>
+        <hr>
+        <img class="imgRelProd" src="${relatedProduct.image}" alt="imagen del producto relacionado">
+      </div>
+    `;
     containerRelatedProducts.innerHTML += productHTML;
   });
 }
+
+// Función para establecer el ID de un producto y redirigir a la página de información del producto
 function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
 }
-function addToCartClicked() {
-  // Obtener el ID del producto almacenado localmente y convertirlo a número
-  const productoIdAlmacenado = parseInt(localStorage.getItem("prodID"));
 
-  // Obtener la cantidad del input
+// Función para agregar productos al carrito de compras
+function addToCartClicked() {
+  const productoIdAlmacenado = parseInt(localStorage.getItem("prodID"));
   const inputCantidad = parseInt(document.getElementById("qty").value);
 
+  // Verificar si la cantidad ingresada es válida (al menos 1)
   if (inputCantidad >= 1) {
-    // Obtener el carrito del localStorage
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    // Buscar si el producto ya está en el carrito
-    const existingProductIndex = carrito.findIndex(
+    // Buscar si el producto ya existe en el carrito
+    const existingProduct = carritoCompleto.find(
       (item) => item.id === productoIdAlmacenado
     );
 
-    if (existingProductIndex !== -1) {
-      // Si el producto ya está en el carrito, actualiza la cantidad
-      carrito[existingProductIndex].count += inputCantidad;
+    // Si el producto ya existe, actualizar la cantidad
+    if (existingProduct) {
+      existingProduct.count += inputCantidad;
     } else {
-      // Si el producto no está en el carrito, agrégalo
-      carrito.push({
+      // Si el producto no existe, agregarlo al carrito
+      carritoCompleto.push({
         id: productoIdAlmacenado,
         name: cartProductInfo.name,
         unitCost: cartProductInfo.cost,
@@ -204,19 +212,19 @@ function addToCartClicked() {
       });
     }
 
-    // Actualizar el carrito en el localStorage
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    // Actualizar el carrito en el almacenamiento local
+    localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
 
-    // Restablecer la cantidad a 1 en el input
+    // Restablecer la cantidad a 1 y mostrar una notificación
     document.getElementById("qty").value = "1";
 
-    // Mostrar una notificación
     const notification = document.getElementById("notification");
     notification.style.display = "block";
     setTimeout(function () {
       notification.style.display = "none";
     }, 3000);
   } else {
+    // Mostrar una alerta si la cantidad no es válida
     alert("La cantidad debe ser un número válido y al menos 1");
   }
 }

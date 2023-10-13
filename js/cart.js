@@ -5,87 +5,45 @@ const CART_URL =
 fetch(CART_URL)
   .then((response) => response.json())
   .then((serverCart) => {
+    // Datos del carrito del servidor
     const serverProductData = serverCart.articles;
 
-    if (serverProductData.length > 0) {
-      const cartContainer = document.getElementById("product-data");
+    // Obtener el carrito local almacenado en el navegador
+    const localCart = JSON.parse(localStorage.getItem("carrito")) || [];
 
-      // Itera a través de los productos del carrito del servidor
-      serverProductData.forEach((product) => {
+    // Combinar los productos del servidor y el carrito local
+    const carritoCompleto = serverProductData.concat(localCart);
+
+    const cartContainer = document.getElementById("product-data");
+    // Verifica si el carrito está vacío o no
+    if (carritoCompleto.length > 0) {
+      carritoCompleto.forEach((product) => {
         const name = product.name;
         const cost = product.unitCost;
         const count = product.count;
         const currency = product.currency;
         const imageUrl = product.image;
 
-        // Crea el HTML para mostrar el producto
         const productHtml = `
-          <tr class="product">
-            <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
-            <td>${name}</td>
-            <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
-            <td>${count}</td>
-            <td>${currency}</td>
-            <td><button class="btn-close" aria-label="Close" onclick="remove('${USER_ID}')"></button></td>
-          </tr>
-        `;
-
-        // Agrega el producto al contenedor del carrito
+      <tr class="product">
+        <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
+        <td>${name}</td>
+        <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
+        <td>${count}</td>
+        <td>${currency}</td>
+        <td><button class="btn-close" aria-label="Close" onclick="remove('${product.id}')"></button></td>
+      </tr>
+    `;
         cartContainer.innerHTML += productHtml;
       });
     } else {
-      const cartContainer = document.getElementById("product-data");
-      cartContainer.innerHTML = "El carrito del servidor está vacío.";
+      // Si el carrito está vacío, muestra un mensaje
+      cartContainer.innerHTML = "El carrito está vacío.";
     }
-
-    // Productos del carrito local
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    // Itera a través de los productos del carrito local
-    carrito.forEach((item) => {
-      const prodID = item.prodID;
-      const count = item.count;
-      const PRODUCT_INFO_URL =
-        "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
-
-      // Fetch información detallada de los productos del carrito local
-      fetch(PRODUCT_INFO_URL)
-        .then((response) => response.json())
-        .then((data) => {
-          const cartContainer = document.getElementById("product-data");
-          const name = data.name;
-          const cost = data.cost;
-          const currency = data.currency;
-          const imageUrl = data.images[0];
-
-          // Crea el HTML para mostrar el producto del carrito local con botón de eliminación
-          const productHtml = `
-            <tr class="product">
-              <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
-              <td>${name}</td>
-              <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
-              <td>${count}</td>
-              <td>${currency}</td>
-              <td><button class="btn-close" aria-label="Close" onclick="remove('${prodID}')"></button></td>
-            </tr>
-          `;
-
-          // Agrega el producto del carrito local al contenedor del carrito
-          cartContainer.innerHTML += productHtml;
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    });
+    console.log("Carrito completo:", carritoCompleto);
+    console.log("Carrito local:", localCart);
   })
 
-
-// Función para eliminar un producto del carrito local
-function remove(prodID) {
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const updatedCart = carrito.filter((item) => item.prodID !== prodID);
-  localStorage.setItem("carrito", JSON.stringify(updatedCart));
-
-  // Redirigir para refrescar la página
-  window.location.href = window.location.href;
-}
+  .catch((error) => {
+    console.error("Error al obtener el carrito del servidor:", error);
+  });

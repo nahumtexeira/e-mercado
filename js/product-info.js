@@ -174,27 +174,35 @@ function setProdID(id) {
   window.location = "product-info.html";
 }
 function addToCartClicked() {
-  // Obtener el ID
-  const productoIdAlmacenado = localStorage.getItem("prodID");
-  // Obtener la cantidad
+  // Obtener el ID del producto almacenado localmente y convertirlo a número
+  const productoIdAlmacenado = parseInt(localStorage.getItem("prodID"));
+
+  // Obtener la cantidad del input
   const inputCantidad = parseInt(document.getElementById("qty").value);
 
   if (inputCantidad >= 1) {
     // Obtener el carrito del localStorage
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-    // Obtener la información del producto para el carrito
-    const cartInfo = {
-      id: productoIdAlmacenado,
-      name: cartProductInfo.name,
-      cost: cartProductInfo.cost,
-      count: inputCantidad,
-      currency: cartProductInfo.currency,
-      image: cartProductInfo.images[0],
-    };
+    // Buscar si el producto ya está en el carrito
+    const existingProductIndex = carrito.findIndex(
+      (item) => item.id === productoIdAlmacenado
+    );
 
-    // Agregar el producto al carrito
-    carrito.push(cartInfo);
+    if (existingProductIndex !== -1) {
+      // Si el producto ya está en el carrito, actualiza la cantidad
+      carrito[existingProductIndex].count += inputCantidad;
+    } else {
+      // Si el producto no está en el carrito, agrégalo
+      carrito.push({
+        id: productoIdAlmacenado,
+        name: cartProductInfo.name,
+        unitCost: cartProductInfo.cost,
+        count: inputCantidad,
+        currency: cartProductInfo.currency,
+        image: cartProductInfo.images[0],
+      });
+    }
 
     // Actualizar el carrito en el localStorage
     localStorage.setItem("carrito", JSON.stringify(carrito));

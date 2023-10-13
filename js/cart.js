@@ -5,6 +5,11 @@ let carritoCompleto = JSON.parse(localStorage.getItem("carritoCompleto")) || [];
 const cartContainer = document.getElementById("product-data");
 const currencytype = document.getElementById("currency");
 const totalPrice = document.getElementById("totalPrice");
+const currencySelect = document.getElementById("currency");
+const pesosToUSD = 0.039; // 1 UYU = 0.039 USD
+const USDtoPesos = 1 / pesosToUSD; // 1 USD = 1 / 0.039 UYU
+const defCurrency = "pesos"; // Moneda predeterminada
+currencySelect.value = defCurrency; // Establece la moneda predeterminada en el select
 
 fetch(CART_URL)
   .then((response) => response.json())
@@ -58,7 +63,7 @@ fetch(CART_URL)
       cartContainer.innerHTML = "El carrito está vacío.";
     }
     console.log("Carrito completo:", carritoCompleto);
-    updateTotalPrice();
+    updateTotal();
   })
   .catch((error) => {
     console.error("Error al obtener el carrito del servidor:", error);
@@ -74,7 +79,9 @@ function remove(productId) {
 
     localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
   }
+  updateTotal();
 }
+
 function updateQuantity(productId, event) {
   const newQuantity = event.target.value; // Nuevo valor de la cantidad
 
@@ -97,7 +104,7 @@ function updateQuantity(productId, event) {
     // Actualizar el elemento HTML que muestra el subtotal
     const subtotalElement = document.querySelector(`#subtotal-${productId}`);
     subtotalElement.textContent = subtotal;
-    updateTotalPrice();
+    updateTotal();
   } else {
     // Manejo de error si el producto no se encuentra
     console.error("Producto no encontrado en el carritoCompleto.");
@@ -114,5 +121,34 @@ function updateTotalPrice() {
   }
 
   // Actualizar el elemento HTML totalPrice con el total calculado
-  totalPrice.textContent = total;
+  const roundedTotal = Math.round(total); // Redondear el total
+  totalPrice.textContent = roundedTotal;
+}
+
+currencySelect.addEventListener("change", updateTotal);
+
+function updateTotal() {
+  const selectedCurrency = currencySelect.value;
+  const totalInSelectedCurrency =
+    calculateTotalInSelectedCurrency(selectedCurrency);
+
+  // Actualiza el elemento que muestra el total
+  const totalPrice = document.getElementById("totalPrice");
+  totalPrice.textContent = totalInSelectedCurrency;
+}
+
+function calculateTotalInSelectedCurrency(selectedCurrency) {
+  let total = 0;
+
+  carritoCompleto.forEach((product) => {
+    if (product.currency === "USD" && selectedCurrency === "pesos") {
+      total += product.unitCost * USDtoPesos * product.count;
+    } else if (product.currency === "UYU" && selectedCurrency === "USD") {
+      total += product.unitCost * pesosToUSD * product.count;
+    } else {
+      total += product.unitCost * product.count;
+    }
+  });
+
+  return Math.round(total); // Redondear el total antes de devolverlo
 }

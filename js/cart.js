@@ -80,6 +80,7 @@ function remove(productId) {
     localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
   }
   updateTotal();
+  window.location.href = window.location.href;
 }
 
 function updateQuantity(productId, event) {

@@ -1,3 +1,5 @@
+// función para autentificar el usuario
+
 function logIn () {
     event.preventDefault();
     var email = document.getElementById("email").value;

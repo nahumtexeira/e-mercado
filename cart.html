@@ -88,7 +88,7 @@
             <!-- Productos dentro del carrito -->
           </tbody>
         </table>
-        <form id="miFormulario" action="#" method="post">
+        <form id="miFormulario" action="#" method="get" class="row mt-4">
         <section class="shipment">
           <div class="address mt-5">
             <h3 class="text-center">Envío</h3>
@@ -125,11 +125,11 @@
               </datalist>
             </div>
             <div class="mb-3 form-floating">
-              <input class="form-control" type="text" id="floatingInput" />
+              <input class="form-control" type="text" id="floatingInput" required/>
               <label for="floatingInput">Dirección:</label>
             </div>
             <div class="mb-3 form-floating">
-              <input class="form-control" type="tel" id="floatingInputValue" />
+              <input required class="form-control" type="tel" id="floatingInputValue" />
               <label for="floatingInputValue">Teléfono/Celular</label>
             </div>
           </div>
@@ -137,6 +137,7 @@
         <div class="shippingCost">
           
             <input
+            required
               class="form-check-input"
               type="radio"
               id="opcion1"
@@ -154,7 +155,7 @@
               name="opcion"
               value="7"
             />
-            <label class="form-check-label" for "opcion2"
+            <label class="form-check-label" for="opcion2"
               >Express 5 a 8 días (7%)</label
             >
             <br />
@@ -165,12 +166,14 @@
               name="opcion"
               value="5"
               checked
+              required
             />
             <label class="form-check-label" for="opcion3"
               >Standard 12 a 15 (5%)</label
             >
             <h3 class="text-center mb-3">Forma de pago</h3>
             <input
+            required
               id="creditCard"
               type="radio"
               name="paymentMethod"
@@ -189,6 +192,7 @@
               type="text"
               id="cardNumber"
               name="cardNumber"
+              required
             />
             <br />
             <label class="form-check-label" for="securityCode"
@@ -199,6 +203,7 @@
               type="text"
               id="securityCode"
               name="securityCode"
+              required
             />
             <br />
             <label class="form-check-label" for="expirationDate"
@@ -209,6 +214,7 @@
               type="text"
               id="expirationDate"
               name="expirationDate"
+              required
             />
             <br />
             <input
@@ -217,6 +223,7 @@
               name="paymentMethod"
               value="bankTransfer"
               onclick="togglePaymentMethod(this)"
+              required
             />
             <label class="form-check-label" for="bankTransfer"
               >Transferencia bancaria</label
@@ -226,14 +233,19 @@
               >Número de cuenta</label
             >
             <input
+            required
               class="form-control"
               type="text"
               id="accountNumber"
               name="accountNumber"
+              required
             />
             <br />
           
         </div>
+        <button type="submit" class="form-control checkout mt-3">
+          FINALIZAR COMPRA
+        </button>
       </form>
       <section class="total">
         <div class="totalCart mt-3">
@@ -251,9 +263,7 @@
             <span id="totalPrice"> </span>
           </div>
       
-          <button type="button" class="form-control checkout mt-3">
-            FINALIZAR COMPRA
-          </button>
+         
         </div>
       </section>
       

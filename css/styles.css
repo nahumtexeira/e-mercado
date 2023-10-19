@@ -700,3 +700,8 @@ font-size: 0.8em;
   font-size: 2em;
   color: orange;
 }
+/* En tu archivo CSS (styles.css) */
+.logo {
+  max-width: 200px; /* Ajusta el tamaño según tus necesidades */
+  height: auto; /* Esto mantiene la proporción de la imagen */
+}

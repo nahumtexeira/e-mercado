@@ -169,20 +169,26 @@ function calculateTotalInSelectedCurrency(selectedCurrency) {
 }
 
 function togglePaymentMethod(radio) {
-        const cardNumberInput = document.getElementById('cardNumber');
-        const securityCodeInput = document.getElementById('securityCode');
-        const expirationDateInput = document.getElementById('expirationDate');
-        const accountNumberInput = document.getElementById('accountNumber');
-        if (radio.value === 'creditCard') {
-            cardNumberInput.disabled = false;
-            securityCodeInput.disabled = false;
-            expirationDateInput.disabled = false;
-            accountNumberInput.disabled = true;
-        }
-        if (radio.value === 'bankTransfer') {
-            cardNumberInput.disabled = true;
-            securityCodeInput.disabled = true;
-            expirationDateInput.disabled = true;
-            accountNumberInput.disabled = false;
-        }
-    }
+  const cardNumberInput = document.getElementById("cardNumber");
+  const securityCodeInput = document.getElementById("securityCode");
+  const expirationDateInput = document.getElementById("expirationDate");
+  const accountNumberInput = document.getElementById("accountNumber");
+  if (radio.value === "creditCard") {
+    cardNumberInput.disabled = false;
+    securityCodeInput.disabled = false;
+    expirationDateInput.disabled = false;
+    accountNumberInput.disabled = true;
+  }
+  if (radio.value === "bankTransfer") {
+    cardNumberInput.disabled = true;
+    securityCodeInput.disabled = true;
+    expirationDateInput.disabled = true;
+    accountNumberInput.disabled = false;
+  }
+}
+
+const prueba = document.getElementById("prueba");
+prueba.addEventListener("click", function (e) {
+  // Accedemos al elemento que disparó el evento y lo mostramos en la consola
+  console.log("Elemento clickeado:", e.target);
+});

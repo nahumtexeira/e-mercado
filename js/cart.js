@@ -45,16 +45,14 @@ fetch(CART_URL)
             <td>${name}</td>
             <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
             <td>
-  <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${
-          product.id
-        }, event)">
+  <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${product.id
+          }, event)">
 </td>
 
 <td>${currency}<p id="subtotal-${product.id}">${count * cost}</p></td>
 
-            <td><button class="btn-close" aria-label="Close" onclick="remove(${
-              product.id
-            })"></button></td>
+            <td><button class="btn-close" aria-label="Close" onclick="remove(${product.id
+          })"></button></td>
           </tr>
         `;
         cartContainer.innerHTML += productHtml;

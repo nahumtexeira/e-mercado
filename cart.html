@@ -88,7 +88,7 @@
             <!-- Productos dentro del carrito -->
           </tbody>
         </table>
-        <form >
+        <form id="miFormulario" action="#" method="post">
         <section class="shipment">
           <div class="address mt-5">
             <h3 class="text-center">Envío</h3>
@@ -99,6 +99,7 @@
                 class="form-control"
                 list="datalistOptions"
                 id="floatingSelect"
+              
               />
               <label for="floatingSelect">Localidad:</label>
               <datalist id="datalistOptions">
@@ -250,7 +251,7 @@
             <span id="totalPrice"> </span>
           </div>
       
-          <button id="prueba" type="submit" class="form-control checkout mt-3">
+          <button type="button" class="form-control checkout mt-3">
             FINALIZAR COMPRA
           </button>
         </div>

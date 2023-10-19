@@ -186,9 +186,3 @@ function togglePaymentMethod(radio) {
     accountNumberInput.disabled = false;
   }
 }
-
-const prueba = document.getElementById("prueba");
-prueba.addEventListener("click", function (e) {
-  // Accedemos al elemento que disparó el evento y lo mostramos en la consola
-  console.log("Elemento clickeado:", e.target);
-});

@@ -153,3 +153,22 @@ function calculateTotalInSelectedCurrency(selectedCurrency) {
 
   return Math.round(total); // Redondear el total antes de devolverlo
 }
+
+function togglePaymentMethod(radio) {
+        const cardNumberInput = document.getElementById('cardNumber');
+        const securityCodeInput = document.getElementById('securityCode');
+        const expirationDateInput = document.getElementById('expirationDate');
+        const accountNumberInput = document.getElementById('accountNumber');
+        if (radio.value === 'creditCard') {
+            cardNumberInput.disabled = false;
+            securityCodeInput.disabled = false;
+            expirationDateInput.disabled = false;
+            accountNumberInput.disabled = true;
+        }
+        if (radio.value === 'bankTransfer') {
+            cardNumberInput.disabled = true;
+            securityCodeInput.disabled = true;
+            expirationDateInput.disabled = true;
+            accountNumberInput.disabled = false;
+        }
+    }

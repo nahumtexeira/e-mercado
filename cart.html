@@ -169,8 +169,28 @@
             <label class="form-check-label" for="opcion3"
               >Standard 12 a 15 (5%)</label
             >
+            <h3 class="text-center mb-3">Forma de pago</h3>
+            <input id="creditCard" type="radio" name="paymentMethod" value="creditCard" onclick="togglePaymentMethod(this)">
+            <label class="form-check-label" for="creditCard">Tarjeta de Crédito</label>
+            <br/>
+            <label class="form-check-label" for="cardNumber">Número de la tarjeta</label>
+            <input class="form-control" type="text" id="cardNumber" name="cardNumber">
+            <br/>
+            <label class="form-check-label" for="securityCode">Código de seguridad</label>
+            <input class="form-control" type="text" id="securityCode" name="securityCode">
+            <br/>
+            <label class="form-check-label" for="expirationDate">Fecha de vencimiento</label>
+            <input class="form-control" type="text" id="expirationDate" name="expirationDate">
+            <br/>
+            <input id="bankTransfer" type="radio" name="paymentMethod" value="bankTransfer" onclick="togglePaymentMethod(this)">
+            <label class="form-check-label" for="bankTransfer">Transferencia bancaria</label>
+            <br/>
+            <label class="form-check-label" for="accountNumber">Número de cuenta</label>
+            <input class="form-control" type="text" id="accountNumber" name="accountNumber">
+            <br/>
           </form>
         </div>
+      
       </section>
       <section class="total">
         <div class="totalCart mt-3">
@@ -187,6 +207,7 @@
             </select>
             <span id="totalPrice"> </span>
           </div>
+
           <button type="submit" class="form-control checkout mt-3">
             FINALIZAR COMPRA
           </button>
@@ -214,9 +235,13 @@
         <div></div>
       </div>
     </div>
+
+   
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/user.js"></script>
     <script src="js/cart.js"></script>
-  </body>
+    
+
+   
 </html>

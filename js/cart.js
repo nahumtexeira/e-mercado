@@ -10,7 +10,7 @@ const pesosToUSD = 0.039; // 1 UYU = 0.039 USD
 const USDtoPesos = 1 / pesosToUSD; // 1 USD = 1 / 0.039 UYU
 const defCurrency = "pesos"; // Moneda predeterminada
 currencySelect.value = defCurrency; // Establece la moneda predeterminada en el select
-
+const radioButtons = document.querySelectorAll('input[name="opcion"]');
 fetch(CART_URL)
   .then((response) => response.json())
   .then((serverCart) => {
@@ -68,6 +68,9 @@ fetch(CART_URL)
   .catch((error) => {
     console.error("Error al obtener el carrito del servidor:", error);
   });
+radioButtons.forEach((radio) => {
+  radio.addEventListener("change", updateTotal);
+});
 
 function remove(productId) {
   const productIndex = carritoCompleto.findIndex(
@@ -132,10 +135,21 @@ function updateTotal() {
   const selectedCurrency = currencySelect.value;
   const totalInSelectedCurrency =
     calculateTotalInSelectedCurrency(selectedCurrency);
+  const radioButtons = document.querySelectorAll('input[name="opcion"]');
 
-  // Actualiza el elemento que muestra el total
+  // Obtenemos el valor del radio button seleccionado
+  const selectedRadioButton = Array.from(radioButtons).find(
+    (radio) => radio.checked
+  );
+  const percentage = parseFloat(selectedRadioButton.value);
+
+  // Calculamos el total sumando el porcentaje al total original
+  const totalWithPercentage =
+    totalInSelectedCurrency + totalInSelectedCurrency * (percentage / 100);
+
+  // Actualizamos el elemento que muestra el total
   const totalPrice = document.getElementById("totalPrice");
-  totalPrice.textContent = totalInSelectedCurrency;
+  totalPrice.textContent = totalWithPercentage;
 }
 
 function calculateTotalInSelectedCurrency(selectedCurrency) {

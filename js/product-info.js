@@ -12,7 +12,6 @@ const prodCommURL =
 // Carrito de compras
 let carritoCompleto = JSON.parse(localStorage.getItem("carritoCompleto")) || [];
 let cartProductInfo;
-
 // Referencias a elementos del DOM
 const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");

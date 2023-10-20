@@ -325,11 +325,14 @@ font-size: 0.8em;
 /* Estilos de PRODUCT-INFO */
 .product-description {
   display: flex;
+  flex-wrap: wrap;
 }
 .productContent {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 .productCategory {
   margin-top: 50px;
@@ -351,24 +354,23 @@ font-size: 0.8em;
 }
 .productImages {
   display: flex;
+  flex-wrap: wrap;
   border: 1px solid rgb(201, 201, 201);
   border-radius: 10px;
   padding: 10px;
-  width: fit-content;
   background-color: white;
 }
 .containerMainImage {
+  width: 100%;
   overflow: hidden;
 }
+.containerSecondaryImages {
+  display: flex;
+}
 .mainImage {
-  max-width: 600px;
+  width: 100%;
   margin: 10px 0px;
   transition: transform .2s;
-}
-@media (max-width:992px){
-  .mainImage {
-    max-width: 500px;
-  }
 }
 .mainImage:hover {
     transform: scale(1.5);
@@ -389,11 +391,18 @@ font-size: 0.8em;
 .unitImages:hover {
   border: 1px solid orange;
 }
+.containerAddToCart {
+  display: flex;
+}
+#qty {
+  max-width: 70px;
+  margin-right: 5px;
+}
 .containerInfo {
   padding: 15px;
 }
 .containerComm {
-  margin-top: 50px;
+  margin-top: 10px;
   border: 1px solid rgb(201, 201, 201);
   border-radius: 10px;
   padding: 15px;
@@ -469,8 +478,6 @@ font-size: 0.8em;
   list-style: none;
   color:#333;
 }
-
-
  #categoryDropdown {
   position: relative;
   cursor: pointer;
@@ -664,4 +671,37 @@ font-size: 0.8em;
 
 .notification {
   display: none;
+}
+
+.imgCart {
+  max-width: 100px;
+}
+
+.address, .shippingCost, .totalCart {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.checkout {
+  color: white;
+  background-color: orange;
+  border-radius:500px;
+  border: none;
+  padding: 10px 10px;
+  font-size: 1em;
+}
+.checkout:hover {
+  background-color: rgba(255, 166, 0, 0.7);
+}
+.selectCurrency {
+  width: auto;
+}
+#totalPrice {
+  font-size: 2em;
+  color: orange;
+}
+/* En tu archivo CSS (styles.css) */
+.logo {
+  max-width: 200px; /* Ajusta el tamaño según tus necesidades */
+  height: auto; /* Esto mantiene la proporción de la imagen */
 }

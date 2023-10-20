@@ -14,21 +14,20 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="/img/logo-emercado.png" class="logo" /></a>
+
+        <!-- Botón de alternancia para dispositivos móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-  
-          <ul class="navbar-nav w-100 justify-content-left">
-            <li class="nav-item">
-              <a href="index.html"><img src="/img/logo-emercado.png" /></a>
-            </li>
-          </ul>
-  
-          <ul class="navbar-nav w-100 justify-content-right">
+          <ul class="navbar-nav w-100 justify-content-end">
             <li class="nav-item">
               <div id="categoryDropdown">
                 <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
@@ -61,25 +60,213 @@
             <li class="nav-item">
               <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
             </li>
+            <button class="darkModeSwitch ms-2" id="switch">
+              <span><i class="fas fa-sun"></i></span>
+              <span><i class="fas fa-moon"></i></span>
+            </button>
           </ul>
         </div>
       </div>
     </nav>
-    <main> 
-      <div class="container">
-        <h2 class="p-4 text-center">Carrito de compras</h2>
-        <h3 class="text-center">Artículos a comprar</h3>
-        <div id="product-data">
-          <table>
-            <thead>
-              <tr></tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-          </table>
+    
+     
+    <main class="container">
+      <h2 class="p-4 text-center">Carrito de compras</h2>
+     
+        <table class="w-100 mt-5">
+          <thead>
+            <tr>
+              <th class="d-none d-sm-table-cell">Imagen</th>
+              <th>Producto</th>
+              <th class="d-none d-sm-table-cell">Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="product-data">
+            <!-- Productos dentro del carrito -->
+          </tbody>
+        </table>
+        <form id="miFormulario" action="#" method="get" class="row mt-4">
+        <section class="shipment">
+          <div class="address mt-5">
+            <h3 class="text-center">Envío</h3>
+            
+            <div class="mb-3 form-floating">
+              <input
+                required
+                class="form-control"
+                list="datalistOptions"
+                id="floatingSelect"
+              
+              />
+              <label for="floatingSelect">Localidad:</label>
+              <datalist id="datalistOptions">
+                <option value="Montevideo"></option>
+                <option value="Artigas"></option>
+                <option value="Canelones"></option>
+                <option value="Cerro Largo"></option>
+                <option value="Colonia"></option>
+                <option value="Durazno"></option>
+                <option value="Flores"></option>
+                <option value="Florida"></option>
+                <option value="Lavalleja"></option>
+                <option value="Maldonado"></option>
+                <option value="Paysandú"></option>
+                <option value="Río Negro"></option>
+                <option value="Rivera"></option>
+                <option value="Rocha"></option>
+                <option value="Salto"></option>
+                <option value="San José"></option>
+                <option value="Soriano"></option>
+                <option value="Tacuarembó"></option>
+                <option value="Treinta y Tres"></option>
+              </datalist>
+            </div>
+            <div class="mb-3 form-floating">
+              <input class="form-control" type="text" id="floatingInput" required/>
+              <label for="floatingInput">Dirección:</label>
+            </div>
+            <div class="mb-3 form-floating">
+              <input required class="form-control" type="tel" id="floatingInputValue" />
+              <label for="floatingInputValue">Teléfono/Celular</label>
+            </div>
+          </div>
+        </section>
+        <div class="shippingCost">
+          
+            <input
+            required
+              class="form-check-input"
+              type="radio"
+              id="opcion1"
+              name="opcion"
+              value="15"
+            />
+            <label class="form-check-label" for="opcion1"
+              >Premium 2 a 5 días (15%)</label
+            >
+            <br />
+            <input
+              class="form-check-input"
+              type="radio"
+              id="opcion2"
+              name="opcion"
+              value="7"
+            />
+            <label class="form-check-label" for="opcion2"
+              >Express 5 a 8 días (7%)</label
+            >
+            <br />
+            <input
+              class="form-check-input"
+              type="radio"
+              id="opcion3"
+              name="opcion"
+              value="5"
+              checked
+              required
+            />
+            <label class="form-check-label" for="opcion3"
+              >Standard 12 a 15 (5%)</label
+            >
+            <h3 class="text-center mb-3">Forma de pago</h3>
+            <input
+            required
+              id="creditCard"
+              type="radio"
+              name="paymentMethod"
+              value="creditCard"
+              onclick="togglePaymentMethod(this)"
+            />
+            <label class="form-check-label" for="creditCard"
+              >Tarjeta de Crédito</label
+            >
+            <br />
+            <label class="form-check-label" for="cardNumber"
+              >Número de la tarjeta</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="cardNumber"
+              name="cardNumber"
+              required
+            />
+            <br />
+            <label class="form-check-label" for="securityCode"
+              >Código de seguridad</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="securityCode"
+              name="securityCode"
+              required
+            />
+            <br />
+            <label class="form-check-label" for="expirationDate"
+              >Fecha de vencimiento</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="expirationDate"
+              name="expirationDate"
+              required
+            />
+            <br />
+            <input
+              id="bankTransfer"
+              type="radio"
+              name="paymentMethod"
+              value="bankTransfer"
+              onclick="togglePaymentMethod(this)"
+              required
+            />
+            <label class="form-check-label" for="bankTransfer"
+              >Transferencia bancaria</label
+            >
+            <br />
+            <label class="form-check-label" for="accountNumber"
+              >Número de cuenta</label
+            >
+            <input
+            required
+              class="form-control"
+              type="text"
+              id="accountNumber"
+              name="accountNumber"
+              required
+            />
+            <br />
+          
         </div>
-      </div>
+        <button type="submit" class="form-control checkout mt-3">
+          FINALIZAR COMPRA
+        </button>
+      </form>
+      <section class="total">
+        <div class="totalCart mt-3">
+          <h3 class="text-center mb-3">Total</h3>
+          <div class="d-flex justify-content-center align-items-center">
+            <label for="currency" class="me-3">Total en: </label>
+            <select
+              name="currency"
+              id="currency"
+              class="selectCurrency me-3 form-select"
+            >
+              <option value="pesos" id="pesos">$</option>
+              <option value="USD" id="dolar">USD</option>
+            </select>
+            <span id="totalPrice"> </span>
+          </div>
+      
+         
+        </div>
+      </section>
+      
     </main>
     <footer class="text-muted">
       <div class="container">
@@ -106,5 +293,6 @@
     <script src="js/init.js"></script>
     <script src="js/user.js"></script>
     <script src="js/cart.js"></script>
+    </script>
   </body>
 </html>

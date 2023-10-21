@@ -186,19 +186,10 @@ function togglePaymentMethod(radio) {
     accountNumberInput.disabled = false;
   }
 }
-<<<<<<< Updated upstream
 function finalizarCompra(event) {
   event.preventDefault();
   // Obtener el formulario por su ID
   var form = document.getElementById("miFormulario");
   // Enviar el formulario
   form.submit();
-=======
-
-function finalizarCompra(Event) {
-  Event.preventDefault();
-  var form = document.getElementById("form") 
-
-form.submit()
->>>>>>> Stashed changes
 }

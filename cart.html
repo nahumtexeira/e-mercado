@@ -210,10 +210,13 @@
               >Número de la tarjeta</label
             >
             <input
-              class="form-control removeSpinner"
-              type="number"
+              class="form-control"
+              type="text"
+              inputmode="numeric"
               id="cardNumber"
               name="cardNumber"
+              maxlength="19"
+              oninput="formatCard()"
               required
             />
             <br />
@@ -221,10 +224,14 @@
               >Código de seguridad</label
             >
             <input
-              class="form-control removeSpinner"
-              type="number"
+              class="form-control"
+              type="text"
               id="securityCode"
               name="securityCode"
+              maxlength="3"
+              pattern="\d*"
+              inputmode="numeric"
+       
               required
             />
             <br />
@@ -260,6 +267,7 @@
               type="number"
               id="accountNumber"
               name="accountNumber"
+              inputmode="numeric"
               required
             />
             <br />

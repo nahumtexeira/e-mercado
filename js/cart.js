@@ -193,3 +193,16 @@ function finalizarCompra(event) {
   // Enviar el formulario
   form.submit();
 }
+function formatCard() {
+            let input = document.getElementById('cardNumber');
+            let trimmed = input.value.replace(/\s+/g, '');
+            let formatted = '';
+            for (let i = 0; i < trimmed.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formatted += ' ';
+                }
+                formatted += trimmed[i];
+            }
+
+            input.value = formatted;
+        }

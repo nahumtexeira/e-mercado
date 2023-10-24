@@ -216,7 +216,7 @@
               id="cardNumber"
               name="cardNumber"
               maxlength="19"
-              oninput="formatCard()"
+              oninput="formatCard(this)"
               required
             />
             <br />
@@ -224,12 +224,10 @@
               >Código de seguridad</label
             >
             <input
-              class="form-control"
-              type="text"
+              class="form-control removeSpinner"
+              type="number"
               id="securityCode"
               name="securityCode"
-              maxlength="3"
-              pattern="\d*"
               inputmode="numeric"
        
               required

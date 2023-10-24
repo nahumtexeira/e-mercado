@@ -705,3 +705,8 @@ font-size: 0.8em;
   max-width: 200px; /* Ajusta el tamaño según tus necesidades */
   height: auto; /* Esto mantiene la proporción de la imagen */
 }
+
+input[type=number].removeSpinner::-webkit-inner-spin-button,
+input[type=number].removeSpinner::-webkit-outer-spin-button {
+  display: none;
+}

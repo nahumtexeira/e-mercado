@@ -710,3 +710,7 @@ input[type=number].removeSpinner::-webkit-inner-spin-button,
 input[type=number].removeSpinner::-webkit-outer-spin-button {
   display: none;
 }
+
+.total {
+padding: 30px;
+}

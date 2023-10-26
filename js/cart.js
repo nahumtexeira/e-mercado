@@ -194,14 +194,23 @@ function finalizarCompra(event) {
   form.submit();
 }
 function formatCard(element) {
-            let trimmed = element.value.replace(/\s+/g, '');
-            let formatted = '';
-            for (let i = 0; i < trimmed.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formatted += ' ';
-                }
-                formatted += trimmed[i];
-            }
+  let trimmed = element.value.replace(/\s+/g, "");
+  let formatted = "";
+  for (let i = 0; i < trimmed.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formatted += " ";
+    }
+    formatted += trimmed[i];
+  }
 
-            element.value = formatted;
-        }
+  element.value = formatted;
+}
+
+// Obtén la fecha actual en formato ISO (AAAA-MM-DD)
+const today = new Date().toISOString().split("T")[0];
+
+// Selecciona el elemento input por su ID
+const expirationDateInput = document.getElementById("expirationDate");
+
+// Establece la fecha mínima
+expirationDateInput.setAttribute("min", today);

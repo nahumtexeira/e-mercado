@@ -711,23 +711,25 @@ input[type=number].removeSpinner::-webkit-outer-spin-button {
   display: none;
 }
 
-.total {
-padding: 30px;
-}
-
 .shipment {
-  display: flex;
-  background-color:#ecebeb93;
+  margin-left: 50px;
   border-radius: 10px; /* Añadimos el borde redondeado */
   overflow: hidden; /* Para asegurarnos de que el contenido no se desborde del elemento con borde redondeado */
 }
 
 .address {
   flex: 1; /* Toma todo el espacio disponible a la izquierda */
-  padding: 20px;
+ 
 }
 
 .total {
   flex: 1; /* Toma todo el espacio disponible a la derecha */
-  padding: 20px;
+  background-color: #00000027;
+}
+
+#CartBuy {
+margin-left: 15px;
+margin-right: 50px;  
+float: right;
+align-items: center;
 }

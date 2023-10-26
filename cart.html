@@ -68,15 +68,16 @@
         </div>
       </div>
     </nav>
-    
-     
-    <main class="container">
+
       <h2 class="p-4 text-center">Carrito de compras</h2>
+
+    <div class="col-md-6" id="CartBuy">
+      <main class="container">
      
         <table class="w-100 mt-5">
           <thead>
             <tr>
-              <th class="d-none d-sm-table-cell">Imagen</th>
+              <th class="d-none d-sm-table-cell"></th>
               <th>Producto</th>
               <th class="d-none d-sm-table-cell">Precio</th>
               <th>Cantidad</th>
@@ -90,7 +91,29 @@
         </table>
       <form id="miFormulario" action="#" method="get" class="row mt-4" onsubmit="finalizarCompra(event)">
 
-        <section class="shipment">
+          <section class="total">
+            <div class="totalCart mt-3">
+              <h3 class="text-center mb-3">Total</h3>
+              <div class="d-flex justify-content-center align-items-center">
+                <label for="currency" class="me-3">Total en: </label>
+                <select
+                  name="currency"
+                  id="currency"
+                  class="selectCurrency me-3 form-select"
+                >
+                  <option value="pesos" id="pesos">$</option>
+                  <option value="USD" id="dolar">USD</option>
+                </select>
+                <span id="totalPrice"> </span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+
+
+      <div class="col-md-6">
+<section class="shipment">
           <div class="address mt-5">
             <h3 class="text-center">Envío</h3>
             
@@ -100,8 +123,6 @@
                 class="form-control"
                 list="datalistOptions"
                 id="floatingSelect"
-                
-              
               />
               <label for="floatingSelect">Localidad:</label>
               <datalist id="datalistOptions">
@@ -135,26 +156,6 @@
               <label for="floatingInputValue">Teléfono/Celular</label>
             </div>
           </div>
-
-          <section class="total">
-            <div class="totalCart mt-3">
-              <h3 class="text-center mb-3">Total</h3>
-              <div class="d-flex justify-content-center align-items-center">
-                <label for="currency" class="me-3">Total en: </label>
-                <select
-                  name="currency"
-                  id="currency"
-                  class="selectCurrency me-3 form-select"
-                >
-                  <option value="pesos" id="pesos">$</option>
-                  <option value="USD" id="dolar">USD</option>
-                </select>
-                <span id="totalPrice"> </span>
-              </div>
-            </div>
-          </section>
-        </section>
-
         <div class="shippingCost">
           
             <input
@@ -278,7 +279,7 @@
          FINALIZAR COMPRA
         </button>
       </form>
-     
+    </div>
       
     </main>
     <footer class="text-muted">

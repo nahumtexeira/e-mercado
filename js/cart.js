@@ -192,6 +192,7 @@ function finalizarCompra(event) {
   var form = document.getElementById("miFormulario");
   // Enviar el formulario
   form.submit();
+  window.location.href = "order-received.html";
 }
 function formatCard(element) {
   let trimmed = element.value.replace(/\s+/g, "");

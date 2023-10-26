@@ -714,3 +714,20 @@ input[type=number].removeSpinner::-webkit-outer-spin-button {
 .total {
 padding: 30px;
 }
+
+.shipment {
+  display: flex;
+  background-color:#ecebeb93;
+  border-radius: 10px; /* Añadimos el borde redondeado */
+  overflow: hidden; /* Para asegurarnos de que el contenido no se desborde del elemento con borde redondeado */
+}
+
+.address {
+  flex: 1; /* Toma todo el espacio disponible a la izquierda */
+  padding: 20px;
+}
+
+.total {
+  flex: 1; /* Toma todo el espacio disponible a la derecha */
+  padding: 20px;
+}

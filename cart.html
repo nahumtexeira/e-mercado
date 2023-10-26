@@ -89,7 +89,7 @@
           </tbody>
         </table>
       <form id="miFormulario" action="#" method="get" class="row mt-4" onsubmit="finalizarCompra(event)">
-          >
+
         <section class="shipment">
           <div class="address mt-5">
             <h3 class="text-center">Envío</h3>
@@ -135,7 +135,26 @@
               <label for="floatingInputValue">Teléfono/Celular</label>
             </div>
           </div>
+
+          <section class="total">
+            <div class="totalCart mt-3">
+              <h3 class="text-center mb-3">Total</h3>
+              <div class="d-flex justify-content-center align-items-center">
+                <label for="currency" class="me-3">Total en: </label>
+                <select
+                  name="currency"
+                  id="currency"
+                  class="selectCurrency me-3 form-select"
+                >
+                  <option value="pesos" id="pesos">$</option>
+                  <option value="USD" id="dolar">USD</option>
+                </select>
+                <span id="totalPrice"> </span>
+              </div>
+            </div>
+          </section>
         </section>
+
         <div class="shippingCost">
           
             <input
@@ -176,23 +195,6 @@
               >Standard 12 a 15 (5%)</label
             >
 
-            <section class="total">
-              <div class="totalCart mt-3">
-                <h3 class="text-center mb-3">Total</h3>
-                <div class="d-flex justify-content-center align-items-center">
-                  <label for="currency" class="me-3">Total en: </label>
-                  <select
-                    name="currency"
-                    id="currency"
-                    class="selectCurrency me-3 form-select"
-                  >
-                    <option value="pesos" id="pesos">$</option>
-                    <option value="USD" id="dolar">USD</option>
-                  </select>
-                  <span id="totalPrice"> </span>
-                </div>
-              </div>
-            </section>
             <h3 class="text-center mb-3">Forma de pago</h3>
             <input
             required

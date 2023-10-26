@@ -1,41 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/dark_web.css" />
+  </head>
 
-<body>
-  <main class="mt-5">
-    <div class="container">
-      <div class="login">
-        <a href="login.html"><img src="img/login.png" alt="logo de JaP"></a>
-        <h2>Iniciar sesión</h2>
-        <form action="" id="signup">
-          <input type="email" name="email" id="email" placeholder="email" required>
-          <input type="password" name="pass" id="pass" placeholder="contraseña" required>
-          <p class="forgotPass"><a  href="pssw.html">Olvide mi contraseña</a></p>
-          <button class="sendform" id="sendform" onclick="logIn()">Ingresar</button>
-          <p>No tienes una cuenta? <a href="signup.html">Crear Cuenta</a></p>
-        </form>
+  <body>
+    <main class="mt-5">
+      <div class="container">
+        <div class="login">
+          <a href="login.html"><img src="img/login.png" alt="logo de JaP" /></a>
+          <h2>Iniciar sesión</h2>
+          <form action="" id="signup">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="email"
+              required
+            />
+            <input
+              type="password"
+              name="pass"
+              id="pass"
+              placeholder="contraseña"
+              required
+            />
+            <p class="forgotPass">
+              <a href="pssw.html">Olvide mi contraseña</a>
+            </p>
+            <button class="sendform" id="sendform" onclick="logIn()">
+              Ingresar
+            </button>
+            <p>No tienes una cuenta? <a href="signup.html">Crear Cuenta</a></p>
+          </form>
+        </div>
       </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <script src="js/login.js"></script>
-</body>
-
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="js/login.js"></script>
+    <script src="/js/darktheme.js"></script>
+  </body>
 </html>

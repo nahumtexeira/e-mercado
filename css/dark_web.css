@@ -1,30 +1,25 @@
-body.dark {   
-    background:  #333 !important;
-}
-body.dark h1 {
-    color: #C7C0B5;
-}
-body.dark h3 {
-    color: #C7C0B5;
-}
-body.dark h4 {
-    color: #C7C0B5;
-}
-body.dark p {
-    color: #C7C0B5;
-}
-body.dark hr {
-    color: #C7C0B5;
-}
-body.dark .text-comment {
-    color: #C7C0B5;
-}
-body.dark .bg-dark {
-    background-color: #212529 !important;
-}
-body.dark .addToCart {
-    background-color: #212529;
-}
-body.dark #submitComment {
-    background-color: #212529;
-}
+:root {
+    --dark-bg: #333;
+    --dark-text: #C7C0B5;
+    --dark-bg-secondary: #212529;
+  }
+  
+  body.dark {
+    background: var(--dark-bg) !important;
+  }
+  
+  body.dark h1,
+  body.dark h3,
+  body.dark h4,
+  body.dark p,
+  body.dark hr,
+  body.dark .text-comment {
+    color: var(--dark-text);
+  }
+  
+  body.dark .bg-dark,
+  body.dark .addToCart,
+  body.dark #submitComment {
+    background-color: var(--dark-bg-secondary) !important;
+  }
+  

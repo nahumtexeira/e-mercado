@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav w-100 justify-content-left">
+          <li class="nav-item">
+            <a href="index.html"><img src="/img/logo-emercado.png" /></a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav w-100 justify-content-right">
+          <li class="nav-item">
+            <div id="categoryDropdown">
+              <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
+              <ul id="categoryList"></ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item" id="nav-dropdown">
+            <div class="nav-link secondary-nav-link" id="WelText">
+              Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
+            </div>
+            <ul class="dropdown-menu-user-sesion">
+              <li class="secondary-nav-item">
+                <p class="welcome">Bienvenido <span id="user"></span></p>
+              </li>
+              <hr />
+              <li class="secondary-nav-item">
+                <a href="my-profile.html"><i class="fas fa-solid fa-user"></i> Mi cuenta</a>
+              </li>
+              <li class="secondary-nav-item">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
+              </li>
+              <li class="secondary-nav-item">
+                <a href="#" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Salir</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </ul>
+        <button class="darkModeSwitch ms-2" id="switch">
+          <span><i class="fas fa-sun"></i></span>
+          <span><i class="fas fa-moon"></i></span> 
+        </button>
+      </div>
+    </div>
+  </nav>
+ <main>
+    <h1>Su compra ha sido realizada con éxito!</h1>
+ </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/user.js"></script>
+    <script src="cart.js"></script>
+
+  </body>
+</html>

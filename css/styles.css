@@ -700,10 +700,10 @@ font-size: 0.8em;
   font-size: 2em;
   color: orange;
 }
-/* En tu archivo CSS (styles.css) */
+
 .logo {
-  max-width: 200px; /* Ajusta el tamaño según tus necesidades */
-  height: auto; /* Esto mantiene la proporción de la imagen */
+  max-width: 200px;
+  height: auto;
 }
 
 input[type=number].removeSpinner::-webkit-inner-spin-button,
@@ -713,4 +713,11 @@ input[type=number].removeSpinner::-webkit-outer-spin-button {
 
 .total {
 padding: 30px;
+}
+.quantity-input {
+  width: 70px;
+  font-size: .8em;
+  padding: .375rem .75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }

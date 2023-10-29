@@ -137,17 +137,23 @@ function updateTotal() {
     calculateTotalInSelectedCurrency(selectedCurrency);
   const radioButtons = document.querySelectorAll('input[name="opcion"]');
 
-  // Obtenemos el valor del radio button seleccionado
   const selectedRadioButton = Array.from(radioButtons).find(
     (radio) => radio.checked
   );
   const percentage = parseFloat(selectedRadioButton.value);
 
-  // Calculamos el total sumando el porcentaje al total original
   const totalWithPercentage =
     totalInSelectedCurrency + totalInSelectedCurrency * (percentage / 100);
+  const costoEnvioValue = Math.round(
+    totalInSelectedCurrency * (percentage / 100)
+  );
 
-  // Actualizamos el elemento que muestra el total
+  const subTotal = document.getElementById("subTotal");
+  subTotal.textContent = totalInSelectedCurrency;
+
+  const costoEnvio = document.getElementById("costoEnvio");
+  costoEnvio.textContent = costoEnvioValue;
+
   const totalPrice = document.getElementById("totalPrice");
   totalPrice.textContent = totalWithPercentage;
 }
@@ -186,10 +192,45 @@ function togglePaymentMethod(radio) {
     accountNumberInput.disabled = false;
   }
 }
-function finalizarCompra(event) {
-  event.preventDefault();
-  // Obtener el formulario por su ID
-  var form = document.getElementById("miFormulario");
-  // Enviar el formulario
-  form.submit();
+
+function formatCard(element) {
+  let trimmed = element.value.replace(/\s+/g, "");
+  let formatted = "";
+  for (let i = 0; i < trimmed.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formatted += " ";
+    }
+    formatted += trimmed[i];
+  }
+
+  element.value = formatted;
 }
+
+// Obtén la fecha actual en formato ISO (AAAA-MM-DD)
+const today = new Date().toISOString().split("T")[0];
+
+// Selecciona el elemento input por su ID
+const expirationDateInput = document.getElementById("expirationDate");
+
+// Establece la fecha mínima
+expirationDateInput.setAttribute("min", today);
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()

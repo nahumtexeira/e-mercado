@@ -1,107 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="/img/logo-emercado.png" class="logo" /></a>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/dark_web.css">
 
-        <!-- Botón de alternancia para dispositivos móviles -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-end">
-            <li class="nav-item">
-              <div id="categoryDropdown">
-                <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
-                <ul id="categoryList"></ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
-            </li>
-            <li class="nav-item" id="nav-dropdown">
-              <div class="nav-link secondary-nav-link" id="WelText">
-                Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
-              </div>
-              <ul class="dropdown-menu-user-sesion">
-                <li class="secondary-nav-item">
-                  <p class="welcome">Bienvenido <span id="user"></span></p>
-                </li>
-                <hr />
-                <li class="secondary-nav-item">
-                  <a href="my-profile.html"><i class="fas fa-solid fa-user"></i> Mi cuenta</a>
-                </li>
-                <li class="secondary-nav-item">
-                  <a href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
-                </li>
-                <li class="secondary-nav-item">
-                  <a href="#" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Salir</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-            </li>
-            <button class="darkModeSwitch ms-2" id="switch">
-              <span><i class="fas fa-sun"></i></span>
-              <span><i class="fas fa-moon"></i></span>
-            </button>
-          </ul>
-        </div>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="/img/logo-emercado.png" class="logo" /></a>
+
+      <!-- Botón de alternancia para dispositivos móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-end">
+          <li class="nav-item">
+            <div id="categoryDropdown">
+              <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
+              <ul id="categoryList"></ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item" id="nav-dropdown">
+            <div class="nav-link secondary-nav-link" id="WelText">
+              Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
+            </div>
+            <ul class="dropdown-menu-user-sesion">
+              <li class="secondary-nav-item">
+                <p class="welcome">Bienvenido <span id="user"></span></p>
+              </li>
+              <hr />
+              <li class="secondary-nav-item">
+                <a href="my-profile.html"><i class="fas fa-solid fa-user"></i> Mi cuenta</a>
+              </li>
+              <li class="secondary-nav-item">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
+              </li>
+              <li class="secondary-nav-item">
+                <a href="#" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Salir</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+          <button class="darkModeSwitch ms-2" id="switch">
+            <span><i class="fas fa-sun"></i></span>
+            <span><i class="fas fa-moon"></i></span>
+          </button>
+
+
+
+        </ul>
       </div>
-    </nav>
-    
-     
-    <main class="container">
-      <h2 class="p-4 text-center">Carrito de compras</h2>
-     
-        <table class="w-100 mt-5">
-          <thead>
-            <tr>
-              <th class="d-none d-sm-table-cell">Imagen</th>
-              <th>Producto</th>
-              <th class="d-none d-sm-table-cell">Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="product-data">
-            <!-- Productos dentro del carrito -->
-          </tbody>
-        </table>
-        <form id="miFormulario" action="#" method="get" class="row mt-4">
-        <section class="shipment">
-          <div class="address mt-5">
+    </div>
+  </nav>
+
+
+  <main class="container">
+    <h2 class="p-4 text-center">Carrito de compras</h2>
+
+    <table class="w-100 mt-5">
+      <thead>
+        <tr>
+          <th class="d-none d-sm-table-cell">Imagen</th>
+          <th>Producto</th>
+          <th class="d-none d-sm-table-cell">Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="product-data">
+        <!-- Productos dentro del carrito -->
+      </tbody>
+    </table>
+    <form id="myForm" action="order-received.html" method="get" class="row mt-4 needs-validation" novalidate >
+      <section class="shipment">
+        <hr>
+        <div class="d-flex flex-wrap flex-lg-nowrap justify-content-between gap-5 mt-5">
+          <div class="envio w-100">
             <h3 class="text-center">Envío</h3>
-            
+
             <div class="mb-3 form-floating">
-              <input
-                required
-                class="form-control"
-                list="datalistOptions"
-                id="floatingSelect"
-              
-              />
-              <label for="floatingSelect">Localidad:</label>
+              <input required class="form-control" list="datalistOptions" id="validationCustom01" />
+              <label for="validationCustom01">Localidad:</label>
               <datalist id="datalistOptions">
                 <option value="Montevideo"></option>
                 <option value="Artigas"></option>
@@ -124,175 +120,97 @@
                 <option value="Treinta y Tres"></option>
               </datalist>
             </div>
+
             <div class="mb-3 form-floating">
-              <input class="form-control" type="text" id="floatingInput" required/>
+              <input class="form-control" type="text" id="floatingInput" required />
               <label for="floatingInput">Dirección:</label>
             </div>
             <div class="mb-3 form-floating">
-              <input required class="form-control" type="tel" id="floatingInputValue" />
+              <input required class="form-control removeSpinner" type="number" id="floatingInputValue" />
               <label for="floatingInputValue">Teléfono/Celular</label>
             </div>
+            <input required class="form-check-input" type="radio" id="opcion1" name="opcion" value="15" required />
+            <label class="form-check-label" for="opcion1">Premium 2 a 5 días (15%)</label>
+            <br />
+            <input class="form-check-input" type="radio" id="opcion2" name="opcion" value="7" required />
+            <label class="form-check-label" for="opcion2">Express 5 a 8 días (7%)</label>
+            <br />
+            <input class="form-check-input" type="radio" id="opcion3" name="opcion" value="5" checked required />
+            <label class="form-check-label" for="opcion3">Standard 12 a 15 (5%)</label>
           </div>
-        </section>
-        <div class="shippingCost">
-          
-            <input
-            required
-              class="form-check-input"
-              type="radio"
-              id="opcion1"
-              name="opcion"
-              value="15"
-            />
-            <label class="form-check-label" for="opcion1"
-              >Premium 2 a 5 días (15%)</label
-            >
-            <br />
-            <input
-              class="form-check-input"
-              type="radio"
-              id="opcion2"
-              name="opcion"
-              value="7"
-            />
-            <label class="form-check-label" for="opcion2"
-              >Express 5 a 8 días (7%)</label
-            >
-            <br />
-            <input
-              class="form-check-input"
-              type="radio"
-              id="opcion3"
-              name="opcion"
-              value="5"
-              checked
-              required
-            />
-            <label class="form-check-label" for="opcion3"
-              >Standard 12 a 15 (5%)</label
-            >
+          <div class="payment w-100">
             <h3 class="text-center mb-3">Forma de pago</h3>
-            <input
-            required
-              id="creditCard"
-              type="radio"
-              name="paymentMethod"
-              value="creditCard"
-              onclick="togglePaymentMethod(this)"
-            />
-            <label class="form-check-label" for="creditCard"
-              >Tarjeta de Crédito</label
-            >
+            <input required id="creditCard" type="radio" name="paymentMethod" value="creditCard"
+            onclick="togglePaymentMethod(this)" required />
+            <label class="form-check-label" for="creditCard">Tarjeta de Crédito</label>
             <br />
-            <label class="form-check-label" for="cardNumber"
-              >Número de la tarjeta</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="cardNumber"
-              name="cardNumber"
-              required
-            />
+            <label class="form-check-label" for="cardNumber">Número de la tarjeta</label>
+            <input class="form-control" type="text" inputmode="numeric" id="cardNumber" name="cardNumber" maxlength="19"
+              oninput="formatCard(this)" required />
             <br />
-            <label class="form-check-label" for="securityCode"
-              >Código de seguridad</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="securityCode"
-              name="securityCode"
-              required
-            />
+            <label class="form-check-label" for="securityCode">Código de seguridad</label>
+            <input class="form-control removeSpinner" type="number" id="securityCode" name="securityCode"
+              inputmode="numeric" required />
             <br />
-            <label class="form-check-label" for="expirationDate"
-              >Fecha de vencimiento</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="expirationDate"
-              name="expirationDate"
-              required
-            />
+            <label class="form-check-label" for="expirationDate">Fecha de vencimiento</label>
+            <input class="form-control" type="date" id="expirationDate" name="expirationDate" required />
             <br />
-            <input
-              id="bankTransfer"
-              type="radio"
-              name="paymentMethod"
-              value="bankTransfer"
-              onclick="togglePaymentMethod(this)"
-              required
-            />
-            <label class="form-check-label" for="bankTransfer"
-              >Transferencia bancaria</label
-            >
+            <input id="bankTransfer" type="radio" name="paymentMethod" value="bankTransfer"
+              onclick="togglePaymentMethod(this)" required />
+            <label class="form-check-label" for="bankTransfer">Transferencia bancaria</label>
             <br />
-            <label class="form-check-label" for="accountNumber"
-              >Número de cuenta</label
-            >
-            <input
-            required
-              class="form-control"
-              type="text"
-              id="accountNumber"
-              name="accountNumber"
-              required
-            />
-            <br />
-          
-        </div>
-        <button type="submit" class="form-control checkout mt-3">
-          FINALIZAR COMPRA
-        </button>
-      </form>
-      <section class="total">
-        <div class="totalCart mt-3">
-          <h3 class="text-center mb-3">Total</h3>
-          <div class="d-flex justify-content-center align-items-center">
-            <label for="currency" class="me-3">Total en: </label>
-            <select
-              name="currency"
-              id="currency"
-              class="selectCurrency me-3 form-select"
-            >
-              <option value="pesos" id="pesos">$</option>
-              <option value="USD" id="dolar">USD</option>
-            </select>
-            <span id="totalPrice"> </span>
+            <label class="form-check-label" for="accountNumber">Número de cuenta</label>
+            <input required class="form-control removeSpinner" type="number" id="accountNumber" name="accountNumber"
+              inputmode="numeric" required />
           </div>
-      
-         
         </div>
       </section>
       
-    </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <section class="total">
+        <div class="totalCart mt-3">
+          
+          <h3 class="text-center mb-3">Subtotal: <span id="subTotal"></span></h3>
+          <h3 class="text-center mb-3">Coste de envio: <span id="costoEnvio"></span></h3>
+          <h3 class="text-center mb-3">Total: <span id="totalPrice"> </span></h3>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <label for="currency" class="me-3">Total en: </label>
+          <select name="currency" id="currency" class="selectCurrency me-3 form-select">
+            <option value="pesos" id="pesos">$</option>
+            <option value="USD" id="dolar">USD</option>
+          </select>
+          </div>
+      </section>
+      <button type="submit" class="checkout mt-3">FINALIZAR COMPRA</button>
+    </form>
+
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>
+        Este sitio forma parte de
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/user.js"></script>
-    <script src="js/cart.js"></script>
-    </script>
-  </body>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/darktheme.js"></script>
+
+  </script>
+</body>
+
 </html>

@@ -168,16 +168,18 @@
       
       <section class="total">
         <div class="totalCart mt-3">
-          <h3 class="text-center mb-3">Total</h3>
-          <div class="d-flex justify-content-center align-items-center">
-            <label for="currency" class="me-3">Total en: </label>
-            <select name="currency" id="currency" class="selectCurrency me-3 form-select">
-              <option value="pesos" id="pesos">$</option>
-              <option value="USD" id="dolar">USD</option>
-            </select>
-            <span id="totalPrice"> </span>
-          </div>
+          
+          <h3 class="text-center mb-3">Subtotal: <span id="subTotal"></span></h3>
+          <h3 class="text-center mb-3">Coste de envio: <span id="costoEnvio"></span></h3>
+          <h3 class="text-center mb-3">Total: <span id="totalPrice"> </span></h3>
         </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <label for="currency" class="me-3">Total en: </label>
+          <select name="currency" id="currency" class="selectCurrency me-3 form-select">
+            <option value="pesos" id="pesos">$</option>
+            <option value="USD" id="dolar">USD</option>
+          </select>
+          </div>
       </section>
       <button type="submit" class="checkout mt-3">FINALIZAR COMPRA</button>
     </form>

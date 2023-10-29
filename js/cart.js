@@ -45,10 +45,16 @@ fetch(CART_URL)
             <td>${name}</td>
             <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
             <td>
-              <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${product.id}, event)">
-            </td>
-            <td>${currency}<p id="subtotal-${product.id}">${count * cost}</p></td>
-            <td><button class="btn-close" aria-label="Close" onclick="remove(${product.id})"></button></td>
+  <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${
+          product.id
+        }, event)">
+</td>
+
+<td>${currency}<p id="subtotal-${product.id}">${count * cost}</p></td>
+
+            <td><button class="btn-close" aria-label="Close" onclick="remove(${
+              product.id
+            })"></button></td>
           </tr>
         `;
         cartContainer.innerHTML += productHtml;
@@ -131,17 +137,23 @@ function updateTotal() {
     calculateTotalInSelectedCurrency(selectedCurrency);
   const radioButtons = document.querySelectorAll('input[name="opcion"]');
 
-  // Obtenemos el valor del radio button seleccionado
   const selectedRadioButton = Array.from(radioButtons).find(
     (radio) => radio.checked
   );
   const percentage = parseFloat(selectedRadioButton.value);
 
-  // Calculamos el total sumando el porcentaje al total original
   const totalWithPercentage =
     totalInSelectedCurrency + totalInSelectedCurrency * (percentage / 100);
+  const costoEnvioValue = Math.round(
+    totalInSelectedCurrency * (percentage / 100)
+  );
 
-  // Actualizamos el elemento que muestra el total
+  const subTotal = document.getElementById("subTotal");
+  subTotal.textContent = totalInSelectedCurrency;
+
+  const costoEnvio = document.getElementById("costoEnvio");
+  costoEnvio.textContent = costoEnvioValue;
+
   const totalPrice = document.getElementById("totalPrice");
   totalPrice.textContent = totalWithPercentage;
 }
@@ -180,14 +192,14 @@ function togglePaymentMethod(radio) {
     accountNumberInput.disabled = false;
   }
 }
-//function finalizarCompra(event) {
-//  event.preventDefault();
+function finalizarCompra(event) {
+  event.preventDefault();
   // Obtener el formulario por su ID
-//  var form = document.getElementById("myForm");
+  var form = document.getElementById("miFormulario");
   // Enviar el formulario
-//  form.submit();
-//  window.location.href = "order-received.html";
-//}
+  form.submit();
+  window.location.href = "order-received.html";
+}
 function formatCard(element) {
   let trimmed = element.value.replace(/\s+/g, "");
   let formatted = "";
@@ -209,23 +221,3 @@ const expirationDateInput = document.getElementById("expirationDate");
 
 // Establece la fecha mínima
 expirationDateInput.setAttribute("min", today);
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()

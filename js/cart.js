@@ -192,14 +192,7 @@ function togglePaymentMethod(radio) {
     accountNumberInput.disabled = false;
   }
 }
-function finalizarCompra(event) {
-  event.preventDefault();
-  // Obtener el formulario por su ID
-  var form = document.getElementById("miFormulario");
-  // Enviar el formulario
-  form.submit();
-  window.location.href = "order-received.html";
-}
+
 function formatCard(element) {
   let trimmed = element.value.replace(/\s+/g, "");
   let formatted = "";
@@ -221,3 +214,23 @@ const expirationDateInput = document.getElementById("expirationDate");
 
 // Establece la fecha mínima
 expirationDateInput.setAttribute("min", today);
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()

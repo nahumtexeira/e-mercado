@@ -48,10 +48,14 @@ btnFile.addEventListener("change", function (event) {
 // Si se encontró una imagen en el localStorage, mostrarla en imgProfile
 if (savedImage) {
   imgProfile.src = savedImage;
-  inputEmail.value = localEmail;
+}
+if (dataComplete) {
   name.value = dataComplete.name;
   lastname.value = dataComplete.lastname;
   tel.value = dataComplete.tel;
+}
+if (localEmail) {
+  inputEmail.value = localEmail;
 }
 
 // Guardar en el localStorage los datos

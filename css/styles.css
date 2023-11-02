@@ -727,3 +727,8 @@ padding: 30px;
 .btn-primary:hover {
   background-color: rgba(255, 166, 0, 0.5);
 }
+.imgProfile {
+  max-width: 100px;
+  border-radius: 100%;
+  margin: 10px;
+}

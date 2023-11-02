@@ -98,6 +98,9 @@
       <section class="container-profile">
         <h1>Información personal</h1>
         <form action="" class="needs-validation" novalidate>
+          <div class="col mb-3">
+            <img src="img/img_perfil.png" alt="Imagen de perfil" class="imgProfile" id="imgProfile">
+          </div>
           <div class="row">
             <div class="col mb-3">
               <label for="name" class="form-label">Nombre <span>*</span></label>
@@ -111,12 +114,15 @@
           <div class="row">
             <div class="col mb-3">
               <label for="email" class="form-label">Correo electrónico <span>*</span></label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="ejemplo@mail.com" readonly required>
+              <input type="email" class="form-control form-control-plaintext" name="email" id="email" placeholder="ejemplo@mail.com" readonly required>
             </div>
             <div class="col mb-3">
               <label for="tel" class="form-label">Celular <span>(opcional)</span></label>
               <input type="tel" class="form-control" name="tel" id="tel" placeholder="090-000-000">
             </div>
+          </div>
+          <div class=" col-3 mb-3">
+            <input class="form-control" type="file" id="formFile" accept="image/*">
           </div>
           <button type="submit" class="btn btn-primary" onclick="sendData ()">Guardar cambios</button>
         </form>

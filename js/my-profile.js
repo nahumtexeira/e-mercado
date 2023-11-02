@@ -17,25 +17,48 @@
   })()
 
 // Traer la dirección de email
+const localEmail = localStorage.getItem("email", email);
+const inputEmail = document.getElementById("email");
+const dataComplete = JSON.parse(localStorage.getItem("data"));
 
-let localEmail = localStorage.getItem("email", email);
-const inputEmail = document.getElementById("email")
+const name = document.getElementById("name");
+const lastname = document.getElementById("lastname");
+const tel = document.getElementById("tel");
 
-if (localEmail) {
+if (localEmail, dataComplete) {
     inputEmail.value = localEmail
+    name.value = dataComplete.name;
+    lastname.value = dataComplete.lastname;
+    tel.value = dataComplete.tel;
 }
 
 // Guardar en el localStorage los datos
 function sendData () {
-    const name = document.getElementById("name").value;
-    const lastname = document.getElementById("lastname").value;
-    const tel = document.getElementById("tel").value;
+    const data = {name: name.value, lastname: lastname.value, tel: tel.value};
+    localStorage.setItem ("data", JSON.stringify(data));
+}
 
-    localStorage.setItem("name", name);
-    localStorage.setItem("lastname", lastname);
-    localStorage.setItem("tel", tel);
+// Traer imagen del usuario
+const imgProfile = document.getElementById("imgProfile");
+const btnFile = document.getElementById("formFile");
 
-    if (name, lastname, tel) {
+//btnFile.addEventListener('change', function (event) {
+//    if (event.target.files.length > 0) {
+//        const file = event.target.files[0];
+//        const newFile = new FileReader();
+//        newFile.onload = function (e) {
+//            imgProfile.src = e.target.result;
+//            newFile.readAsDataURL(file);
+//        }
+//   }
+//})
 
+if (btnFile.files.length > 0) {
+    const newFile = btnFile.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const newImage = e.target.result;
+        localStorage.setItem("image", newImage);
     }
+    reader.readAsDataURL(newFile);
 }

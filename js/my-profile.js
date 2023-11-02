@@ -37,28 +37,3 @@ function sendData () {
     const data = {name: name.value, lastname: lastname.value, tel: tel.value};
     localStorage.setItem ("data", JSON.stringify(data));
 }
-
-// Traer imagen del usuario
-const imgProfile = document.getElementById("imgProfile");
-const btnFile = document.getElementById("formFile");
-
-//btnFile.addEventListener('change', function (event) {
-//    if (event.target.files.length > 0) {
-//        const file = event.target.files[0];
-//        const newFile = new FileReader();
-//        newFile.onload = function (e) {
-//            imgProfile.src = e.target.result;
-//            newFile.readAsDataURL(file);
-//        }
-//   }
-//})
-
-if (btnFile.files.length > 0) {
-    const newFile = btnFile.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        const newImage = e.target.result;
-        localStorage.setItem("image", newImage);
-    }
-    reader.readAsDataURL(newFile);
-}

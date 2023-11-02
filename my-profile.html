@@ -95,11 +95,33 @@
       </div>
     </nav>
     <main>
-      <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-        </div>
-      </div>
+      <section class="container-profile">
+        <h1>Información personal</h1>
+        <form action="" class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="name" class="form-label">Nombre <span>*</span></label>
+              <input type="text" id="name" class="form-control" placeholder="Nombre" aria-label="Nombre" required>
+            </div>
+            <div class="col mb-3">
+              <label for="lastname" class="form-label">Apellido <span>*</span></label>
+              <input type="text" id="lastname" class="form-control" placeholder="Apellido" aria-label="Apellido" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="email" class="form-label">Correo electrónico <span>*</span></label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="ejemplo@mail.com" readonly required>
+            </div>
+            <div class="col mb-3">
+              <label for="tel" class="form-label">Celular <span>(opcional)</span></label>
+              <input type="tel" class="form-control" name="tel" id="tel" placeholder="090-000-000">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" onclick="sendData ()">Guardar cambios</button>
+        </form>
+      </section>
+
     </main>
     <footer class="text-muted">
       <div class="container">

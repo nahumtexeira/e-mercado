@@ -200,13 +200,6 @@ a.custom-card:hover {
 .login h2 {
   text-align: center;
 }
-#email , #pass , #nameUser , #apellidoUser{
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 35px;
-  margin: 5px;
-  padding: 10px;
-}
 .forgotPass, a {
   text-decoration: none;
   color: #999999;
@@ -720,4 +713,17 @@ padding: 30px;
   padding: .375rem .75rem;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+}
+
+/*USER PAGE (my-profile.html)*/
+.container-profile span {
+  font-size: 0.8em;
+  color: orange;
+}
+.btn-primary {
+  background-color: orange;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: rgba(255, 166, 0, 0.5);
 }

@@ -682,6 +682,10 @@ padding: 30px;
   font-size: 0.8em;
   color: orange;
 }
+.container-profile h1 {
+  font-size: 2em;
+  text-align: center;
+}
 .btn-primary {
   background-color: orange;
   border: none;
@@ -693,6 +697,9 @@ padding: 30px;
   max-width: 100px;
   border-radius: 100%;
   margin: 10px;
+}
+.email-profile {
+  padding: .375rem .75rem;
 }
 /* MENU PRINCIPAL */
 .main-menu {

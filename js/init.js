@@ -39,11 +39,11 @@ let getJSONData = function (url) {
 };
 
 let showSpinner = function () {
-  document.getElementById("spinner-wrapper").style.display = "block";
+  document.querySelector("#spinner-wrapper").style.display = "block";
 };
 
 let hideSpinner = function () {
-  document.getElementById("spinner-wrapper").style.display = "none";
+  document.querySelector("#spinner-wrapper").style.display = "none";
 };
 
 fetch(CATEGORIES_URL)
@@ -55,7 +55,7 @@ fetch(CATEGORIES_URL)
   })
 
   .then((data) => {
-    const categoryList = document.getElementById("categoryList");
+    const categoryList = document.querySelector("#categoryList");
 
     data.forEach((category) => {
       const listItem = document.createElement("li");
@@ -64,7 +64,6 @@ fetch(CATEGORIES_URL)
       link.href = "products.html";
       listItem.appendChild(link);
       categoryList.appendChild(listItem);
-
       listItem.onclick = function (event) {
         event.preventDefault();
         setCatID(category.id);

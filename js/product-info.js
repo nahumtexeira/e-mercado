@@ -1,28 +1,17 @@
-// Obtener el ID del producto almacenado localmente
 const prodID = localStorage.getItem("prodID");
 
-// URLs de las API para obtener información del producto y comentarios
-const prodInfoURL =
-  "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
-const prodCommURL =
-  "https://japceibal.github.io/emercado-api/products_comments/" +
-  prodID +
-  ".json";
+const prodInfoURL = "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
+const prodCommURL = "https://japceibal.github.io/emercado-api/products_comments/" + prodID + ".json";
 
-// Carrito de compras
-let carritoCompleto = JSON.parse(localStorage.getItem("carritoCompleto")) || [];
+let completeCart = JSON.parse(localStorage.getItem("completeCart")) || [];
 let cartProductInfo;
-// Referencias a elementos del DOM
+
 const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");
 const containerInfo = document.querySelector(".containerInfo");
 const containerMainImage = document.querySelector(".containerMainImage");
-const containerSecondaryImages = document.querySelector(
-  ".containerSecondaryImages"
-);
-const containerRelatedProducts = document.querySelector(
-  "#container-related-products"
-);
+const containerSecondaryImages = document.querySelector(".containerSecondaryImages");
+const containerRelatedProducts = document.querySelector("#container-related-products");
 
 // Cargar y mostrar datos iniciales del producto
 fetch(prodInfoURL)
@@ -35,19 +24,18 @@ fetch(prodInfoURL)
 
 // Función para mostrar los detalles del producto
 function showProduct(infoCard) {
-  // Categoría del producto
+
   containerProductCategory.innerHTML += `
     <p class="st-products-category">Categoría: <span>${infoCard.category}</span></p>
   `;
 
-  // Información del producto
   containerInfo.innerHTML += `
     <div class="productInfo"> 
       <h1>${infoCard.name}</h1>
       <p class="totalSold">| ${infoCard.soldCount} vendidos</p>
       <p class="average">4.5 (estrellas) (10)</p>
       <p class="cost"><span class="currency">${infoCard.currency}</span> ${infoCard.cost}</p>
-      <div class="notification" id="notification">Producto agregado al carrito</div>
+      <div class="notification alert alert-success" id="notification">Producto agregado al carrito</div>
       <div class="containerAddToCart">
         <input type="number" id="qty" class="form-control w-auto" value="1" min="1">
         <button class="addToCart" onclick="addToCartClicked()">Añadir al carrito</button>
@@ -57,13 +45,11 @@ function showProduct(infoCard) {
     </div>
   `;
 
-  // Imagen principal del producto
   containerMainImage.innerHTML += `
     <img class="mainImage" src="${infoCard.images[0]}" alt="imagen principal">
   `;
   changeMainImage(infoCard.images[0]);
 
-  // Imágenes secundarias del producto
   for (let i = 0; i < infoCard.images.length; i++) {
     const img = infoCard.images[i];
 
@@ -187,44 +173,45 @@ function setProdID(id) {
 
 // Función para agregar productos al carrito de compras
 function addToCartClicked() {
-  const productoIdAlmacenado = parseInt(localStorage.getItem("prodID"));
-  const inputCantidad = parseInt(document.getElementById("qty").value);
+  const prodIdStored = parseInt(localStorage.getItem("prodID"));
+  const inputQty = parseInt(document.querySelector("#qty").value);
 
   // Verificar si la cantidad ingresada es válida (al menos 1)
-  if (inputCantidad >= 1) {
+  if (inputQty >= 1) {
     // Buscar si el producto ya existe en el carrito
-    const existingProduct = carritoCompleto.find(
-      (item) => item.id === productoIdAlmacenado
+    const existingProduct = completeCart.find(
+      (item) => item.id === prodIdStored
     );
 
     // Si el producto ya existe, actualizar la cantidad
     if (existingProduct) {
-      existingProduct.count += inputCantidad;
+      existingProduct.count += inputQty;
     } else {
       // Si el producto no existe, agregarlo al carrito
-      carritoCompleto.push({
-        id: productoIdAlmacenado,
+      completeCart.push({
+        id: prodIdStored,
         name: cartProductInfo.name,
         unitCost: cartProductInfo.cost,
-        count: inputCantidad,
+        count: inputQty,
         currency: cartProductInfo.currency,
         image: cartProductInfo.images[0],
       });
     }
 
     // Actualizar el carrito en el almacenamiento local
-    localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
+    localStorage.setItem("completeCart", JSON.stringify(completeCart));
 
     // Restablecer la cantidad a 1 y mostrar una notificación
-    document.getElementById("qty").value = "1";
+    document.querySelector("#qty").value = "1";
 
-    const notification = document.getElementById("notification");
+    const notification = document.querySelector("#notification");
     notification.style.display = "block";
     setTimeout(function () {
       notification.style.display = "none";
-    }, 3000);
+    }, 2300);
+    // Luego de añadir al carrito ir al Top de la página.
+    document.documentElement.scrollTop = 0;
   } else {
-    // Mostrar una alerta si la cantidad no es válida
     alert("La cantidad debe ser un número válido y al menos 1");
   }
 }

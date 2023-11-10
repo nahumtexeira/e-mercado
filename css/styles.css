@@ -163,8 +163,13 @@ a.custom-card:hover {
 .forgotPass, a {
   text-decoration: none;
   color: #999999;
-  text-align: right;
   padding: 5px;
+  text-align: right;
+  font-size: 0.8em;
+}
+.sendform {
+  background-color: orange;
+  color: white;
 }
 #signup {
   display: grid;

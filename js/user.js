@@ -7,12 +7,12 @@ if (!isAuthenticated()) {
   window.location.href = "login.html";
 }
 
-document.getElementById("cerrarSesion").addEventListener("click", function () {
+document.querySelector("#cerrarSesion").addEventListener("click", function () {
   localStorage.removeItem("autenticado");
   window.location.href = "login.html";
 });
 
-const user = document.getElementById("user");
+const user = document.querySelector("#user");
 function usercharge() {
   user.innerHTML = localStorage.getItem("email");
 }

@@ -20,17 +20,16 @@
   });
 })();
 
-// Traer la dirección de email
 const localEmail = localStorage.getItem("email");
-const inputEmail = document.getElementById("email");
+const inputEmail = document.querySelector("#email");
 const dataComplete = JSON.parse(localStorage.getItem("data"));
 const savedImage = localStorage.getItem("image");
 
-const name = document.getElementById("name");
-const lastname = document.getElementById("lastname");
-const tel = document.getElementById("tel");
-const imgProfile = document.getElementById("imgProfile");
-const btnFile = document.getElementById("formFile");
+const name = document.querySelector("#name");
+const lastname = document.querySelector("#lastname");
+const tel = document.querySelector("#tel");
+const imgProfile = document.querySelector("#imgProfile");
+const btnFile = document.querySelector("#formFile");
 
 // Agregar evento de cambio al input de archivo (botón de selección de imagen)
 btnFile.addEventListener("change", function (event) {

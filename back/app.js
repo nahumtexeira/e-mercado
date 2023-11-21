@@ -19,8 +19,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../front", "index.html"));
 });
 
-// Resto de tu código...
-
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });

@@ -1,6 +1,5 @@
 // Importa el módulo dotenv para cargar variables de entorno desde el archivo .env
 require("dotenv").config();
-
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const path = require("path"); // Añade la dependencia 'path' para trabajar con rutas de archivos
@@ -17,6 +16,12 @@ app.use(express.static(path.join(__dirname, "../front")));
 // Ruta principal que sirve el archivo 'index.html'
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../front", "index.html"));
+});
+
+// Ruta para obtener la información de categorias
+app.get("/api/cat", (req, res) => {
+  // Envía el archivo cat.json como respuesta
+  res.sendFile(path.join(__dirname, "emercado-api-main", "cats", "cat.json"));
 });
 
 app.listen(port, () => {

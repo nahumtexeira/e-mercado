@@ -18,5 +18,5 @@ function logIn () {
     } 
     localStorage.setItem("autenticado", "true");
     localStorage.setItem("email", email);
-    window.location.replace("/index.html");
+    window.location.replace("/e-mercado");
 }

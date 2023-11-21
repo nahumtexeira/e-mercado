@@ -1,11 +1,10 @@
-.jumbotron,
 .card-body,
 .container,
 .site-header {
   font-family: 'Verdana', serif !important;
 }
 
-.jumbotron .display-4 {
+.display-4 {
   font-weight: bold;
 }
 
@@ -26,45 +25,6 @@ nav a {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
-}
-
-.jumbotron {
-  height: 50vh;
-  padding: 5em inherit;
-  margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: black;
-  font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron-heading {
-  font-weight: 300;
-}
-
-.jumbotron .container {
-  max-width: 40rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  text-shadow: 1px 1px 2px grey;
-}
-
-.jumbotron .lead {
-  font-size: 38px;
 }
 
 footer {
@@ -200,18 +160,16 @@ a.custom-card:hover {
 .login h2 {
   text-align: center;
 }
-#email , #pass , #nameUser , #apellidoUser{
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 35px;
-  margin: 5px;
-  padding: 10px;
-}
 .forgotPass, a {
   text-decoration: none;
   color: #999999;
-  text-align: right;
   padding: 5px;
+  text-align: right;
+  font-size: 0.8em;
+}
+.sendform {
+  background-color: orange;
+  color: white;
 }
 #signup {
   display: grid;
@@ -462,6 +420,7 @@ font-size: 0.8em;
 .dropdown-menu-user-sesion {
   display: none;
   position: absolute;
+  right: 0;
   top: 100%;
   padding: 20px;
   background-color: white;
@@ -489,6 +448,7 @@ font-size: 0.8em;
   display: none;
   position: absolute;
   top: 100%;
+  right: 0;
   background-color: white;
   border: 1px solid #ccc;
   z-index: 100;
@@ -697,7 +657,6 @@ font-size: 0.8em;
   width: auto;
 }
 #totalPrice {
-  font-size: 2em;
   color: orange;
 }
 
@@ -720,4 +679,33 @@ padding: 30px;
   padding: .375rem .75rem;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+}
+
+/*USER PAGE (my-profile.html)*/
+.container-profile span {
+  font-size: 0.8em;
+  color: orange;
+}
+.container-profile h1 {
+  font-size: 2em;
+  text-align: center;
+}
+.btn-primary {
+  background-color: orange;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: rgba(255, 166, 0, 0.5);
+}
+.imgProfile {
+  max-width: 100px;
+  border-radius: 100%;
+  margin: 10px;
+}
+.email-profile {
+  padding: .375rem .75rem;
+}
+/* MENU PRINCIPAL */
+.main-menu {
+  background-color: orange !important;
 }

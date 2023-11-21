@@ -1,16 +1,16 @@
 const USER_ID = 25801;
-const CART_URL =
-  "https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json";
-let carritoCompleto = JSON.parse(localStorage.getItem("carritoCompleto")) || [];
-const cartContainer = document.getElementById("product-data");
-const currencytype = document.getElementById("currency");
-const totalPrice = document.getElementById("totalPrice");
-const currencySelect = document.getElementById("currency");
+const CART_URL = "https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json";
+let completeCart = JSON.parse(localStorage.getItem("completeCart")) || [];
+const cartContainer = document.querySelector("#product-data");
+const currencytype = document.querySelector("#currency");
+const totalPrice = document.querySelector("#totalPrice");
+const currencySelect = document.querySelector("#currency");
 const pesosToUSD = 0.039; // 1 UYU = 0.039 USD
 const USDtoPesos = 1 / pesosToUSD; // 1 USD = 1 / 0.039 UYU
 const defCurrency = "pesos"; // Moneda predeterminada
 currencySelect.value = defCurrency; // Establece la moneda predeterminada en el select
 const radioButtons = document.querySelectorAll('input[name="opcion"]');
+
 fetch(CART_URL)
   .then((response) => response.json())
   .then((serverCart) => {
@@ -18,7 +18,7 @@ fetch(CART_URL)
 
     const localProductsToDelete = [];
     for (const serverProduct of serverProductData) {
-      const localProductIndex = carritoCompleto.findIndex(
+      const localProductIndex = completeCart.findIndex(
         (localProduct) => localProduct.id === serverProduct.id
       );
       if (localProductIndex !== -1) {
@@ -26,13 +26,13 @@ fetch(CART_URL)
       }
     }
     for (const index of localProductsToDelete) {
-      carritoCompleto.splice(index, 1);
+      completeCart.splice(index, 1);
     }
 
-    carritoCompleto = carritoCompleto.concat(serverProductData);
+    completeCart = completeCart.concat(serverProductData);
 
-    if (carritoCompleto.length > 0) {
-      carritoCompleto.forEach((product, id) => {
+    if (completeCart.length > 0) {
+      completeCart.forEach((product, id) => {
         const name = product.name;
         const cost = product.unitCost;
         const count = product.count;
@@ -45,16 +45,19 @@ fetch(CART_URL)
             <td>${name}</td>
             <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
             <td>
-  <input type="number" class="quantity-input" value="${count}" min="1" oninput="updateQuantity(${
-          product.id
-        }, event)">
-</td>
-
-<td>${currency}<p id="subtotal-${product.id}">${count * cost}</p></td>
-
-            <td><button class="btn-close" aria-label="Close" onclick="remove(${
-              product.id
-            })"></button></td>
+              <input 
+                type="number" 
+                class="quantity-input" 
+                value="${count}" 
+                min="1" 
+                oninput="updateQuantity(${product.id}, event)">
+            </td>
+            <td>${currency}
+              <p id="subtotal-${product.id}">${count * cost}</p>
+            </td>
+            <td>
+              <button class="btn-close" aria-label="Close" onclick="remove(${product.id})"></button>
+            </td>
           </tr>
         `;
         cartContainer.innerHTML += productHtml;
@@ -62,7 +65,6 @@ fetch(CART_URL)
     } else {
       cartContainer.innerHTML = "El carrito está vacío.";
     }
-    console.log("Carrito completo:", carritoCompleto);
     updateTotal();
   })
   .catch((error) => {
@@ -73,14 +75,13 @@ radioButtons.forEach((radio) => {
 });
 
 function remove(productId) {
-  const productIndex = carritoCompleto.findIndex(
+  const productIndex = completeCart.findIndex(
     (product) => product.id === productId
   );
 
   if (productIndex !== -1) {
-    carritoCompleto.splice(productIndex, 1);
-
-    localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
+    completeCart.splice(productIndex, 1);
+    localStorage.setItem("completeCart", JSON.stringify(completeCart));
   }
   updateTotal();
   window.location.href = window.location.href;
@@ -89,21 +90,21 @@ function remove(productId) {
 function updateQuantity(productId, event) {
   const newQuantity = event.target.value; // Nuevo valor de la cantidad
 
-  // Buscar el producto en carritoCompleto por su ID
-  const productIndex = carritoCompleto.findIndex(
+  // Buscar el producto en completeCart por su ID
+  const productIndex = completeCart.findIndex(
     (product) => product.id === productId
   );
 
   if (productIndex !== -1) {
     // Si se encuentra el producto, actualizar la cantidad
-    carritoCompleto[productIndex].count = parseInt(newQuantity);
+    completeCart[productIndex].count = parseInt(newQuantity);
 
     // Realizar la multiplicación de count y cost para obtener el subtotal
-    const product = carritoCompleto[productIndex];
+    const product = completeCart[productIndex];
     const subtotal = product.count * product.unitCost;
 
     // Actualizar el carrito en el localStorage
-    localStorage.setItem("carritoCompleto", JSON.stringify(carritoCompleto));
+    localStorage.setItem("completeCart", JSON.stringify(completeCart));
 
     // Actualizar el elemento HTML que muestra el subtotal
     const subtotalElement = document.querySelector(`#subtotal-${productId}`);
@@ -111,7 +112,7 @@ function updateQuantity(productId, event) {
     updateTotal();
   } else {
     // Manejo de error si el producto no se encuentra
-    console.error("Producto no encontrado en el carritoCompleto.");
+    console.error("Producto no encontrado en el completeCart.");
   }
 }
 
@@ -119,24 +120,17 @@ function updateTotalPrice() {
   totalPrice.textContent = "";
   let total = 0;
 
-  // Iterar sobre los productos en carritoCompleto
-  for (const product of carritoCompleto) {
+  // Iterar sobre los productos en completeCart
+  for (const product of completeCart) {
     total += product.count * product.unitCost;
   }
-
-  // Actualizar el elemento HTML totalPrice con el total calculado
-  const roundedTotal = Math.round(total); // Redondear el total
-  totalPrice.textContent = roundedTotal;
 }
 
 currencySelect.addEventListener("change", updateTotal);
 
 function updateTotal() {
   const selectedCurrency = currencySelect.value;
-  const totalInSelectedCurrency =
-    calculateTotalInSelectedCurrency(selectedCurrency);
-  const radioButtons = document.querySelectorAll('input[name="opcion"]');
-
+  const totalInSelectedCurrency = calculateTotalInSelectedCurrency(selectedCurrency);
   const selectedRadioButton = Array.from(radioButtons).find(
     (radio) => radio.checked
   );
@@ -148,20 +142,20 @@ function updateTotal() {
     totalInSelectedCurrency * (percentage / 100)
   );
 
-  const subTotal = document.getElementById("subTotal");
+  const subTotal = document.querySelector("#subTotal");
   subTotal.textContent = totalInSelectedCurrency;
 
-  const costoEnvio = document.getElementById("costoEnvio");
+  const costoEnvio = document.querySelector("#costoEnvio");
   costoEnvio.textContent = costoEnvioValue;
 
-  const totalPrice = document.getElementById("totalPrice");
+  const totalPrice = document.querySelector("#totalPrice");
   totalPrice.textContent = totalWithPercentage;
 }
 
 function calculateTotalInSelectedCurrency(selectedCurrency) {
   let total = 0;
 
-  carritoCompleto.forEach((product) => {
+  completeCart.forEach((product) => {
     if (product.currency === "USD" && selectedCurrency === "pesos") {
       total += product.unitCost * USDtoPesos * product.count;
     } else if (product.currency === "UYU" && selectedCurrency === "USD") {
@@ -175,10 +169,10 @@ function calculateTotalInSelectedCurrency(selectedCurrency) {
 }
 
 function togglePaymentMethod(radio) {
-  const cardNumberInput = document.getElementById("cardNumber");
-  const securityCodeInput = document.getElementById("securityCode");
-  const expirationDateInput = document.getElementById("expirationDate");
-  const accountNumberInput = document.getElementById("accountNumber");
+  const cardNumberInput = document.querySelector("#cardNumber");
+  const securityCodeInput = document.querySelector("#securityCode");
+  const expirationDateInput = document.querySelector("#expirationDate");
+  const accountNumberInput = document.querySelector("#accountNumber");
   if (radio.value === "creditCard") {
     cardNumberInput.disabled = false;
     securityCodeInput.disabled = false;
@@ -202,27 +196,23 @@ function formatCard(element) {
     }
     formatted += trimmed[i];
   }
-
   element.value = formatted;
 }
 
 // Obtén la fecha actual en formato ISO (AAAA-MM-DD)
 const today = new Date().toISOString().split("T")[0];
 
-// Selecciona el elemento input por su ID
-const expirationDateInput = document.getElementById("expirationDate");
+const expirationDateInput = document.querySelector("#expirationDate");
 
 // Establece la fecha mínima
 expirationDateInput.setAttribute("min", today);
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+// Validacines Bootstrap
 (() => {
   'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {

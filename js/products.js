@@ -1,21 +1,18 @@
-// Obtener elementos del HTML
 const categoryID = localStorage.getItem("catID");
 const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/" + categoryID + ".json";
 
-const categories = document.getElementById("categoryProd");
-const products = document.getElementById("products");
-const searchInput = document.getElementById("Search");
-const sortAscRadio = document.getElementById("sortAsc");
-const sortDescRadio = document.getElementById("sortDesc");
-const sortByCountRadio = document.getElementById("sortByCount");
-const rangeFilterMinInput = document.getElementById("rangeFilterCountMin");
-const rangeFilterMaxInput = document.getElementById("rangeFilterCountMax");
-const rangeFilterButton = document.getElementById("rangeFilterCount");
-const clearFilterButton = document.getElementById("clearRangeFilter");
+const categories = document.querySelector("#categoryProd");
+const products = document.querySelector("#products");
+const searchInput = document.querySelector("#search");
+const sortAscRadio = document.querySelector("#sortAsc");
+const sortDescRadio = document.querySelector("#sortDesc");
+const sortByCountRadio = document.querySelector("#sortByCount");
+const rangeFilterMinInput = document.querySelector("#rangeFilterCountMin");
+const rangeFilterMaxInput = document.querySelector("#rangeFilterCountMax");
+const rangeFilterButton = document.querySelector("#rangeFilterCount");
+const clearFilterButton = document.querySelector("#clearRangeFilter");
 
-
-// Variable para almacenar los datos
-let dataArray = [];
+let dataArray = []; // Variable para almacenar los datos
 let sortByPriceAsc = true; // Variable para rastrear el orden ascendente/descendente por precio
 
 //Función para guardar id de producto
@@ -26,7 +23,7 @@ function setProdID(id) {
 
 // Función para mostrar los datos en el contenedor
 function showData(data) {
-  products.innerHTML = ""; // Limpiar el contenedor antes de mostrar los datos
+  products.innerHTML = "";
 
   for (const item of data) {
     products.innerHTML += `

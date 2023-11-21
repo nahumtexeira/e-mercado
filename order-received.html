@@ -14,30 +14,30 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <ul class="navbar-nav w-100 justify-content-left">
-          <li class="nav-item">
-            <a href="index.html"><img src="/img/logo-emercado.png" /></a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light main-menu">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="img/logo-emercado.png" alt="Logo e-mercado" style="max-width: 200px;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item dropdown" id="categoryDropdown">
+            <a class="nav-link dropdown-toggle" href="categories.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorías
+            </a>
+            <ul id="categoryList"></ul>
           </li>
-        </ul>
-
-        <ul class="navbar-nav w-100 justify-content-right">
+          
           <li class="nav-item">
-            <div id="categoryDropdown">
-              <a class="nav-link" href="categories.html">Categorías <i class="fas fa-solid fa-angle-down"></i></a>
-              <ul id="categoryList"></ul>
-            </div>
+            <a class="nav-link active" aria-current="page" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item" id="nav-dropdown">
-            <div class="nav-link secondary-nav-link" id="WelText">
-              Mi cuenta <i class="fas fa-solid fa-angle-down"></i>
-            </div>
+          
+          <li class="nav-item dropdown" id="nav-dropdown">
+            <a id="WelText" class="nav-link dropdown-toggle" href="my-profile.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Mi Cuenta
+            </a>
             <ul class="dropdown-menu-user-sesion">
               <li class="secondary-nav-item">
                 <p class="welcome">Bienvenido <span id="user"></span></p>
@@ -54,6 +54,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
           </li>

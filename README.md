@@ -2,6 +2,11 @@
 
 This API is built using Node.js and Express.js.
 
+## Installation
+
+Before running the server, you need to install the necessary dependencies. Run the following command in your terminal:
+npm install
+
 ## Endpoints
 
 ### GET /

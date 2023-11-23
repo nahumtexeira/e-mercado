@@ -61,5 +61,13 @@
         "description": "Celulares de todo tipo para cubrir todas las necesidades.",
         "productCount": 0,
         "imgSrc": "img/cat109_1.jpg"
+    },
+    {
+        "id": 110,
+        "name": "Sátira",
+        "description": "Productos satíricos para aquellos que buscan humor y sarcasmo.",
+        "productCount": 0,
+        "imgSrc": ""
     }
+    
 ]

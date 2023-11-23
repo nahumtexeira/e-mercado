@@ -1,18 +1,18 @@
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
-const PUBLISH_PRODUCT_URL =
-  "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
+const CATEGORIES_URL = "http://localhost:3000/api/cat";
+const PUBLISH_PRODUCT_URL = "http://localhost:3000/api/sell/publish";
+const PRODUCTS_URL = "http://localhost:3000/api/cat/:categoryId";
+const PRODUCT_INFO_URL = "http://localhost:3000/api/product/:productId";
 const PRODUCT_INFO_COMMENTS_URL =
-  "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
+  "http://localhost:3000/api/product/:productId/comments";
+const CART_INFO_URL = "http://localhost:3000/api/user/:userId/cart";
+const CART_BUY_URL = "http://localhost:3000/api/cart/buy";
 const EXT_TYPE = ".json";
 
 function setCatID(id) {
   localStorage.setItem("catID", id);
   window.location = "products.html";
 }
+
 let getJSONData = function (url) {
   let result = {};
 
@@ -53,7 +53,6 @@ fetch(CATEGORIES_URL)
     }
     return response.json();
   })
-
   .then((data) => {
     const categoryList = document.querySelector("#categoryList");
 
@@ -61,7 +60,10 @@ fetch(CATEGORIES_URL)
       const listItem = document.createElement("li");
       const link = document.createElement("a");
       link.textContent = category.name;
-      link.href = "products.html";
+      link.href = `${PRODUCTS_URL.replace(
+        ":categoryId",
+        category.id
+      )}${EXT_TYPE}`;
       listItem.appendChild(link);
       categoryList.appendChild(listItem);
       listItem.onclick = function (event) {

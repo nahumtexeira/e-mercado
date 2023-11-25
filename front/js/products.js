@@ -1,5 +1,5 @@
 const categoryID = localStorage.getItem("catID");
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/" + categoryID + ".json";
+const DATA_URL = "http://localhost:3000/api/cat/" + categoryID;
 
 const categories = document.querySelector("#categoryProd");
 const products = document.querySelector("#products");
@@ -18,7 +18,7 @@ let sortByPriceAsc = true; // Variable para rastrear el orden ascendente/descend
 //Función para guardar id de producto
 function setProdID(id) {
   localStorage.setItem("prodID", id);
-  window.location = "product-info.html"
+  window.location = "product-info.html";
 }
 
 // Función para mostrar los datos en el contenedor
@@ -62,7 +62,7 @@ function sortDataBySoldCount() {
 
 // Función para filtrar por rango de precio
 function filterByPriceRange(minPrice, maxPrice) {
-  return dataArray.filter(item => {
+  return dataArray.filter((item) => {
     const itemPrice = item.cost;
 
     if (minPrice !== "" && maxPrice !== "") {
@@ -81,11 +81,14 @@ function filterByPriceRange(minPrice, maxPrice) {
 function searchProducts() {
   const searchText = searchInput.value.toLowerCase();
 
-  const filteredData = dataArray.filter(item => {
+  const filteredData = dataArray.filter((item) => {
     const lowerCaseName = item.name.toLowerCase();
     const lowerCaseDescription = item.description.toLowerCase();
 
-    return lowerCaseName.includes(searchText) || lowerCaseDescription.includes(searchText);
+    return (
+      lowerCaseName.includes(searchText) ||
+      lowerCaseDescription.includes(searchText)
+    );
   });
 
   showData(filteredData);
@@ -112,8 +115,8 @@ clearFilterButton.addEventListener("click", () => {
 
 // Cargar y mostrar datos iniciales
 fetch(DATA_URL)
-  .then(response => response.json())
-  .then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     dataArray = data.products;
     categories.innerHTML = data.catName;
     showData(dataArray);

@@ -1,7 +1,7 @@
 const prodID = localStorage.getItem("prodID");
 
-const prodInfoURL = "https://japceibal.github.io/emercado-api/products/" + prodID + ".json";
-const prodCommURL = "https://japceibal.github.io/emercado-api/products_comments/" + prodID + ".json";
+const prodInfoURL = "http://localhost:3000/api/product/" + prodID;
+const prodCommURL = `http://localhost:3000/api/product/${prodID}/comments`;
 
 let completeCart = JSON.parse(localStorage.getItem("completeCart")) || [];
 let cartProductInfo;
@@ -10,8 +10,12 @@ const containerComm = document.querySelector(".containerComm");
 const containerProductCategory = document.querySelector(".productCategory");
 const containerInfo = document.querySelector(".containerInfo");
 const containerMainImage = document.querySelector(".containerMainImage");
-const containerSecondaryImages = document.querySelector(".containerSecondaryImages");
-const containerRelatedProducts = document.querySelector("#container-related-products");
+const containerSecondaryImages = document.querySelector(
+  ".containerSecondaryImages"
+);
+const containerRelatedProducts = document.querySelector(
+  "#container-related-products"
+);
 
 // Cargar y mostrar datos iniciales del producto
 fetch(prodInfoURL)
@@ -24,7 +28,6 @@ fetch(prodInfoURL)
 
 // Función para mostrar los detalles del producto
 function showProduct(infoCard) {
-
   containerProductCategory.innerHTML += `
     <p class="st-products-category">Categoría: <span>${infoCard.category}</span></p>
   `;

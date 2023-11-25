@@ -1,5 +1,5 @@
 const USER_ID = 25801;
-const CART_URL = "https://japceibal.github.io/emercado-api/user_cart/" + USER_ID + ".json";
+const CART_URL = `http://localhost:3000/api/user/${USER_ID}/cart`;
 let completeCart = JSON.parse(localStorage.getItem("completeCart")) || [];
 const cartContainer = document.querySelector("#product-data");
 const currencytype = document.querySelector("#currency");
@@ -56,7 +56,9 @@ fetch(CART_URL)
               <p id="subtotal-${product.id}">${count * cost}</p>
             </td>
             <td>
-              <button class="btn-close" aria-label="Close" onclick="remove(${product.id})"></button>
+              <button class="btn-close" aria-label="Close" onclick="remove(${
+                product.id
+              })"></button>
             </td>
           </tr>
         `;
@@ -130,7 +132,8 @@ currencySelect.addEventListener("change", updateTotal);
 
 function updateTotal() {
   const selectedCurrency = currencySelect.value;
-  const totalInSelectedCurrency = calculateTotalInSelectedCurrency(selectedCurrency);
+  const totalInSelectedCurrency =
+    calculateTotalInSelectedCurrency(selectedCurrency);
   const selectedRadioButton = Array.from(radioButtons).find(
     (radio) => radio.checked
   );
@@ -209,18 +212,22 @@ expirationDateInput.setAttribute("min", today);
 
 // Validacines Bootstrap
 (() => {
-  'use strict'
+  "use strict";
 
-  const forms = document.querySelectorAll('.needs-validation')
+  const forms = document.querySelectorAll(".needs-validation");
 
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();

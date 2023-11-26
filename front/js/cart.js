@@ -1,7 +1,7 @@
 const USER_ID = 25801;
 const CART_URL = `http://localhost:3000/api/user/${USER_ID}/cart`;
 const token = localStorage.getItem("token");
-let completeCart = JSON.parse(localStorage.getItem("completeCart")) || [];
+let completeCart = [];
 const cartContainer = document.querySelector("#product-data");
 const currencytype = document.querySelector("#currency");
 const totalPrice = document.querySelector("#totalPrice");
@@ -12,55 +12,25 @@ const defCurrency = "pesos"; // Moneda predeterminada
 currencySelect.value = defCurrency; // Establece la moneda predeterminada en el select
 const radioButtons = document.querySelectorAll('input[name="opcion"]');
 
-fetch(CART_URL, {
-  headers: {
-    Authorization: `${token}`,
-  },
-})
-  .then((response) => response.json())
-  .then((serverCart) => {
-    const serverProductData = serverCart.articles;
-
-    if (serverProductData.length > 0) {
-      serverProductData.forEach((product) => {
-        const name = product.name;
-        const cost = product.unitCost;
-        const count = product.count;
-        const currency = product.currency;
-        const imageUrl = product.image;
-        const productId = product.id;
-
-        const productHtml = `
-          <tr class="product">
-            <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
-            <td>${name}</td>
-            <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
-            <td>
-               <input 
-               type="number" 
-               class="quantity-input" 
-               value="${count}" 
-               min="1" 
-                oninput="updateQuantity(${productId}, event.target.value)">
-            </td>
-
-            <td>${currency}
-              <p id="subtotal-${productId}">${count * cost}</p>
-            </td>
-            <td>
-              <button class="btn-close" aria-label="Close" onclick="remove(${productId})"></button>
-            </td>
-          </tr>
-        `;
-        cartContainer.innerHTML += productHtml;
-      });
-    } else {
-      cartContainer.innerHTML = "El carrito está vacío.";
-    }
+// Función para actualizar el carrito y la interfaz de usuario
+function updateCartAndUI() {
+  fetch(CART_URL, {
+    headers: {
+      Authorization: `${token}`,
+    },
   })
-  .catch((error) => {
-    console.error("Error al obtener el carrito del servidor:", error);
-  });
+    .then((response) => response.json())
+    .then((serverCart) => {
+      completeCart = serverCart.articles;
+      updateUIWithCartData(completeCart);
+    })
+    .catch((error) => {
+      console.error("Error al obtener el carrito del servidor:", error);
+    });
+}
+
+// Actualizar el carrito y la interfaz de usuario al cargar la página
+updateCartAndUI();
 
 function remove(productId) {
   fetch(`http://localhost:3000/api/user/${USER_ID}/cart/remove/${productId}`, {
@@ -72,8 +42,7 @@ function remove(productId) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      updateTotal();
-      window.location.href = window.location.href;
+      updateCartAndUI(); // Actualizar el carrito y la interfaz después de eliminar
     })
     .catch((error) => {
       console.error("Error al eliminar el producto:", error);
@@ -94,12 +63,59 @@ function updateQuantity(productId, newQuantity) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      updateTotal();
+      console.log("Update Quantity Successful:", data);
+      updateCartAndUI(); // Actualizar el carrito y la interfaz después de la actualización
     })
     .catch((error) => {
       console.error("Error al actualizar la cantidad del producto:", error);
     });
+}
+
+// Función para actualizar la interfaz de usuario con los nuevos datos del carrito
+function updateUIWithCartData(serverProductData) {
+  // Limpiar el contenedor del carrito
+  cartContainer.innerHTML = "";
+
+  // Actualizar la interfaz de usuario con los nuevos datos del carrito
+  if (serverProductData.length > 0) {
+    serverProductData.forEach((product) => {
+      const name = product.name;
+      const cost = product.unitCost;
+      const count = product.count;
+      const currency = product.currency;
+      const imageUrl = product.image;
+      const productId = product.id;
+
+      const productHtml = `
+        <tr class="product">
+          <td class="d-none d-sm-table-cell"><img class="imgCart" src="${imageUrl}" alt="${name}"></td>
+          <td>${name}</td>
+          <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
+          <td>
+            <input 
+              type="number" 
+              class="quantity-input" 
+              value="${count}" 
+              min="1" 
+              oninput="updateQuantity(${productId}, event.target.value)">
+          </td>
+
+          <td>${currency}
+            <p id="subtotal-${productId}">${count * cost}</p>
+          </td>
+          <td>
+            <button class="btn-close" aria-label="Close" onclick="remove(${productId})"></button>
+          </td>
+        </tr>
+      `;
+      cartContainer.innerHTML += productHtml;
+    });
+  } else {
+    cartContainer.innerHTML = "El carrito está vacío.";
+  }
+
+  // Actualizar los totales
+  updateTotal();
 }
 
 function updateTotalPrice() {
@@ -194,7 +210,7 @@ const expirationDateInput = document.querySelector("#expirationDate");
 // Establece la fecha mínima
 expirationDateInput.setAttribute("min", today);
 
-// Validacines Bootstrap
+// Validaciones Bootstrap
 (() => {
   "use strict";
 

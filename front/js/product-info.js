@@ -219,6 +219,7 @@ function addToCartClicked() {
           // Hacer la solicitud POST al servidor
           updateCartOnServer(productDetails, "POST", userId);
         }
+        showNotificationAndScrollTop();
       })
       .catch((error) => {
         console.error("Error al obtener el carrito del servidor:", error);
@@ -247,4 +248,19 @@ function updateCartOnServer(productData, method, userId) {
     .catch((error) => {
       console.error(`Error en la solicitud ${method}:`, error);
     });
+}
+
+// Función para mostrar notificación y hacer scroll al top
+function showNotificationAndScrollTop() {
+  // Mostrar la notificación
+  const notification = document.querySelector("#notification");
+  notification.style.display = "block";
+
+  // Ocultar la notificación después de un tiempo
+  setTimeout(function () {
+    notification.style.display = "none";
+  }, 2300);
+
+  // Ir al Top de la página
+  document.documentElement.scrollTop = 0;
 }

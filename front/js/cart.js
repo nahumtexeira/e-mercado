@@ -21,28 +21,14 @@ fetch(CART_URL, {
   .then((serverCart) => {
     const serverProductData = serverCart.articles;
 
-    const localProductsToDelete = [];
-    for (const serverProduct of serverProductData) {
-      const localProductIndex = completeCart.findIndex(
-        (localProduct) => localProduct.id === serverProduct.id
-      );
-      if (localProductIndex !== -1) {
-        localProductsToDelete.push(localProductIndex);
-      }
-    }
-    for (const index of localProductsToDelete) {
-      completeCart.splice(index, 1);
-    }
-
-    completeCart = completeCart.concat(serverProductData);
-
-    if (completeCart.length > 0) {
-      completeCart.forEach((product, id) => {
+    if (serverProductData.length > 0) {
+      serverProductData.forEach((product) => {
         const name = product.name;
         const cost = product.unitCost;
         const count = product.count;
         const currency = product.currency;
         const imageUrl = product.image;
+        const productId = product.id;
 
         const productHtml = `
           <tr class="product">
@@ -50,20 +36,19 @@ fetch(CART_URL, {
             <td>${name}</td>
             <td class="d-none d-sm-table-cell">${currency} ${cost}</td>
             <td>
-              <input 
-                type="number" 
-                class="quantity-input" 
-                value="${count}" 
-                min="1" 
-                oninput="updateQuantity(${product.id}, event)">
+               <input 
+               type="number" 
+               class="quantity-input" 
+               value="${count}" 
+               min="1" 
+                oninput="updateQuantity(${productId}, event.target.value)">
             </td>
+
             <td>${currency}
-              <p id="subtotal-${product.id}">${count * cost}</p>
+              <p id="subtotal-${productId}">${count * cost}</p>
             </td>
             <td>
-              <button class="btn-close" aria-label="Close" onclick="remove(${
-                product.id
-              })"></button>
+              <button class="btn-close" aria-label="Close" onclick="remove(${productId})"></button>
             </td>
           </tr>
         `;
@@ -72,61 +57,49 @@ fetch(CART_URL, {
     } else {
       cartContainer.innerHTML = "El carrito está vacío.";
     }
-    updateTotal();
   })
   .catch((error) => {
     console.error("Error al obtener el carrito del servidor:", error);
   });
-radioButtons.forEach((radio) => {
-  radio.addEventListener("change", updateTotal);
-});
 
 function remove(productId) {
   fetch(`http://localhost:3000/api/user/${USER_ID}/cart/remove/${productId}`, {
     method: "DELETE",
     headers: {
-      "Authorization": token,
+      Authorization: token,
     },
   })
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       console.log(data);
       updateTotal();
       window.location.href = window.location.href;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error al eliminar el producto:", error);
     });
 }
 
-
-function updateQuantity(productId, event) {
-  const newQuantity = event.target.value; // Nuevo valor de la cantidad
-
-  // Buscar el producto en completeCart por su ID
-  const productIndex = completeCart.findIndex(
-    (product) => product.id === productId
-  );
-
-  if (productIndex !== -1) {
-    // Si se encuentra el producto, actualizar la cantidad
-    completeCart[productIndex].count = parseInt(newQuantity);
-
-    // Realizar la multiplicación de count y cost para obtener el subtotal
-    const product = completeCart[productIndex];
-    const subtotal = product.count * product.unitCost;
-
-    // Actualizar el carrito en el localStorage
-    localStorage.setItem("completeCart", JSON.stringify(completeCart));
-
-    // Actualizar el elemento HTML que muestra el subtotal
-    const subtotalElement = document.querySelector(`#subtotal-${productId}`);
-    subtotalElement.textContent = subtotal;
-    updateTotal();
-  } else {
-    // Manejo de error si el producto no se encuentra
-    console.error("Producto no encontrado en el completeCart.");
-  }
+function updateQuantity(productId, newQuantity) {
+  fetch(`http://localhost:3000/api/user/${USER_ID}/cart`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      id: productId,
+      count: newQuantity,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      updateTotal();
+    })
+    .catch((error) => {
+      console.error("Error al actualizar la cantidad del producto:", error);
+    });
 }
 
 function updateTotalPrice() {

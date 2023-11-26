@@ -14,7 +14,7 @@ const radioButtons = document.querySelectorAll('input[name="opcion"]');
 
 fetch(CART_URL, {
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `${token}`,
   },
 })
   .then((response) => response.json())

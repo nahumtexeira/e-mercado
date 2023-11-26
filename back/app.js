@@ -83,18 +83,6 @@ app.get("/api/product/:productId/comments", (req, res) => {
   res.sendFile(commentsFilePath);
 });
 
-// Ruta para obtener el carrito de un usuario
-app.get("/api/user/:userId/cart", (req, res) => {
-  const userId = req.params.userId;
-  const filePath = path.join(
-    __dirname,
-    "emercado-api-main",
-    "user_cart",
-    `${userId}.json`
-  );
-  res.sendFile(filePath);
-});
-
 // Ruta para obtener el contenido del archivo publish.json
 app.get("/api/sell/publish", (req, res) => {
   const publishFilePath = path.join(
@@ -158,8 +146,8 @@ app.post("/login", (req, res) => {
   }
 });
 
-// Ruta protegida con el middleware de autorización
 app.get("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
+  console.log("Usuario autenticado:", req.user);
   const userId = req.params.userId;
   const filePath = path.join(
     __dirname,

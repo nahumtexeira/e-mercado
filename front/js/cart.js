@@ -1,5 +1,6 @@
 const USER_ID = 25801;
 const CART_URL = `http://localhost:3000/api/user/${USER_ID}/cart`;
+const token = localStorage.getItem("token");
 let completeCart = JSON.parse(localStorage.getItem("completeCart")) || [];
 const cartContainer = document.querySelector("#product-data");
 const currencytype = document.querySelector("#currency");
@@ -11,7 +12,11 @@ const defCurrency = "pesos"; // Moneda predeterminada
 currencySelect.value = defCurrency; // Establece la moneda predeterminada en el select
 const radioButtons = document.querySelectorAll('input[name="opcion"]');
 
-fetch(CART_URL)
+fetch(CART_URL, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
   .then((response) => response.json())
   .then((serverCart) => {
     const serverProductData = serverCart.articles;

@@ -1,4 +1,5 @@
 const prodID = localStorage.getItem("prodID");
+const token = localStorage.getItem("token");
 
 const prodInfoURL = "http://localhost:3000/api/product/" + prodID;
 const prodCommURL = `http://localhost:3000/api/product/${prodID}/comments`;
@@ -181,40 +182,69 @@ function addToCartClicked() {
 
   // Verificar si la cantidad ingresada es válida (al menos 1)
   if (inputQty >= 1) {
-    // Buscar si el producto ya existe en el carrito
-    const existingProduct = completeCart.find(
-      (item) => item.id === prodIdStored
-    );
+    const userId = 25801;
+    const cartUrl = `http://localhost:3000/api/user/${userId}/cart`;
 
-    // Si el producto ya existe, actualizar la cantidad
-    if (existingProduct) {
-      existingProduct.count += inputQty;
-    } else {
-      // Si el producto no existe, agregarlo al carrito
-      completeCart.push({
-        id: prodIdStored,
-        name: cartProductInfo.name,
-        unitCost: cartProductInfo.cost,
-        count: inputQty,
-        currency: cartProductInfo.currency,
-        image: cartProductInfo.images[0],
+    // Hacer una solicitud GET al servidor para obtener el carrito actual
+    fetch(cartUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `${token}`, // Reemplaza con tu token JWT
+      },
+    })
+      .then((response) => response.json())
+      .then((cart) => {
+        // Buscar si el producto ya existe en el carrito
+        const existingProduct = cart.articles.find(
+          (item) => item.id === prodIdStored
+        );
+
+        // Si el producto ya existe, actualizar la cantidad usando PUT
+        if (existingProduct) {
+          existingProduct.count += inputQty;
+
+          // Hacer la solicitud PUT al servidor
+          updateCartOnServer(existingProduct, "PUT", userId);
+        } else {
+          // Si el producto no existe, usar la información del producto
+          const productDetails = {
+            id: prodIdStored,
+            name: cartProductInfo.name,
+            unitCost: cartProductInfo.cost,
+            count: inputQty,
+            currency: cartProductInfo.currency,
+            image: cartProductInfo.images[0],
+          };
+
+          // Hacer la solicitud POST al servidor
+          updateCartOnServer(productDetails, "POST", userId);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener el carrito del servidor:", error);
       });
-    }
-
-    // Actualizar el carrito en el almacenamiento local
-    localStorage.setItem("completeCart", JSON.stringify(completeCart));
-
-    // Restablecer la cantidad a 1 y mostrar una notificación
-    document.querySelector("#qty").value = "1";
-
-    const notification = document.querySelector("#notification");
-    notification.style.display = "block";
-    setTimeout(function () {
-      notification.style.display = "none";
-    }, 2300);
-    // Luego de añadir al carrito ir al Top de la página.
-    document.documentElement.scrollTop = 0;
   } else {
     alert("La cantidad debe ser un número válido y al menos 1");
   }
+}
+
+// Función para hacer la solicitud al servidor (POST o PUT)
+function updateCartOnServer(productData, method, userId) {
+  const cartUrl = `http://localhost:3000/api/user/${userId}/cart`;
+
+  fetch(cartUrl, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+    body: JSON.stringify(productData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`Solicitud ${method} exitosa:`, data);
+    })
+    .catch((error) => {
+      console.error(`Error en la solicitud ${method}:`, error);
+    });
 }

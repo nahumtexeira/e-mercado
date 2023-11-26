@@ -171,8 +171,28 @@ app.put("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
   const filePath = userCartPath(userId);
 
   try {
-    const updatedCart = req.body; // Se asume que se envía el carrito completo para actualizar
-    fs.writeFileSync(filePath, JSON.stringify(updatedCart));
+    const updatedCartItem = req.body;
+
+    // Leer el carrito actual del usuario
+    const cartData = fs.readFileSync(filePath, "utf-8");
+    const cart = JSON.parse(cartData);
+
+    // Buscar el índice del artículo en el carrito por su ID
+    const articleIndex = cart.articles.findIndex(
+      (article) => article.id === updatedCartItem.id
+    );
+
+    // Si el artículo existe en el carrito, actualizar la cantidad
+    if (articleIndex !== -1) {
+      cart.articles[articleIndex].count = updatedCartItem.count;
+    } else {
+      // Si el artículo no existe en el carrito, agregarlo
+      cart.articles.push(updatedCartItem);
+    }
+
+    // Guardar el carrito actualizado
+    fs.writeFileSync(filePath, JSON.stringify(cart));
+
     res.json({ message: "Carrito actualizado exitosamente" });
   } catch (error) {
     console.error("Error al actualizar el carrito:", error);
@@ -189,7 +209,7 @@ app.post("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
     const cartData = fs.readFileSync(filePath, "utf-8");
     const cart = JSON.parse(cartData);
 
-    const newProduct = req.body; // Se asume que se envía el producto a agregar
+    const newProduct = req.body;
 
     // Agregar el nuevo producto al carrito
     cart.articles.push(newProduct);

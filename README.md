@@ -33,6 +33,18 @@ Returns the comments of a specific product. The 'productId' is a parameter in th
 
 Returns the cart of a specific user. The 'userId' is a parameter in the URL.
 
+### PUT /api/user/:userId/cart
+
+Modify the quantity of a product in a cart.
+
+### POST /api/user/:userId/cart
+
+Add a product to cart.
+
+### DELETE /api/user/:userId/cart/:productId
+
+Delete a product from cart.
+
 ### GET /api/sell/publish
 
 Returns the content of the 'publish.json' file.

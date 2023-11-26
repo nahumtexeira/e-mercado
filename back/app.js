@@ -146,17 +146,92 @@ app.post("/login", (req, res) => {
   }
 });
 
+// Rutas de CRUD para el carrito de compras
+const userCartPath = (userId) =>
+  path.join(__dirname, "emercado-api-main", "user_cart", `${userId}.json`);
+
+// Obtener el carrito de un usuario
 app.get("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
-  console.log("Usuario autenticado:", req.user);
   const userId = req.params.userId;
-  const filePath = path.join(
-    __dirname,
-    "emercado-api-main",
-    "user_cart",
-    `${userId}.json`
-  );
-  res.sendFile(filePath);
+  const filePath = userCartPath(userId);
+
+  try {
+    const cartData = fs.readFileSync(filePath, "utf-8");
+    const cart = JSON.parse(cartData);
+    res.json(cart);
+  } catch (error) {
+    console.error("Error al leer el carrito:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
 });
+
+// Actualizar el carrito de un usuario
+app.put("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
+  const userId = req.params.userId;
+  const filePath = userCartPath(userId);
+
+  try {
+    const updatedCart = req.body; // Se asume que se envía el carrito completo para actualizar
+    fs.writeFileSync(filePath, JSON.stringify(updatedCart));
+    res.json({ message: "Carrito actualizado exitosamente" });
+  } catch (error) {
+    console.error("Error al actualizar el carrito:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+// Agregar un producto al carrito de un usuario
+app.post("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
+  const userId = req.params.userId;
+  const filePath = userCartPath(userId);
+
+  try {
+    const cartData = fs.readFileSync(filePath, "utf-8");
+    const cart = JSON.parse(cartData);
+
+    const newProduct = req.body; // Se asume que se envía el producto a agregar
+
+    // Agregar el nuevo producto al carrito
+    cart.articles.push(newProduct);
+
+    // Guardar el carrito actualizado
+    fs.writeFileSync(filePath, JSON.stringify(cart));
+
+    res.json({ message: "Producto agregado al carrito exitosamente" });
+  } catch (error) {
+    console.error("Error al agregar producto al carrito:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+// Eliminar un producto del carrito de un usuario
+app.delete(
+  "/api/user/:userId/cart/:productId",
+  authorizeMiddleware,
+  (req, res) => {
+    const userId = req.params.userId;
+    const productId = req.params.productId;
+    const filePath = userCartPath(userId);
+
+    try {
+      const cartData = fs.readFileSync(filePath, "utf-8");
+      const cart = JSON.parse(cartData);
+
+      // Filtrar el carrito para excluir el producto a eliminar
+      cart.articles = cart.articles.filter(
+        (product) => product.id !== parseInt(productId)
+      );
+
+      // Guardar el carrito actualizado
+      fs.writeFileSync(filePath, JSON.stringify(cart));
+
+      res.json({ message: "Producto eliminado del carrito exitosamente" });
+    } catch (error) {
+      console.error("Error al eliminar producto del carrito:", error);
+      res.status(500).json({ error: "Error interno del servidor" });
+    }
+  }
+);
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

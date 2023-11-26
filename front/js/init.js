@@ -53,6 +53,7 @@ fetch(CATEGORIES_URL)
     }
     return response.json();
   })
+
   .then((data) => {
     const categoryList = document.querySelector("#categoryList");
 
@@ -60,10 +61,7 @@ fetch(CATEGORIES_URL)
       const listItem = document.createElement("li");
       const link = document.createElement("a");
       link.textContent = category.name;
-      link.href = `${PRODUCTS_URL.replace(
-        ":categoryId",
-        category.id
-      )}${EXT_TYPE}`;
+      link.href = "products.html";
       listItem.appendChild(link);
       categoryList.appendChild(listItem);
       listItem.onclick = function (event) {

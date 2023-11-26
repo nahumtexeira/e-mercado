@@ -225,33 +225,24 @@ app.post("/api/user/:userId/cart", authorizeMiddleware, (req, res) => {
 });
 
 // Eliminar un producto del carrito de un usuario
-app.delete(
-  "/api/user/:userId/cart/:productId",
-  authorizeMiddleware,
-  (req, res) => {
-    const userId = req.params.userId;
-    const productId = req.params.productId;
-    const filePath = userCartPath(userId);
+app.delete("/api/user/:userId/cart/remove/:productId", authorizeMiddleware, (req, res) => {
+  const userId = req.params.userId;
+  const productId = req.params.productId;
+  const filePath = userCartPath(userId);
 
-    try {
-      const cartData = fs.readFileSync(filePath, "utf-8");
-      const cart = JSON.parse(cartData);
+  try {
+    const cartData = fs.readFileSync(filePath, "utf-8");
+    const cart = JSON.parse(cartData);
 
-      // Filtrar el carrito para excluir el producto a eliminar
-      cart.articles = cart.articles.filter(
-        (product) => product.id !== parseInt(productId)
-      );
+    const updatedCart = cart.articles.filter(product => product.id !== parseInt(productId));
 
-      // Guardar el carrito actualizado
-      fs.writeFileSync(filePath, JSON.stringify(cart));
-
-      res.json({ message: "Producto eliminado del carrito exitosamente" });
-    } catch (error) {
-      console.error("Error al eliminar producto del carrito:", error);
-      res.status(500).json({ error: "Error interno del servidor" });
-    }
+    fs.writeFileSync(filePath, JSON.stringify({ articles: updatedCart }));
+    res.json({ message: "Producto eliminado del carrito exitosamente" });
+  } catch (error) {
+    console.error("Error al eliminar el producto del carrito:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
-);
+});
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

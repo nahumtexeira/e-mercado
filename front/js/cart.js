@@ -82,17 +82,23 @@ radioButtons.forEach((radio) => {
 });
 
 function remove(productId) {
-  const productIndex = completeCart.findIndex(
-    (product) => product.id === productId
-  );
-
-  if (productIndex !== -1) {
-    completeCart.splice(productIndex, 1);
-    localStorage.setItem("completeCart", JSON.stringify(completeCart));
-  }
-  updateTotal();
-  window.location.href = window.location.href;
+  fetch(`http://localhost:3000/api/user/${USER_ID}/cart/remove/${productId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": token,
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      updateTotal();
+      window.location.href = window.location.href;
+    })
+    .catch(error => {
+      console.error("Error al eliminar el producto:", error);
+    });
 }
+
 
 function updateQuantity(productId, event) {
   const newQuantity = event.target.value; // Nuevo valor de la cantidad
